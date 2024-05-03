@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export default function CustomerHeader() {
     return (
         <>
-             {/* <!-- Page Preloder --> */}
-             <div id="preloder" style={{ display: "none" }}>
+            {/* <!-- Page Preloder --> */}
+            <div id="preloder" style={{ display: "none" }}>
                 <div className="loader" style={{ display: "none" }}></div>
             </div>
 
@@ -37,9 +37,9 @@ export default function CustomerHeader() {
                 </div>
                 <nav class="mainmenu mobile-menu">
                     <ul>
-                        <li class="active"><Link to="./index.html">Home</Link></li>
-                        <li><Link to="./rooms.html">Rooms</Link></li>
-                        <li><Link to="./about-us.html">About Us</Link></li>
+                        <li class="active"><Link to="/">Home</Link></li>
+                        <li><Link to="/rooms">Rooms</Link></li>
+                        <li><Link to="/aboutus">About Us</Link></li>
                         <li><Link to="./pages.html">Pages</Link>
                             <ul class="dropdown">
                                 <li><Link to="./room-details.html">Room Details</Link></li>
@@ -49,24 +49,24 @@ export default function CustomerHeader() {
                             </ul>
                         </li>
                         <li><Link to="./blog.html">News</Link></li>
-                        <li><Link to="./contact.html">Contact</Link></li>
+                        <li><Link to="/contactus">Contact</Link></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"><div class="slicknav_menu"><Link to="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style={{ outline: "none;" }}><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></Link><nav class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style={{ display: "none;" }}>
                     <ul>
-                        <li class="active"><Link to="./index.html" role="menuitem">Home</Link></li>
-                        <li><Link to="./rooms.html" role="menuitem">Rooms</Link></li>
-                        <li><Link to="./about-us.html" role="menuitem">About Us</Link></li>
+                        <li class="active"><Link to="/" role="menuitem">Home</Link></li>
+                        <li><Link to="/rooms" role="menuitem">Rooms</Link></li>
+                        <li><Link to="/aboutus" role="menuitem">About Us</Link></li>
                         <li class="slicknav_collapsed slicknav_parent"><Link to="" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style={{ outline: "none" }}><Link to="./pages.html">Pages</Link>
                             <span class="slicknav_arrow">►</span></Link><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style={{ display: "none" }}>
-                                <li><Link to="./room-details.html" role="menuitem" tabindex="-1">Room Details</Link></li>
+                                {/* <li><Link to="./room-details.html" role="menuitem" tabindex="-1">Room Details</Link></li>
                                 <li><Link to="#" role="menuitem" tabindex="-1">Deluxe Room</Link></li>
                                 <li><Link to="#" role="menuitem" tabindex="-1">Family Room</Link></li>
-                                <li><Link to="#" role="menuitem" tabindex="-1">Premium Room</Link></li>
+                                <li><Link to="#" role="menuitem" tabindex="-1">Premium Room</Link></li> */}
                             </ul>
                         </li>
-                        <li><Link to="./blog.html" role="menuitem">News</Link></li>
-                        <li><Link to="./contact.html" role="menuitem">Contact</Link></li>
+                        {/* <li><Link to="./blog.html" role="menuitem">News</Link></li> */}
+                        <li><Link to="/contactus" role="menuitem">Contact</Link></li>
                     </ul>
                 </nav></div></div>
                 <div class="top-social">
@@ -121,9 +121,10 @@ export default function CustomerHeader() {
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-2">
-                                <div class="logo">
-                                    <Link to="#">
-                                        <img src="img/logo.png" alt="" />
+                                <div class="logo" style={{height:"8vmin",display:"flex",justifyContent:"center"}}>
+                                    <Link to="/" className="logo d-flex align-items-center" >
+                                        {/* <img src="/assets/img/logo.png" alt="" /> */}
+                                        <span className="d-none d-lg-block" style={{color:"#dfa974"}}>NiceHotel</span>
                                     </Link>
                                 </div>
                             </div>
@@ -131,24 +132,24 @@ export default function CustomerHeader() {
                                 <div class="nav-menu">
                                     <nav class="mainmenu">
                                         <ul>
-                                            <li class="active"><Link to="./index.html">Home</Link></li>
-                                            <li><Link to="./rooms.html">Rooms</Link></li>
-                                            <li><Link to="./about-us.html">About Us</Link></li>
-                                            <li><Link to="./pages.html">Pages</Link>
+                                            <li class="active"><Link to="/">Home</Link></li>
+                                            <li><Link to="/rooms">Rooms</Link></li>
+                                            <li><Link to="/aboutus">About Us</Link></li>
+                                            {/* <li><Link to="./pages.html">Pages</Link>
                                                 <ul class="dropdown">
                                                     <li><Link to="./room-details.html">Room Details</Link></li>
                                                     <li><Link to="./blog-details.html">Blog Details</Link></li>
                                                     <li><Link to="#">Family Room</Link></li>
                                                     <li><Link to="#">Premium Room</Link></li>
                                                 </ul>
-                                            </li>
-                                            <li><Link to="./blog.html">News</Link></li>
-                                            <li><Link to="./contact.html">Contact</Link></li>
+                                            </li> */}
+                                            {/* <li><Link to="./blog.html">News</Link></li> */}
+                                            <li><Link to="/contactus">Contact</Link></li>
                                         </ul>
                                     </nav>
-                                    <div class="nav-right search-switch">
+                                    {/* <div class="nav-right search-switch">
                                         <i class="icon_search"></i>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -157,4 +158,5 @@ export default function CustomerHeader() {
             </header>
             {/* <!-- Header End -->*/}
         </>
-    )}
+    )
+}

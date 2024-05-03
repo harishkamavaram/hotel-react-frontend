@@ -11,6 +11,9 @@ import Addbooking from "./components/add-booking";
 import Customers from "./components/customers";
 import CustomerLayout from "./customerComponents/Layout";
 import Customer from "./customerComponents/customer-page";
+import Contactus from "./customerComponents/contact";
+import Rooms from "./customerComponents/rooms";
+import AboutUs from "./customerComponents/about-us";
 
 
 function App() {
@@ -19,12 +22,13 @@ function App() {
     <Routes>
         <Route path="/" element={<CustomerLayout />}>
           <Route index element={<Customer />} />
-          <Route path="components/profile" element={<Profile />} />
-
+          <Route path="contactus" element={<Contactus />} />
+          <Route path="rooms" element={<Rooms />} />
+          <Route path="aboutus" element={<AboutUs />} />
         </Route>
 
       
-        <Route path="/admin" element={<Layout />}>
+        <Route path="/admin/*" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="components/profile" element={<Profile />} />
           <Route path="bookings/allbookings" element={<Bookings />} />
