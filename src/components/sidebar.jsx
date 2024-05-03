@@ -5,7 +5,7 @@ function Sidebar() {
     <aside id="sidebar" className="sidebar">
       <ul className="sidebar-nav" id="sidebar-nav">
         <li className="nav-item">
-          <Link className="nav-link " to="/">
+          <Link className="nav-link " to="/admin">
             <i className="bi bi-grid"></i>
             <span>Dashboard</span>
           </Link>
@@ -35,7 +35,7 @@ function Sidebar() {
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="/" data-bs-target="#Customers-nav" data-bs-toggle="collapse" >
-            <i class="bi bi-person"></i>
+            <i class="bi bi-people-fill"></i>
             <span>Customers</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Customers-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

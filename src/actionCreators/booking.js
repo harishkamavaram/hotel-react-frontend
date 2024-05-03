@@ -10,7 +10,7 @@ export function getAllBookings() {
         .then((axiosResponse) => {
             const response = axiosResponse.data;
             // console.log("create response:", axiosResponse);
-            console.log("res  >",response);
+            // console.log("res  >",response);
           
             if (response.success) {
                 dispatch({ type: GET_ALL_BOOKINGS, payload: response.data});

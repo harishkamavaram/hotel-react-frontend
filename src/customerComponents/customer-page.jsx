@@ -1,19 +1,25 @@
+import { DatePicker } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 export default function Customer() {
+
+    const onChange = (date, dateString) => {
+        console.log(date, dateString);
+    };
     return (
         <>
 
-      
 
-   {/* <!-- Hero Section Begin --> */}
+
+            {/* <!-- Hero Section Begin --> */}
             <section class="hero-section">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero-text">
-                                <h1>Sona A Luxury Hotel</h1>
+                                <h1>NiceHotel A Luxury Hotel</h1>
                                 <p>Here are the best hotel booking sites, including recommendations for international
                                     travel and for finding low-priced hotel rooms.</p>
                                 <Link to="#" class="primary-btn">Discover Now</Link>
@@ -25,7 +31,13 @@ export default function Customer() {
                                 <form action="#">
                                     <div class="check-date">
                                         <label for="date-in">Check In:</label>
-                                        <input type="text" class="date-input hasDatepicker" id="date-in" />
+                                        <DatePicker
+                                            format={{
+                                                format: 'YYYY-MM-DD',
+                                                type: 'mask',
+                                            }}
+                                            onChange={onChange}
+                                        />
                                         <i class="icon_calendar"></i>
                                     </div>
                                     <div class="check-date">
@@ -54,14 +66,46 @@ export default function Customer() {
                     </div>
                 </div>
                 <div class="hero-slider owl-carousel owl-loaded">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style={{ width: "10635px" }}>
+                            <div class="owl-item cloned" style={{ width: "1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg" style={{ backgroundImage: "url(img/hero/hero-2.jpg)" }}
+                                >
+                                </div>
+                            </div>
+                            {/* <div class="owl-item cloned" style={{ width: "1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg" style={{ backgroundImage: "url(img/hero/hero-3.jpg)" }}
+                                >
+                                </div>
+                            </div>
+                            <div class="owl-item" style={{ width: "1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg" style={{ backgroundImage: "url(img/hero/hero-1.jpg)" }}>
+                                </div>
+                            </div>
+                            <div class="owl-item animated owl-animated-in fadeIn active" style={{ width: "1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg" style={{ backgroundImage: "url(img/hero/hero-2.jpg)" }}>
+                                </div>
+                            </div>
+                            <div class="owl-item animated owl-animated-in fadeIn" style={{ width: " 1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg" style={{ backgroundImage: "url(img/hero/hero-3.jpg)" }}>
+                                </div>
+                            </div>.
+                            <div class="owl-item cloned" style={{ width: "1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg" style={{ backgroundImage: "url(img/hero/hero-1.jpg)" }}>
+                                </div>
+                            </div>
+                            <div class="owl-item cloned" style={{ width: "1519.2px" }}>
+                                <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg" style={{ backgroundImage: "url(img/hero/hero-2.jpg)" }}>
+                                </div>
+                            </div> */}
+                        </div>
+                    </div>
+                    <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous"></span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next"></span></button>
+                    </div>
+                    <div class="owl-dots">
 
-
-
-                    <div class="owl-stage-outer"><div class="owl-stage" style={{ transform: "translate3d(-4557px, 0px, 0px)", transition: " all 0s ease 0s", width: "10635px" }}><div class="owl-item cloned" style={{ width: "1519.2px" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg" style={{ backgroundImage: "url(img/hero/hero-2.jpg)" }}
-                    ></div></div><div class="owl-item cloned" style={{ width: "1519.2px" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg" style={{ backgroundImage: "url(img/hero/hero-3.jpg)" }}
-                    ></div></div><div class="owl-item" style={{ width: "1519.2px;" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg" style={{ backgroundImage: "url(img/hero/hero-1.jpg)" }}></div></div><div class="owl-item animated owl-animated-in fadeIn active" style={{ width: "1519.2px" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg" style={{ backgroundImage: "url(img/hero/hero-2.jpg)" }}></div></div><div class="owl-item animated owl-animated-in fadeIn" style={{ width: " 1519.2px" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg" style={{ backgroundImage: "url(img/hero/hero-3.jpg)" }}></div></div><div class="owl-item cloned" style={{ width: "1519.2px" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg" style={{ backgroundImage: "url(img/hero/hero-1.jpg)" }}></div></div><div class="owl-item cloned" style={{ width: "1519.2px" }}><div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg" style={{ backgroundImage: "url(img/hero/hero-2.jpg)" }}></div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots">
-                        {/* <button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button> */}
-                        </div></div>
+                    </div>
+                </div>
             </section>
             {/* <!-- Hero Section End -->
 
@@ -313,7 +357,7 @@ export default function Customer() {
                                     <p>After a construction project took longer than expected, my husband, my daughter and I
                                         needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                         city, neighborhood and the types of housing options available and absolutely love our
-                                        vacation at Sona Hotel.</p>
+                                        vacation at  NiceHotel.</p>
                                     <div class="ti-author">
                                         <div class="rating">
                                             <i class="icon_star"></i>
@@ -342,7 +386,7 @@ export default function Customer() {
                                     <p>After a construction project took longer than expected, my husband, my daughter and I
                                         needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                         city, neighborhood and the types of housing options available and absolutely love our
-                                        vacation at Sona Hotel.</p>
+                                        vacation at  NiceHotel.</p>
                                     <div class="ti-author">
                                         <div class="rating">
                                             <i class="icon_star"></i>
@@ -358,7 +402,7 @@ export default function Customer() {
                                     <p>After a construction project took longer than expected, my husband, my daughter and I
                                         needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                         city, neighborhood and the types of housing options available and absolutely love our
-                                        vacation at Sona Hotel.</p>
+                                        vacation at NiceHotel.</p>
                                     <div class="ti-author">
                                         <div class="rating">
                                             <i class="icon_star"></i>
@@ -374,7 +418,7 @@ export default function Customer() {
                                     <p>After a construction project took longer than expected, my husband, my daughter and I
                                         needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                         city, neighborhood and the types of housing options available and absolutely love our
-                                        vacation at Sona Hotel.</p>
+                                        vacation at NiceHotel.</p>
                                     <div class="ti-author">
                                         <div class="rating">
                                             <i class="icon_star"></i>
@@ -390,7 +434,7 @@ export default function Customer() {
                                     <p>After a construction project took longer than expected, my husband, my daughter and I
                                         needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
                                         city, neighborhood and the types of housing options available and absolutely love our
-                                        vacation at Sona Hotel.</p>
+                                        vacation at NiceHotel.</p>
                                     <div class="ti-author">
                                         <div class="rating">
                                             <i class="icon_star"></i>
@@ -472,7 +516,7 @@ export default function Customer() {
             {/* <!-- Blog Section End -->
 
     <!-- Footer Section Begin --> */}
-         
+
 
         </>
     )

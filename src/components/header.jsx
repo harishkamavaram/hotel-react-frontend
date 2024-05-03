@@ -1,12 +1,13 @@
-import {  Link } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { useSelector,useDispatch } from "react-redux";
 import { setSessionExpire } from "../actionCreators/google";
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+//  const navigate = useNavigate();
   useEffect(() => {
     document.body.classList.toggle('toggle-sidebar', isOpen);
   },[isOpen])
@@ -16,6 +17,7 @@ function Header() {
       // console.log("userLocalStorageTokenForRemoveToken >",userLocalStorageToken);
       dispatch(setSessionExpire(userLocalStorageToken));
   }
+
     return(
         <header
         id="header"
@@ -132,7 +134,7 @@ function Header() {
                 >
                   <Link
                     className="dropdown-item d-flex align-items-center"
-                    to="/"
+                    to="/admin"
                     
                   >
                     <i className="bi bi-box-arrow-right"></i>

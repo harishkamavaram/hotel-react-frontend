@@ -14,7 +14,7 @@ function Login() {
       if(loading) {
         setLoading(false);
         const code = searchParams.get('code');
-        console.log("code",code);
+        // console.log("code",code);
         dispatch(verifyGoogleToken(code, (error) => {
           navigate("/admin");
         }));

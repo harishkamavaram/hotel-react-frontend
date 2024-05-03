@@ -1,14 +1,33 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import CustomerHeader from "../customerComponents/Header";
 import CustomerFooter from "../customerComponents/footer";
+import { Layout } from "antd";
+import { useEffect } from "react";
 
+function CustomerPanel({ children }) {
 
-export default function CustomerLayout(){
-  return(
+ const navigate = useNavigate();
+  const userLocalStorageToken = window.localStorage.getItem('NiceHotel');
+
+  useEffect(() => {
+
+  if (userLocalStorageToken != null) {
+    console.log("UR ADMIN");
+    navigate("/admin");
+  }
+
+},[navigate,userLocalStorageToken,children])
+
+  return userLocalStorageToken != null ? <Layout /> : children;
+}
+export default function CustomerLayout() {
+  return (
     <>
-       <CustomerHeader />
+      <CustomerPanel>
+        <CustomerHeader />
         <Outlet />
         <CustomerFooter />
+      </CustomerPanel>
     </>
   )
 }

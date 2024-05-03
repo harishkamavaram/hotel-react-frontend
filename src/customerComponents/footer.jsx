@@ -12,7 +12,8 @@ export default function CustomerFooter() {
                                 <div class="ft-about">
                                     <div class="logo">
                                         <Link to="#">
-                                            <img src="img/footer-logo.png" alt="" />
+                                            {/* <img src="img/footer-logo.png" alt="" /> */}
+                                            <span className="d-none d-lg-block" style={{color:"#dfa974"}}>NiceHotel</span>
                                         </Link>
                                     </div>
                                     <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
