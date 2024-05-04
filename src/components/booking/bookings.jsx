@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import ReactPaginate from "react-paginate";
-import { getAllBookings } from "../actionCreators/booking"
+import { getAllBookings } from "../../actionCreators/booking"
 
 
 export default function Bookings() {

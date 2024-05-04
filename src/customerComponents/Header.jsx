@@ -12,10 +12,10 @@ export default function CustomerHeader() {
 
             {/* <!-- Offcanvas Menu Section Begin --> */}
             <div class="offcanvas-menu-overlay"></div>
-            <div class="canvas-open">
+            {/* <div class="canvas-open">
                 <i class="icon_menu"></i>
-            </div>
-            <div class="offcanvas-menu-wrapper">
+            </div> */}
+            {/* <div class="offcanvas-menu-wrapper">
                 <div class="canvas-close">
                     <i class="icon_close"></i>
                 </div>
@@ -33,7 +33,7 @@ export default function CustomerHeader() {
                             </ul>
                         </div>
                     </div> */}
-                    <Link to="#" class="bk-btn">Booking Now</Link>
+                    {/* <Link to="#" class="bk-btn">Booking Now</Link>
                 </div>
                 <nav class="mainmenu mobile-menu">
                     <ul>
@@ -63,10 +63,10 @@ export default function CustomerHeader() {
                                 <li><Link to="#" role="menuitem" tabindex="-1">Deluxe Room</Link></li>
                                 <li><Link to="#" role="menuitem" tabindex="-1">Family Room</Link></li>
                                 <li><Link to="#" role="menuitem" tabindex="-1">Premium Room</Link></li> */}
-                            </ul>
+                            {/* </ul>
                         </li>
                         {/* <li><Link to="./blog.html" role="menuitem">News</Link></li> */}
-                        <li><Link to="/contactus" role="menuitem">Contact</Link></li>
+                        {/* <li><Link to="/contactus" role="menuitem">Contact</Link></li>
                     </ul>
                 </nav></div></div>
                 <div class="top-social">
@@ -79,7 +79,7 @@ export default function CustomerHeader() {
                     <li><i class="fa fa-phone"></i> (12) 345 67890</li>
                     <li><i class="fa fa-envelope"></i> info.niceHotel@gmail.com</li>
                 </ul>
-            </div>
+            </div> */} 
             {/* <!-- Offcanvas Menu Section End -->
 
     <!-- Header Section Begin --> */}
@@ -122,7 +122,7 @@ export default function CustomerHeader() {
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="logo" style={{height:"8vmin",display:"flex",justifyContent:"center"}}>
-                                    <Link to="/" className="logo d-flex align-items-center" >
+                                    <Link to="/admin" className="logo d-flex align-items-center" >
                                         {/* <img src="/assets/img/logo.png" alt="" /> */}
                                         <span className="d-none d-lg-block" style={{color:"#dfa974"}}>NiceHotel</span>
                                     </Link>

@@ -40,7 +40,7 @@ function Sidebar() {
           </a>
           <ul id="Customers-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <Link to="/customers/allcustomers">
+              <Link to="/admin/customers/allcustomers">
                 <i class="bi bi-circle"></i><span>All Customers</span>
               </Link>
             </li>
@@ -59,23 +59,23 @@ function Sidebar() {
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="/" data-bs-target="#Rooms-nav" data-bs-toggle="collapse" >
-          <i class="bi bi-key"></i>
-<span>Rooms</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-key"></i>
+            <span>Rooms</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Rooms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <Link to="/admin/bookings/allbookings">
+              <Link to="/admin/rooms/allrooms">
                 <i class="bi bi-circle"></i><span>All Rooms</span>
               </Link>
             </li>
             <li>
-              <Link to="/bookings/editbookings">
-                <i class="bi bi-circle"></i><span>Edit Rooms</span>
+              <Link to="/admin/rooms/room">
+                <i class="bi bi-circle"></i><span> Rooms</span>
               </Link>
             </li>
             <li>
-              <Link to="/admin/bookings/addbookings">
-                <i class="bi bi-circle"></i><span>Add Rooms</span>
+              <Link to="/admin/rooms/roomtype">
+                <i class="bi bi-circle"></i><span> RoomType</span>
               </Link>
             </li>
 
@@ -83,12 +83,12 @@ function Sidebar() {
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" href="/" data-bs-target="#Staff-nav" data-bs-toggle="collapse" >
-          <i class="bi bi-person"></i>
-<span>Staff</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-person"></i>
+            <span>Staff</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Staff-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <Link to="/admin/bookings/allbookings">
+              <Link to="/admin/staff/allstaff">
                 <i class="bi bi-circle"></i><span>All Staff</span>
               </Link>
             </li>

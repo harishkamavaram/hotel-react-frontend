@@ -26,8 +26,8 @@ import { Link } from "react-router-dom";
                     <div class="room-item">
                         <img src="img/room/room-1.jpg" alt=""/>
                         <div class="ri-text">
-                            <h4>Premium King Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
+                            <h4>Premium  Room</h4>
+                            <h3>₹ 3999<span>/Pernight</span></h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -48,11 +48,11 @@ import { Link } from "react-router-dom";
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link to="#" class="primary-btn">More Details</Link>
+                            {/* <Link to="#" class="primary-btn">More Details</Link> */}
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                {/* <div class="col-lg-4 col-md-6">
                     <div class="room-item">
                         <img src="img/room/room-2.jpg" alt=""/>
                         <div class="ri-text">
@@ -81,13 +81,13 @@ import { Link } from "react-router-dom";
                             <Link to="#" class="primary-btn">More Details</Link>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
                         <img src="img/room/room-3.jpg" alt=""/>
                         <div class="ri-text">
                             <h4>Double Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
+                            <h3>₹ 2999<span>/Pernight</span></h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -108,7 +108,7 @@ import { Link } from "react-router-dom";
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link to="#" class="primary-btn">More Details</Link>
+                            {/* <Link to="#" class="primary-btn">More Details</Link> */}
                         </div>
                     </div>
                 </div>
@@ -116,8 +116,8 @@ import { Link } from "react-router-dom";
                     <div class="room-item">
                         <img src="img/room/room-4.jpg" alt=""/>
                         <div class="ri-text">
-                            <h4>Luxury Room</h4>
-                            <h3>159$<span>/Pernight</span></h3>
+                            <h4>Single Room</h4>
+                            <h3>₹ 1999<span>/Pernight</span></h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -138,11 +138,11 @@ import { Link } from "react-router-dom";
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link to="#" class="primary-btn">More Details</Link>
+                            {/* <Link to="#" class="primary-btn">More Details</Link> */}
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                {/* <div class="col-lg-4 col-md-6">
                     <div class="room-item">
                         <img src="img/room/room-5.jpg" alt=""/>
                         <div class="ri-text">
@@ -208,7 +208,7 @@ import { Link } from "react-router-dom";
                         <Link to="#">2</Link>
                         <Link to="#">Next <i class="fa fa-long-arrow-right"></i></Link>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     </section>

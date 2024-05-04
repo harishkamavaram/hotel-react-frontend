@@ -1,6 +1,6 @@
 import instance from "./axios-instance";
 import { SET_AUTHENTICATED_USER, SET_SESSION_EXPIRE } from "../actionTypes";
-import { findOneEmployee } from "./employee"; 
+
 export function getUrl() {
   return () => {
     // console.log("innnn......1");
