@@ -5,7 +5,7 @@ import {
     Select,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { createRoom, getAllRooms, getRoomTypes } from '../../actionCreators/rooms';
+import { createRoom,  getRoomTypes } from '../../actionCreators/rooms';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
