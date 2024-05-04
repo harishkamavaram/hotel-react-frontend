@@ -10,7 +10,7 @@ export default function Room() {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch()
     const rooms = useSelector((state) => state.rooms.data)
-    console.log("rooms0>>>>>>", rooms);
+    // console.log("rooms0>>>>>>", rooms);
     useEffect(() => {
 
         setTimeout(() => {
@@ -64,7 +64,7 @@ export default function Room() {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title"> All Rooms</h5>
+                                    <h5 className="card-title">Rooms</h5>
 
                                     <div
                                         style={{

@@ -1,8 +1,8 @@
-import { GET_ALL_ROOMS} from "../actionTypes";
+import { GET_ALL_ROOMS, GET_ALL_ROOM_TYPES} from "../actionTypes";
 
 const initialState = {
   data: [],
- 
+ roomTypes: []
 };
 
 
@@ -13,7 +13,11 @@ const reducer = (state=initialState, action) => {
         ...state,
        data: action.payload,
       }
-    
+    case GET_ALL_ROOM_TYPES:
+      return{
+        ...state,
+        roomTypes:  action.payload,
+      }
     default:
       return state;
   }

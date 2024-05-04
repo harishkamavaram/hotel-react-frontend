@@ -1,15 +1,18 @@
 import {
     Button,
-    DatePicker,
     Form,
     Input,
     InputNumber,
-    Select,
 
 } from 'antd';
+import { createRoomType } from '../../actionCreators/rooms';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddRoomType() {
 
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
     const formItemLayout = {
         labelCol: {
             xs: {
@@ -41,7 +44,11 @@ export default function AddRoomType() {
                         style={{
                             maxWidth: 600,
                         }}
-                        onFinish={(e)=>{console.log(e);}}
+                        onFinish={(e)=>{
+                            console.log(e);
+                            dispatch(createRoomType(e));
+                            navigate("/admin/rooms/roomtype") 
+                        }}
                     >
                         <Form.Item
                             label="TypeID"
@@ -49,7 +56,7 @@ export default function AddRoomType() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Enter TypeID!',
                                 },
                             ]}
                         >
@@ -67,7 +74,7 @@ export default function AddRoomType() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Enter Name!',
                                 },
                             ]}
                         >
@@ -82,7 +89,7 @@ export default function AddRoomType() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Enter Description!',
                                 },
                             ]}
                         >
@@ -95,7 +102,7 @@ export default function AddRoomType() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Enter Price!',
                                 },
                             ]}
                         >
@@ -112,7 +119,7 @@ export default function AddRoomType() {
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Enter Capacity!',
                                 },
                             ]}
                         >

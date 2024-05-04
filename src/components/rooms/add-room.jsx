@@ -1,15 +1,34 @@
 import {
     Button,
-    DatePicker,
     Form,
-    Input,
     InputNumber,
     Select,
 } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { createRoom, getAllRooms, getRoomTypes } from '../../actionCreators/rooms';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export default function AddRoom() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const rooms = useSelector((state) => state.rooms.roomTypes)
+    console.log("rooms0>>>>>>", rooms);
+    useEffect(() => {
 
-    const { RangePicker } = DatePicker;
+        setTimeout(() => {
+            if (loading) {
+                dispatch(getRoomTypes());
+                setLoading(false);
+            }
+        }, 100);
+    }, [
+        loading,
+        dispatch,
+        setLoading,
+    ]);
+
     const formItemLayout = {
         labelCol: {
             xs: {
@@ -28,8 +47,10 @@ export default function AddRoom() {
             },
         },
     };
-    const onFinish = (e) =>{
-           console.log("formmm   >",e)
+    const onFinish = (e) => {
+        //    console.log("formmm   >",e)
+        dispatch(createRoom(e))
+        navigate("/admin/rooms/room")
     }
     return (
         <div>
@@ -46,13 +67,13 @@ export default function AddRoom() {
                         }}
                         onFinish={onFinish}
                     >
-                         <Form.Item
+                        <Form.Item
                             label="Room number"
-                            name="TypeID"
+                            name="RoomNumber"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Enter Room number!',
                                 },
                             ]}
                         >
@@ -64,57 +85,48 @@ export default function AddRoom() {
                         </Form.Item>
                         <Form.Item
                             label="Room Type"
-                            name="roomType"
+                            name="TypeID"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please select a room type!',
                                 },
                             ]}
-                           
                         >
-                            <Select 
-                             options={[
-                                {
-                                  value: '101',
-                                  label: 'Premium',
-                                },
-                                {
-                                  value: '102',
-                                  label: 'Double',
-                                },
-                                {
-                                  value: '103',
-                                  label: 'Single',
-                                }
-                              ]}
-                              />
+                            <Select>
+                                {rooms.map((room) => (
+                                    <Select.Option key={room.TypeID} value={room.TypeID}>
+                                        {room.Name}
+                                    </Select.Option>
+                                ))}
+                            </Select>
                         </Form.Item>
+
                         <Form.Item
                             label="Status"
                             name="Status"
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input!',
+                                    message: 'Please Select Status!',
                                 },
                             ]}
                         >
-                            <Select 
-                             options={[
-                                {
-                                  value: 'Open',
-                                  label: 'Open',
-                                },
-                                {
-                                  value: 'Booked',
-                                  label: 'Booked',
-                                }
-                              ]}
-                              />
+                            <Select
+                                options={[
+                                    {
+                                        value: 'Available',
+                                        label: 'Available',
+                                    },
+                                    {
+                                        value: 'Booked',
+                                        label: 'Booked',
+                                    }
+                                ]}
+                            />
                         </Form.Item>
 
- 
+
 
                         <Form.Item
                             wrapperCol={{

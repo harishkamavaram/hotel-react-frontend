@@ -9,7 +9,7 @@ export default function AllRoom() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
   const rooms = useSelector((state) => state.rooms.data)
-  console.log("rooms0>>>>>>", rooms);
+  // console.log("rooms0>>>>>>", rooms);
   useEffect(() => {
 
     setTimeout(() => {

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { getAllRooms } from "../../actionCreators/rooms";
+import {  getRoomTypes } from "../../actionCreators/rooms";
 import { useDispatch, useSelector } from "react-redux";
-import { Tag } from "antd";
 import { Link } from "react-router-dom";
 
 
@@ -9,17 +8,18 @@ export default function RoomType() {
 
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch()
-    const rooms = useSelector((state) => state.rooms.data)
-    // console.log("rooms0>>>>>>", rooms);
+    const rooms = useSelector((state) => state.rooms.roomTypes)
+    // console.log("roomstypes", rooms);
     useEffect(() => {
 
-        setTimeout(() => {
+        // setTimeout(() => {
             if (loading) {
-                dispatch(getAllRooms());
+                dispatch(getRoomTypes());
                 setLoading(false);
             }
-        }, 100);
-    }, [
+        // }, 100);
+    },
+     [
         loading,
         dispatch,
         setLoading,
@@ -120,8 +120,8 @@ export default function RoomType() {
                                                 <tr key={room.TypeID}>
                                                     
                                                     <td>{room.TypeID}</td>
-                                                    <td>{room.TypeName}</td>
-                                                    <td>{room.TypeDescription}</td>
+                                                    <td>{room.Name}</td>
+                                                    <td>{room.Description}</td>
                                                     <td>{room.PricePerNight}</td>
                                                     <td>{room.Capacity}</td>
                                                     
