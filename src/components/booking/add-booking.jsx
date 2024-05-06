@@ -10,9 +10,14 @@ import {
     Select,
     TreeSelect,
 } from 'antd';
+import { useDispatch } from "react-redux";
+import { createBooking } from "../../actionCreators/booking";
 
 export default function Addbooking() {
+
+   const  dispatch = useDispatch();
     const { RangePicker } = DatePicker;
+   
     const formItemLayout = {
         labelCol: {
             xs: {
@@ -33,75 +38,72 @@ export default function Addbooking() {
     };
     return (
         <div>
-        <main id="main" className="main">
-            <div className="pagetitle">
-                <h1>Add Booking </h1>
-            </div>
-            <section className="section">
-                <Form
-                    {...formItemLayout}
-                    variant="filled"
-                    style={{
-                        maxWidth: 600,
-                    }}
-                >
-                    <Form.Item
-                        label="Input"
-                        name="Input"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
+            <main id="main" className="main">
+                <div className="pagetitle">
+                    <h1>Add Booking </h1>
+                </div>
+                <section className="section">
+                    <Form
+                        {...formItemLayout}
+                        variant="filled"
+                        style={{
+                            maxWidth: 600,
+                        }}
+                        onFinish={(e) => {
+                            console.log(e.CheckinDate);
+                            dispatch(createBooking(e))
+                        }}
                     >
-                        <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="InputNumber"
-                        name="InputNumber"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <InputNumber
+                        <Form.Item
+                            label="GuestID"
+                            name="GuestID"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input!',
+                                },
+                            ]}
+                        >
+                            <InputNumber 
                             style={{
                                 width: '100%',
-                            }}
-                        />
-                    </Form.Item>
+                            }}/>
+                            
+                        </Form.Item>
 
-                    <Form.Item
-                        label="TextArea"
-                        name="TextArea"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <Input.TextArea />
-                    </Form.Item>
+                        <Form.Item
+                            label="RoomNumber"
+                            name="RoomNumber"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input!',
+                                },
+                            ]}
+                        >
+                            <InputNumber
+                                style={{
+                                    width: '100%',
+                                }}
+                            />
+                        </Form.Item>
 
-                    <Form.Item
-                        label="Mentions"
-                        name="Mentions"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <Mentions />
-                    </Form.Item>
+                        <Form.Item
+                            label="TextArea"
+                            name="TextArea"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input!',
+                                },
+                            ]}
+                        >
+                            <Input.TextArea />
+                        </Form.Item>
 
-                    <Form.Item
+
+
+                        {/* <Form.Item
                         label="Select"
                         name="Select"
                         rules={[
@@ -112,82 +114,46 @@ export default function Addbooking() {
                         ]}
                     >
                         <Select />
-                    </Form.Item>
+                    </Form.Item> */}
 
-                    <Form.Item
-                        label="Cascader"
-                        name="Cascader"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <Cascader />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="TreeSelect"
-                        name="TreeSelect"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <TreeSelect />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="DatePicker"
-                        name="DatePicker"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <DatePicker />
-                    </Form.Item>
-
-                    <Form.Item
-                        label="RangePicker"
-                        name="RangePicker"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <RangePicker />
-                    </Form.Item>
-
-                    <Form.Item
-                        wrapperCol={{
-                            offset: 6,
-                            span: 16,
-                        }}
-                    >
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </section>
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
+                        <Form.Item
+                label="CheckinDate"
+                name="CheckinDate"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input!',
+                    },
+                ]}
             >
+                <RangePicker
+                    // showTime
+                   
+                />
+            </Form.Item>
 
-            </div>
-        </main>
+                        <Form.Item
+                            wrapperCol={{
+                                offset: 6,
+                                span: 16,
+                            }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </section>
+                <div
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+
+                </div>
+            </main>
         </div >
     )
 }

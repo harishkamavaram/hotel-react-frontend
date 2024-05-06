@@ -1,10 +1,39 @@
 import { DatePicker } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {  getRoomTypes } from "../actionCreators/rooms";
 
 
 export default function Customer() {
 
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch()
+    const rooms = useSelector((state) => state.rooms.roomTypes)
+    // console.log("rooms0>>>>>>", rooms);
+    // const room1 = rooms[0];
+    // const room2 = rooms[1];
+    // const room3 = rooms[2];
+    // console.log("rooms0>>>>>>", room1);
+    // console.log("rooms0>>>>>>", room2);
+    // console.log("rooms0>>>>>>", room3);
+    // const oneRoom = useSelector((state) => state.rooms.oneRoom)
+    //   console.log("oneRoom ... >",oneRoom);
+    useEffect(() => {
+
+        // setTimeout(() => {
+            // if (loading) {
+                dispatch(getRoomTypes());
+                // setLoading(false);   
+            }
+        // }, 100);
+    // }
+// )
+    , [
+        loading,
+        dispatch,
+        setLoading,
+    ]);
     const onChange = (date, dateString) => {
         console.log(date, dateString);
     };
@@ -228,11 +257,11 @@ export default function Customer() {
                 <div class="container-fluid">
                     <div class="hp-room-items">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="hp-room-item set-bg" data-setbg="img/room/room-b1.jpg" style={{ backgroundImage: " url(img/room/room-b1.jpg)" }}>
+                            {/* <div class="col-lg-4 col-md-6">
+                                <div class="hp-room-item set-bg" data-setbg="img/room/room-b3.jpg" style={{ backgroundImage: " url(img/room/room-b3.jpg)" }}>
                                     <div class="hr-text">
-                                        <h3>Double Room</h3>
-                                        <h2>199$<span>/Pernight</span></h2>
+                                        <h3>{room1.Name} Room</h3>
+                                        <h2>₹ {room1.PricePerNight}<span>/Pernight</span></h2>
                                         <table>
                                             <tbody>
                                                 <tr>
@@ -241,7 +270,7 @@ export default function Customer() {
                                                 </tr>
                                                 <tr>
                                                     <td class="r-o">Capacity:</td>
-                                                    <td>Max persion 5</td>
+                                                    <td>Max persion {room1.Capacity}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="r-o">Bed:</td>
@@ -253,16 +282,17 @@ export default function Customer() {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <Link to="#" class="primary-btn">More Details</Link>
-                                    </div>
+                                        {/* <Link to="#" class="primary-btn">More Details</Link> */}
+                                    {/* </div>
                                 </div>
-                            </div>
+                            </div>  */}
+                           {rooms.map((room2)=>
                             <div class="col-lg-3 col-md-6">
                                 <div className="hp-room-item set-bg" data-setbg="img/room/room-b2.jpg" style={{ backgroundImage: `url("img/room/room-b2.jpg")` }}>
 
                                     <div class="hr-text">
-                                        <h3>Premium King Room</h3>
-                                        <h2>159$<span>/Pernight</span></h2>
+                                        <h3>{room2.Name} Room</h3>
+                                        <h2>₹ {room2.PricePerNight}<span>/Pernight</span></h2>
                                         <table>
                                             <tbody>
                                                 <tr>
@@ -271,7 +301,7 @@ export default function Customer() {
                                                 </tr>
                                                 <tr>
                                                     <td class="r-o">Capacity:</td>
-                                                    <td>Max persion 5</td>
+                                                    <td>Max persion {room2.Capacity}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="r-o">Bed:</td>
@@ -283,15 +313,15 @@ export default function Customer() {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <Link to="#" class="primary-btn">More Details</Link>
+                                        {/* <Link to="#" class="primary-btn">More Details</Link> */}
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
+                            </div>)}
+                            {/* <div class="col-lg-4 col-md-6">
                                 <div class="hp-room-item set-bg" data-setbg="img/room/room-b3.jpg" style={{ backgroundImage: " url(img/room/room-b3.jpg)" }}>
                                     <div class="hr-text">
-                                        <h3>Deluxe Room</h3>
-                                        <h2>198$<span>/Pernight</span></h2>
+                                        <h3>{room3.Name} Room</h3>
+                                        <h2>₹ {room3.PricePerNight}<span>/Pernight</span></h2>
                                         <table>
                                             <tbody>
                                                 <tr>
@@ -300,7 +330,7 @@ export default function Customer() {
                                                 </tr>
                                                 <tr>
                                                     <td class="r-o">Capacity:</td>
-                                                    <td>Max persion 5</td>
+                                                    <td>Max persion {room3.Capacity}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="r-o">Bed:</td>
@@ -315,8 +345,8 @@ export default function Customer() {
                                         <Link to="#" class="primary-btn">More Details</Link>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
+                            </div> */}
+                            {/* <div class="col-lg-3 col-md-6">
                                 <div class="hp-room-item set-bg" data-setbg="img/room/room-b4.jpg" style={{ backgroundImage: " url(img/room/room-b4.jpg)" }}>
                                     <div class="hr-text">
                                         <h3>Family Room</h3>
@@ -344,7 +374,7 @@ export default function Customer() {
                                         <Link to="#" class="primary-btn">More Details</Link>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

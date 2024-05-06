@@ -2,6 +2,7 @@ import instance from "./axios-instance";
 import {
     GET_ALL_BOOKINGS,GET_ONE_GUEST
 } from "../actionTypes";
+import { notification } from "antd";
 // import { notification } from "antd";
 
 export function getAllBookings() {
@@ -21,6 +22,30 @@ export function getAllBookings() {
     };
 }
 
+export function createBooking(booking) {
+    return (dispatch) => {
+      instance.post(`/bookings/createBooking`, { booking })
+      .then((axiosResponse) => {
+        const response = axiosResponse.data;
+        // console.log("res  >",response);
+
+        if (response.success) {
+
+          notification.success({
+            message: `Notification `,
+            description: response.message,
+            placement: "bottomRight",
+          });
+        } else {
+          notification.error({
+            message: `Notification `,
+            description: response.message,
+            placement: "bottomRight",
+          });
+        }
+      });
+    };     
+  }
 // export function findOneGuest(employeeId) {
 //     return (dispatch) => {
 //       instance

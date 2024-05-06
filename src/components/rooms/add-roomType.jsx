@@ -45,7 +45,7 @@ export default function AddRoomType() {
                             maxWidth: 600,
                         }}
                         onFinish={(e)=>{
-                            console.log(e);
+                            // console.log(e);
                             dispatch(createRoomType(e));
                             navigate("/admin/rooms/roomtype") 
                         }}

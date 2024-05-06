@@ -14,4 +14,8 @@ export const GET_ONE_GUEST = 'GET_ONE_GUEST';
 
 export const GET_ALL_ROOMS = 'GET_ALL_ROOMS';
 
+export const GET_ONE_ROOM = 'GET_ONE_ROOM';
+
 export const GET_ALL_ROOM_TYPES = 'GET_ALL_ROOM_TYPES';
+
+export const GET_ONE_ROOMTYPE = 'GET_ONE_ROOMTYPE';

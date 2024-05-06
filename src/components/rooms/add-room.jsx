@@ -14,7 +14,7 @@ export default function AddRoom() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const rooms = useSelector((state) => state.rooms.roomTypes)
-    console.log("rooms0>>>>>>", rooms);
+    // console.log("rooms0>>>>>>", rooms);
     useEffect(() => {
 
         setTimeout(() => {

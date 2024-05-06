@@ -2,6 +2,9 @@ import instance from "./axios-instance";
 import {
     GET_ALL_ROOMS,
     GET_ALL_ROOM_TYPES,
+    GET_ONE_ROOM,
+    GET_ONE_ROOMTYPE,
+    SET_SESSION_EXPIRE,
 } from "../actionTypes";
 import { notification } from "antd";
 // import { notification } from "antd";
@@ -46,7 +49,89 @@ export function createRoom(room) {
       });
     };
   }
+  export function deleteRoom(roomId) {
+    return (dispatch) => {
+      // console.log(roomId);
+      instance
+        .delete(`/rooms/delete/${roomId}`, { roomId })
+  
+        .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          if (response.success) {
+            notification.success({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          } else {
+            notification.error({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          }
+        });
+    };
+  }
 
+
+  export function updateRoom(roomId, room) {
+    return (dispatch) => {
+      console.log(roomId);
+      console.log(room);
+      instance
+        .put(`/rooms/update/${roomId}`, { roomId, room })
+  
+        .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          if (response.success) {
+            notification.success({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          } else {
+            notification.error({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          }
+        });
+    };
+  }
+  export function findOneRoom(roomId) {
+    return (dispatch) => {
+      instance
+        .get(`/rooms/find-one/${roomId}`, { roomId })
+        .then((axiosResponse) => {
+          // console.log("axiosResponse >",axiosResponse.status);
+          const response = axiosResponse.data;
+          // console.log(response);
+  
+          if (response.success) {
+            // console.log("innn3333",response.data.position);
+            dispatch({ type: GET_ONE_ROOM, payload: response.data });
+            // console.log("......>",response.data );
+          }else {
+            notification.error({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            dispatch({ type: SET_SESSION_EXPIRE });
+          }
+        });
+    };
+  }
+
+
+
+  //FOR ROOM TYPES
 
 export function getRoomTypes() {
     return (dispatch) => {
@@ -68,7 +153,7 @@ export function createRoomType(room) {
       instance.post(`/rooms/createRoomType`, { room })
       .then((axiosResponse) => {
         const response = axiosResponse.data;
-        console.log("res  >",response);
+        // console.log("res  >",response);
 
         if (response.success) {
 
@@ -85,5 +170,87 @@ export function createRoomType(room) {
           });
         }
       });
+    };     
+  }
+
+ 
+
+  export function deleteRoomType(roomTypeId) {
+    return (dispatch) => {
+      console.log(roomTypeId);
+      instance
+        .delete(`/rooms/deleteRoomType/${roomTypeId}`, { roomTypeId })
+  
+        .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          if (response.success) {
+            notification.success({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          } else {
+            notification.error({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          }
+        });
+    };
+  }
+
+
+  export function updateRoomType(roomTypeId, roomType) {
+    return (dispatch) => {
+      // console.log(roomTypeId);
+      // console.log(roomType);
+      instance
+        .put(`/rooms/update/${roomTypeId}`, { roomTypeId, roomType })
+  
+        .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          if (response.success) {
+            notification.success({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          } else {
+            notification.error({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          }
+        });
+    };
+  }
+  export function findOneRoomType(roomTypeId) {
+    return (dispatch) => {
+      instance
+        .get(`/rooms/find-one/${roomTypeId}`, { roomTypeId })
+        .then((axiosResponse) => {
+          // console.log("axiosResponse >",axiosResponse.status);
+          const response = axiosResponse.data;
+          // console.log(response);
+  
+          if (response.success) {
+            // console.log("innn3333",response.data.position);
+            dispatch({ type: GET_ONE_ROOMTYPE, payload: response.data });
+            // console.log("......>",response.data );
+          }else {
+            notification.error({
+              message: `Notification `,
+              description: response.message,
+              placement: "bottomRight",
+            });
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            dispatch({ type: SET_SESSION_EXPIRE });
+          }
+        });
     };
   }
