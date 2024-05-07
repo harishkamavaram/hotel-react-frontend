@@ -1,6 +1,6 @@
 import instance from "./axios-instance";
 import {
-    GET_ALL_BOOKINGS,GET_ONE_GUEST
+    GET_ALL_BOOKINGS,
 } from "../actionTypes";
 import { notification } from "antd";
 // import { notification } from "antd";
