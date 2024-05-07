@@ -2,6 +2,7 @@ import instance from "./axios-instance";
 import {
     GET_ALL_ROOMS,
     GET_ALL_ROOM_TYPES,
+    GET_AVAILABLE_ROOMS,
     GET_ONE_ROOM,
     GET_ONE_ROOMTYPE,
     SET_SESSION_EXPIRE,
@@ -22,9 +23,25 @@ export function getAllRooms() {
                 
             }
         });
-    };
-}
+    };               
+}                        
 
+
+export function getAvailableRooms() {
+  return (dispatch) => {
+      instance.get(`/rooms/find-Available`)
+      .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          // console.log("create response:", axiosResponse);
+          // console.log("res  >",response);
+        
+          if (response.success) {
+              dispatch({ type: GET_AVAILABLE_ROOMS, payload: response.data});
+              
+          }
+      });
+  };               
+}
 export function createRoom(room) {
     return (dispatch) => {
       instance.post(`/rooms/create`, { room })

@@ -193,10 +193,10 @@ export default function Bookings() {
                           Total Members
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_date">
-                          Date of Booking
+                          Room Type
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_time">
-                          Time of Booking
+                        Total Price
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_arrival_date">
                           Arrival Date
@@ -235,11 +235,11 @@ export default function Bookings() {
                        {booking.map((booking) => (
                          <tr key={booking.BookingID}>
                          <td>{booking.BookingID}</td>
-                         <td>{booking.GuestID}</td>
+                         <td>{booking.FirstName}{" "}{booking.LastName}</td>
                          <td>{booking.RoomNumber}</td>
-                         <td>&nbsp;</td>
-                         <td>&nbsp;</td>
-                         <td>&nbsp;</td>
+                         <td>{booking.Capacity}</td>
+                         <td>{booking.RoomTypeName}</td>
+                         <td>{booking.TotalPrice}</td>
                          <td>{new Date(booking.CheckinDate).toLocaleDateString('en-GB')}</td>
                          <td>{new Date(booking.CheckoutDate).toLocaleDateString('en-GB')}</td>
                        </tr>

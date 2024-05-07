@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
  export default function Rooms(){
+    // const rooms = useSelector((state) => state.rooms.roomTypes)
+    // console.log("rooms.......>>>>>>", rooms);
     return(
         <>
          <div class="breadcrumb-section">

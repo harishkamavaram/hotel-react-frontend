@@ -1,22 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Button,
-    Cascader,
     DatePicker,
     Form,
-    Input,
     InputNumber,
-    Mentions,
     Select,
-    TreeSelect,
 } from 'antd';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createBooking } from "../../actionCreators/booking";
+import { useNavigate } from "react-router-dom";
+import {  getAvailableRooms } from "../../actionCreators/rooms";
 
 export default function Addbooking() {
 
-   const  dispatch = useDispatch();
-    const { RangePicker } = DatePicker;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const rooms = useSelector((state) => state.rooms.availableRooms)
+    // console.log("rooms0>>>>>>", rooms);  
+    useEffect(() => {
+
+        setTimeout(() => {
+            if (loading) {
+                dispatch(getAvailableRooms());
+            
+                setLoading(false);
+            }
+        }, 100);
+    }, [
+        loading,
+        dispatch,
+        setLoading,
+    ]);
+    // const { RangePicker } = DatePicker;
    
     const formItemLayout = {
         labelCol: {
@@ -49,9 +65,11 @@ export default function Addbooking() {
                         style={{
                             maxWidth: 600,
                         }}
-                        onFinish={(e) => {
-                            console.log(e.CheckinDate);
+                        onFinish={(e,) => {
+                            console.log(e);
+                            // console.log(date, dateString)
                             dispatch(createBooking(e))
+                            navigate("/admin/bookings/allbookings")
                         }}
                     >
                         <Form.Item
@@ -81,14 +99,16 @@ export default function Addbooking() {
                                 },
                             ]}
                         >
-                            <InputNumber
-                                style={{
-                                    width: '100%',
-                                }}
-                            />
+                           <Select>
+                                {rooms.map((room) => (
+                                    <Select.Option key={room.RoomNumber} value={room.RoomNumber}>
+                                        {room.RoomNumber}{"   "}{room.TypeName}
+                                    </Select.Option>
+                                ))}
+                            </Select>
                         </Form.Item>
 
-                        <Form.Item
+                        {/* <Form.Item
                             label="TextArea"
                             name="TextArea"
                             rules={[
@@ -99,7 +119,7 @@ export default function Addbooking() {
                             ]}
                         >
                             <Input.TextArea />
-                        </Form.Item>
+                        </Form.Item> */}
 
 
 
@@ -126,10 +146,20 @@ export default function Addbooking() {
                     },
                 ]}
             >
-                <RangePicker
-                    // showTime
-                   
-                />
+                <DatePicker />
+            </Form.Item>
+            
+            <Form.Item
+                label="CheckOutDate"
+                name="CheckOutDate"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input!',
+                    },
+                ]}
+            >
+                <DatePicker />
             </Form.Item>
 
                         <Form.Item
