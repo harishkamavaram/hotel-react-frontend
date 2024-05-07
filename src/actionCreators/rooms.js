@@ -94,10 +94,10 @@ export function createRoom(room) {
 
   export function updateRoom(roomId, room) {
     return (dispatch) => {
-      console.log(roomId);
-      console.log(room);
+      // console.log(roomId);
+      console.log(room.status);
       instance
-        .put(`/rooms/update/${roomId}`, { roomId, room })
+        .put(`/rooms/updateRoom/${roomId}`, { roomId, room })
   
         .then((axiosResponse) => {
           const response = axiosResponse.data;
@@ -120,7 +120,7 @@ export function createRoom(room) {
   export function findOneRoom(roomId) {
     return (dispatch) => {
       instance
-        .get(`/rooms/find-one/${roomId}`, { roomId })
+        .get(`/rooms/find-one-room/${roomId}`, { roomId })
         .then((axiosResponse) => {
           // console.log("axiosResponse >",axiosResponse.status);
           const response = axiosResponse.data;
@@ -194,7 +194,7 @@ export function createRoomType(room) {
 
   export function deleteRoomType(roomTypeId) {
     return (dispatch) => {
-      console.log(roomTypeId);
+      // console.log(roomTypeId);
       instance
         .delete(`/rooms/deleteRoomType/${roomTypeId}`, { roomTypeId })
   

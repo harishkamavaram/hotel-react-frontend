@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteRoom, findOneRoom, getAllRooms } from "../../actionCreators/rooms";
+import { deleteRoom, findOneRoom, getAllRooms, getRoomTypes, updateRoom } from "../../actionCreators/rooms";
 import { useDispatch, useSelector } from "react-redux";
 // import { Button, Form, InputNumber, Select, Tag } from "antd";
 import { Link } from "react-router-dom";
@@ -10,15 +10,22 @@ export default function Room() {
 
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
-  const rooms = useSelector((state) => state.rooms.data)
-  // console.log("rooms0>>>>>>", rooms);
-  // const oneRoom = useSelector((state) => state.rooms.oneRoom)
-  //   console.log("oneRoom ... >",oneRoom);
+  const room = useSelector((state) => state.rooms)
+  const rooms = room.data
+  // console.log("rooms.rooms>>>>>>", rooms);
+  const oneRoomType = useSelector((state) => state.rooms.roomTypes)
+  // console.log("oneRoomType",oneRoomType);
+  const oneRoom = useSelector((state) => state.rooms.oneRoom)
+  // console.log("oneRoom ... >", oneRoom);
+  const [roomID, setRoomID] = useState("");
+  const [roomType, setRoomType] = useState('');
+  const [status, setStatues] = useState('')
   useEffect(() => {
 
     setTimeout(() => {
       if (loading) {
         dispatch(getAllRooms());
+        dispatch(getRoomTypes())
         setLoading(false);
       }
     }, 100);
@@ -27,7 +34,12 @@ export default function Room() {
     dispatch,
     setLoading,
   ]);
+  useEffect(() => {
+    setRoomID(oneRoom.RoomNumber)
+    setRoomType(oneRoom.Name)
+    setStatues(oneRoom.Status)
 
+  }, [oneRoom]);
   return (
     <div>
       <main id="main" className="main">
@@ -243,90 +255,97 @@ export default function Room() {
                                     ></button>
                                   </div>
                                   <div className="modal-body">
-                                    <Form
-
-                                      variant="filled"
-                                      style={{
-                                        maxWidth: 600,
-                                      }}
-                                    onFinish = {(e)=>{
-                                      console.log(e);
-                                      
-                                    }}
-                                    >
-                                      <Form.Item
-                                        label="Room number"
-                                        name="RoomNumber"
-                                      // rules={[
-                                      //     {
-                                      //         required: true,
-                                      //         message: 'Please Enter Room number!',
-                                      //     },
-                                      // ]}
-                                      >
-                                        <InputNumber
-                                          style={{
-                                            width: '100%',
-                                          }}
-                                          
-                                        />
-                                      </Form.Item>
-                                      <Form.Item
-                                        label="Room Type"
-                                        name="TypeID"
-                                      // rules={[
-                                      //     {
-                                      //         required: true,
-                                      //         message: 'Please select a room type!',
-                                      //     },
-                                      // ]}
-                                      >
-                                        <Select>
-                                          {rooms.map((room) => (
+                                    <form>
+                                      {/* {rooms.map((room) => (
                                             <Select.Option key={room.TypeID} value={room.TypeID}>
-                                              {room.Name}
-                                            </Select.Option>
-                                          ))}
-                                        </Select>
-                                      </Form.Item>
+                                              {room.Name} */}
+                                      {/* <div className="row mb-3">
+                                        <label
+                                          htmlFor="inputText"
+                                          className="col-sm-4 col-form-label"
+                                        >
+                                          Room Number
+                                        </label>
+                                        <div className="col-sm-8">
+                                          <input
+                                            type="text"
+                                            className="form-control"
+                                            id="employee-name"
+                                            value={roomID}
 
-                                      <Form.Item
-                                        label="Status"
-                                        name="Status"
-                                      // rules={[
-                                      //     {
-                                      //         required: true,
-                                      //         message: 'Please Select Status!',
-                                      //     },
-                                      // ]}
-                                      >
-                                        <Select
-                                          options={[
-                                            {
-                                              value: 'Available',
-                                              label: 'Available',
-                                            },
-                                            {
-                                              value: 'Booked',
-                                              label: 'Booked',
+                                            onChange={(e) =>
+                                              setRoomID(e.target.value)
                                             }
-                                          ]}
-                                        />
-                                      </Form.Item>
+                                          />
+                                        </div>
 
 
 
-                                      <Form.Item
-                                        wrapperCol={{
-                                          offset: 20,
-                                          span: 16,
-                                        }}
-                                      >
-                                        <Button type="primary" htmlType="submit">
-                                          Save
-                                        </Button>
-                                      </Form.Item>
-                                    </Form>
+
+                                      </div> */}
+                                      {/* <div className="row mb-3">
+                                        <label
+                                          htmlFor="inputText"
+                                          className="col-sm-4 col-form-label"
+                                        >
+                                          Room TypeID
+                                        </label>
+                                        <div className="col-sm-8">
+                                          <select class="form-select" aria-label="Default select example"
+                                           onChange={(e) =>
+                                            //  console.log(e);
+                                            setRoomType(e.target.value)
+                                           
+                                          }>
+                                            
+                                            <option selected>{roomType}</option>
+                                            {oneRoomType.map((room) => (
+                                              <option key={room.TypeID} value={room.TypeID}>
+                                               
+                                                {room.Name}
+                                              </option>
+                                               
+                                            ))}
+                                          </select>
+                                        </div>
+
+
+
+
+                                      </div> */}
+                                      <div className="row mb-3">
+                                        <label
+                                          htmlFor="inputText"
+                                          className="col-sm-4 col-form-label"
+                                        >
+                                          Room TypeID
+                                        </label>
+                                        <div className="col-sm-8">
+                                          <select class="form-select" aria-label="Default select example"
+                                          onChange={(e) =>
+                                            //  console.log(e);
+                                            setStatues(e.target.value)
+                                           
+                                          }>
+                                            {/* <option value={status} selected>{status}</option> */}
+                                            {/* {
+                                              status === "Available" ? ( */}
+                                                <option value="Booked" 
+                                                // onClick={setStatues("Available")}
+                                                >Booked</option>
+                                              {/* ) : ( */}
+                                                <option value="Available">Available</option>
+                                              {/* )
+                                            } */}
+
+                                          </select>
+                                        </div>
+
+
+
+
+                                      </div>
+                                    </form>
                                   </div>
                                   <div className="modal-footer">
                                     <button
@@ -340,21 +359,20 @@ export default function Room() {
                                       type="button"
                                       className="btn btn-primary"
                                       data-bs-dismiss="modal"
-                                    //   onClick={() => {
-                                    //     dispatch(
-                                    //         updateRoomType(room.TypeID, {
-                                    //         typeID : typeID,
-                                    //         name: name,
-                                    //         description: description,
-                                    //         pricePerNight : pricePerNight,
-                                    //         capacity : capacity
-                                    //       })
-                                    //     );
-                                    //     // setName("");
-                                    //     // setDepartment("");
+                                      onClick={() => {
+                                        dispatch(
+                                          updateRoom(room.TypeID, {
+                                            RoomNumber : roomID,
+                                            roomType: roomType,
+                                            status: status,
+                                            
+                                          })
+                                        );
+                                        setStatues("");
+                                        // setDepartment("");
 
-                                    //     setLoading(true);
-                                    //   }}
+                                        setLoading(true);
+                                      }}
                                     >
                                       Save changes
                                     </button>
