@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { Button, Form, InputNumber, Select, Tag } from "antd";
 import { Link } from "react-router-dom";
 import { DeleteOutlined, EditOutlined, } from "@ant-design/icons"
-import { Button, Form, InputNumber, Select, Tag } from "antd";
+import {  Tag } from "antd";
 
 export default function Room() {
 
@@ -13,7 +13,7 @@ export default function Room() {
   const room = useSelector((state) => state.rooms)
   const rooms = room.data
   // console.log("rooms.rooms>>>>>>", rooms);
-  const oneRoomType = useSelector((state) => state.rooms.roomTypes)
+  // const oneRoomType = useSelector((state) => state.rooms.roomTypes)
   // console.log("oneRoomType",oneRoomType);
   const oneRoom = useSelector((state) => state.rooms.oneRoom)
   // console.log("oneRoom ... >", oneRoom);
