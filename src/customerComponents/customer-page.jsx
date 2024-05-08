@@ -56,9 +56,9 @@ export default function Customer() {
                         </div>
                         <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                             <div class="booking-form">
-                                <h3>Booking Your Hotel</h3>
+                                <h3>Booking Your Room</h3>
                                 <form action="#">
-                                    <div class="check-date">
+                                    {/* <div class="check-date">
                                         <label for="date-in">Check In:</label>
                                         <DatePicker
                                             format={{
@@ -68,8 +68,8 @@ export default function Customer() {
                                             onChange={onChange}
                                         />
                                         {/* <i class="icon_calendar"></i> */}
-                                    </div>
-                                    <div class="check-date">
+                                    {/* </div>  */}
+                                    {/* <div class="check-date">
                                         <label for="date-out">Check Out:</label>
                                         <DatePicker
                                             format={{
@@ -77,32 +77,32 @@ export default function Customer() {
                                                 type: 'mask',
                                             }}
                                             onChange={onChange}
-                                        />
+                                        /> */}
                                         {/* <i class="icon_calendar"></i> */}
-                                    </div>
-                                    <div class="select-option">
-                                        <label for="guest">Guests:</label>
+                                    {/* </div> */}
+                                    {/* <div class="select-option">
+                                        <label for="guest">Guests:</label> */}
                                         {/* <select id="guest" style={{ display: "none" }}>
                                             <option value="">2 Adults</option>
                                             <option value="">3 Adults</option>
                                             <option value="">4 Adults</option>
                                         </select> */}
-                                        <div class="nice-select" tabindex="0">
+                                        {/* <div class="nice-select" tabindex="0">
                                             <span class="current">2 Adults</span>
                                             <ul class="list"><li data-value="" class="option selected">2 Adults</li>
                                                 <li data-value="" class="option">3 Adults</li>
                                                 <li data-value="" class="option">5 Adults</li>
                                             </ul></div>
-                                    </div>
-                                    <div class="select-option">
+                                    </div> */}
+                                    {/* <div class="select-option">
                                         <label for="room">Room:</label>
                                         {/* <select id="room" style={{ display: "none" }}>
                                             <option value="">1 Room</option>
                                             <option value="">2 Room</option>
                                         </select> */}
-                                        <div class="nice-select" tabindex="0"><span class="current">1 Room</span><ul class="list"><li data-value="" class="option selected">1 Room</li><li data-value="" class="option">2 Room</li></ul></div>
-                                    </div>
-                                    <button type="submit">Check Availability</button>
+                                        {/* <div class="nice-select" tabindex="0"><span class="current">1 Room</span><ul class="list"><li data-value="" class="option selected">1 Room</li><li data-value="" class="option">2 Room</li></ul></div>
+                                    </div>   */}
+                                    <Link to="/rooms"><button type="submit">Check Availability</button></Link>
                                 </form>
                             </div>
                         </div>

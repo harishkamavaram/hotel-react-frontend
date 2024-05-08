@@ -12,7 +12,7 @@ import Customers from "./components/customers";
 import CustomerLayout from "./customerComponents/Layout";
 import Customer from "./customerComponents/customer-page";
 import Contactus from "./customerComponents/contact";
-import Rooms from "./customerComponents/rooms";
+import Rooms from "./customerComponents/room/rooms";
 import AboutUs from "./customerComponents/about-us";
 import AllRoom from "./components/rooms/allRooms";
 import Staff from "./components/staff";
@@ -20,6 +20,10 @@ import AddRoomType from "./components/rooms/add-roomType";
 import Room from "./components/rooms/rooms";
 import AddRoom from "./components/rooms/add-room";
 import RoomType from "./components/rooms/roomType";
+import RoomTypeBooking from "./customerComponents/room/room-type-selection";
+import GuestRegistration from "./customerComponents/room/room-number-selction";
+import RoomBooking from "./customerComponents/room/room-booking";
+
 
 
 
@@ -31,7 +35,11 @@ function App() {
           <Route index element={<Customer />} />
           <Route path="contactus" element={<Contactus />} />
           <Route path="rooms" element={<Rooms />} />
+          <Route path="selectedRoomtype" element={<RoomTypeBooking />} />
+          <Route path="selectedRoomNumber" element={<GuestRegistration />} />
+          <Route path="roomBooking" element={<RoomBooking />} />
           <Route path="aboutus" element={<AboutUs />} />
+          
         </Route>
 
       

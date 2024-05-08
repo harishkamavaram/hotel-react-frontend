@@ -1,7 +1,36 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCustomers } from "../actionCreators/guest";
 
 
 export default function Customers() {
-    
+     
+
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch()
+ const guests = useSelector((state) => state.guest.allGuests)
+
+//  console.log("booking....>",guests);
+
+
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      if (loading) {
+        dispatch(
+          getAllCustomers()
+
+        );
+        setLoading(false);
+      }
+    }, 100);
+  }, [
+    loading,
+    dispatch,
+    setLoading,
+  ]);
+
   
     return (
       <div>
@@ -30,7 +59,7 @@ export default function Customers() {
               <div className="col-lg-12">
                 <div className="card">
                   <div className="card-body">
-                    <h5 className="card-title"> All Bookings</h5>
+                    <h5 className="card-title"> All Customers</h5>
                     <div
                       style={{
                         display: "flex",
@@ -44,38 +73,36 @@ export default function Customers() {
                     <table className="table table-hover table-striped">
                       <thead>
                         <tr>
-                          <th width="12.5%" className="sort-table" id="sort_id">
-                            Booking ID
+                          <th width="14.2%" className="sort-table" id="sort_id">
+                            Guest ID
                           </th>
-                          <th width="12.5%" className="sort-table" id="sort_name">
-                             Name
+                          <th width="14.2%" className="sort-table" id="sort_name">
+                             First Name
                           </th>
                           <th
-                            width="12.5%"
+                            width="14.2%"
                             className="sort-table"
                             id="sort_room_type"
                           >
-                            Room Type     
+                            Last Name  
                           </th>
                           <th
-                            width="12.5%"
+                            width="14.2%"
                             className="sort-table"
                             id="sort_members"
                           >
-                            Total Members
+                            Date Of Birth
                           </th>
-                          <th width="12.5%" className="sort-table" id="sort_date">
-                             Date of Booking
+                          <th width="14.2%" className="sort-table" id="sort_date">
+                             Address
                           </th>
-                          <th width="12.5%" className="sort-table" id="sort_time">
-                             Time of Booking
+                          <th width="14.2%" className="sort-table" id="sort_time">
+                             Phone No.
                           </th>
-                          <th width="12.5%" className="sort-table" id="sort_arrival_date">
-                             Arrival Date
+                          <th width="14.2%" className="sort-table" id="sort_arrival_date">
+                            Email
                           </th>
-                          <th width="25%" className="sort-table" id="sort_departure_date">
-                             Departure Date
-                          </th>
+                         
                         </tr>
                       </thead>
                       <tbody id="data-rows">
@@ -87,10 +114,21 @@ export default function Customers() {
                           <td>&nbsp;</td>
                           <td>&nbsp;</td>
                           <td>&nbsp;</td>
-                          <td>&nbsp;</td>
                         </tr>
   
-    
+                        {guests.map((guest) => (
+                         <tr key={guest.GuestID}>
+                         <td>{guest.GuestID}</td>
+                         <td>{guest.FirstName}</td>
+                         <td>{guest.LastName}</td>
+                         <td>{new Date(guest.DateOfBirth).toLocaleDateString('en-GB')}</td> 
+                         <td>{guest.Address}</td>
+                         <td>{guest.Phone}</td>
+                         <td>{guest.Email}</td>
+                        
+                         {/* <td>{new Date(guest.CheckoutDate).toLocaleDateString('en-GB')}</td> */}
+                       </tr>
+                      ))} 
                       </tbody>
                     </table>
                   </div>

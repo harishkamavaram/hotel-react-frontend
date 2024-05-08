@@ -5,10 +5,10 @@ import {
     GET_AVAILABLE_ROOMS,
     GET_ONE_ROOM,
     GET_ONE_ROOMTYPE,
+    GET_SELECTED_ROOM_DETAILS,
     SET_SESSION_EXPIRE,
 } from "../actionTypes";
 import { notification } from "antd";
-// import { notification } from "antd";
 
 export function getAllRooms() {
     return (dispatch) => {
@@ -42,6 +42,26 @@ export function getAvailableRooms() {
       });
   };               
 }
+
+export function getCustomerSelectedRooms(roomTypeId) {
+  return (dispatch) => {
+    // console.log("roomTypeId >",roomTypeId);
+      instance.get(`/rooms/customer-selected-room/${roomTypeId}`,{roomTypeId})
+      .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          // console.log("create response:", axiosResponse);
+          
+          // console.log("res  >",response);
+        
+          if (response.success) {
+              dispatch({ type: GET_SELECTED_ROOM_DETAILS, payload: response.data});
+              
+          }
+      });
+  };               
+}
+
+
 export function createRoom(room) {
     return (dispatch) => {
       instance.post(`/rooms/create`, { room })

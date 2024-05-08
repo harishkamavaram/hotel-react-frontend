@@ -327,17 +327,13 @@ export default function Room() {
                                             setStatues(e.target.value)
                                            
                                           }>
-                                            {/* <option value={status} selected>{status}</option> */}
-                                            {/* {
-                                              status === "Available" ? ( */}
-                                                <option value="Booked" 
-                                                // onClick={setStatues("Available")}
-                                                >Booked</option>
-                                              {/* ) : ( */}
+                                             <option  selected>select</option> 
+                                           
+                                              
+                                                <option value="Booked" >Booked</option>
+                                             
                                                 <option value="Available">Available</option>
-                                              {/* )
-                                            } */}
-
+                                              
                                           </select>
                                         </div>
 

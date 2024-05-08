@@ -46,6 +46,32 @@ export function createBooking(booking) {
       });
     };     
   }
+
+  export function createGuestBooking(booking) {
+    console.log("booking...>0",booking);
+    return (dispatch) => {
+      instance.post(`/bookings/createGuestBooking`, { booking })
+      .then((axiosResponse) => {
+        const response = axiosResponse.data;
+        // console.log("res  >",response);
+
+        if (response.success) {
+
+          notification.success({
+            message: `Notification `,
+            description: response.message,
+            placement: "bottomRight",
+          });
+        } else {
+          notification.error({
+            message: `Notification `,
+            description: response.message,
+            placement: "bottomRight",
+          });
+        }
+      });
+    };     
+  }
 // export function findOneGuest(employeeId) {
 //     return (dispatch) => {
 //       instance

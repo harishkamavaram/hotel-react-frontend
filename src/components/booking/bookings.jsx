@@ -10,7 +10,7 @@ export default function Bookings() {
   const dispatch = useDispatch()
  const booking = useSelector((state) => state.booking.data)
 
-//  console.log("booking....>",booking);
+ console.log("booking....>",booking);
 
 
 
