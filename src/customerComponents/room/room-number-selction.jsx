@@ -10,7 +10,6 @@ import {
     InputNumber,
 } from 'antd';
 import { createGuest, findOneGuest, updateGuest } from "../../actionCreators/guest";
-import { GET_GUEST_ID } from "../../actionTypes";
 
 export default function GuestRegistration() {
     const dispatch = useDispatch();
