@@ -115,7 +115,7 @@ export function createRoom(room) {
   export function updateRoom(roomId, room) {
     return (dispatch) => {
       // console.log(roomId);
-      console.log(room.status);
+      // console.log(room.status);
       instance
         .put(`/rooms/updateRoom/${roomId}`, { roomId, room })
   

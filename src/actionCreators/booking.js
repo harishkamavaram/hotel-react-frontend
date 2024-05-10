@@ -1,6 +1,8 @@
 import instance from "./axios-instance";
 import {
     GET_ALL_BOOKINGS,
+    GET_BOOKING_ID,
+    GET_BOOKING_ID_DETAILS,
 } from "../actionTypes";
 import { notification } from "antd";
 // import { notification } from "antd";
@@ -28,9 +30,9 @@ export function createBooking(booking) {
       .then((axiosResponse) => {
         const response = axiosResponse.data;
         // console.log("res  >",response);
-
+        
         if (response.success) {
-
+          dispatch({ type: GET_BOOKING_ID, payload: response.bookingID});
           notification.success({
             message: `Notification `,
             description: response.message,
@@ -72,21 +74,22 @@ export function createBooking(booking) {
       });
     };     
   }
-// export function findOneGuest(employeeId) {
-//     return (dispatch) => {
-//       instance
-//         .get(`/guest/find-one/${employeeId}`, { employeeId })
-//         .then((axiosResponse) => {
-//         //   console.log("axiosResponse >",axiosResponse.status);
-//           const response = axiosResponse;
-//           console.log(response);
+export function findOneBooking(bookingID) {
+    return (dispatch) => {
+      instance
+        .get(`/bookings/find-one/${bookingID}`, { bookingID })
+        .then((axiosResponse) => {
+        //   console.log("axiosResponse >",axiosResponse.status);
+          const response = axiosResponse.data;
+          // console.log( response);
   
-//           if (response.success) {
-//             // console.log("innn3333",response.data.position);
-//             // dispatch({ type: GET_ALL_BOOKINGS, payload: response.data });
-//             // console.log("......>",response.data );
-//           }
-//         })
+          if (response.success) {
+            // console.log("innn3333",response.data);
+            dispatch({ type: GET_BOOKING_ID_DETAILS, payload: response.data});
+            // console.log("......>",response.data );
+          }
+        })
         
-//     };
-//   }
+    };
+  }
+

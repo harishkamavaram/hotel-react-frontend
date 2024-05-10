@@ -2,9 +2,9 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/layout";
 import Dashboard from "./components/dashboard";
-import Login from "./components/login";
-import Googlecallback from "./components/Googlecallback";
-import ErrorPage from "./components/error-page";
+import Login from "./componentsAll/login";
+import Googlecallback from "./componentsAll/Googlecallback";
+import ErrorPage from "./componentsAll/error-page";
 import Profile from "./components/profile";
 import Bookings from "./components/booking/bookings";
 import Addbooking from "./components/booking/add-booking";
@@ -23,6 +23,7 @@ import RoomType from "./components/rooms/roomType";
 import RoomTypeBooking from "./customerComponents/room/room-type-selection";
 import GuestRegistration from "./customerComponents/room/room-number-selction";
 import RoomBooking from "./customerComponents/room/room-booking";
+import Invioce from "./componentsAll/invioce-customer";
 
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="selectedRoomNumber" element={<GuestRegistration />} />
           <Route path="roomBooking" element={<RoomBooking />} />
           <Route path="aboutus" element={<AboutUs />} />
+          
           
         </Route>
 
@@ -59,7 +61,7 @@ function App() {
         </Route>
 
         
-
+        <Route path="invoice" element={<Invioce />} />
         <Route path="users/login" element={<Login />} />
         <Route path="users/googlecb" element={<Googlecallback />} />
         <Route path="*" element={<ErrorPage />} />

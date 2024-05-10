@@ -25,7 +25,7 @@ export default function RoomTypeBooking() {
             dispatch(getCustomerSelectedRooms(rooms));
         }
         else {
-            console.log("null >",rooms)
+            // console.log("null >",rooms)
             navigate("/rooms")
         }
     }, [dispatch, rooms,navigate]);
@@ -93,7 +93,7 @@ export default function RoomTypeBooking() {
                                             </table>
                                             <Link to="/selectedRoomNumber" class="primary-btn"
                                                 onClick={(e) => {
-                                                    console.log("book room no.",room2.RoomNumber)
+                                                    // console.log("book room no.",room2.RoomNumber)
                                                     dispatch({ type: GET_SELECTED_ROOM, payload: room2.RoomNumber});
                                                 }}
                                             >Book Now</Link>

@@ -98,7 +98,7 @@ import { GET_SELECTED_ROOM } from "../../actionTypes";
                             </table>
                             <Link to="/selectedRoomtype" class="primary-btn" 
                             onClick={(e)=>{
-                                console.log(room2.TypeID)
+                                // console.log(room2.TypeID)
                                 dispatch({ type: GET_SELECTED_ROOM, payload: room2.TypeID});
                             }}
                             >Select Room Type</Link>

@@ -1,9 +1,9 @@
-import { GET_ALL_BOOKINGS} from "../actionTypes";
+import { GET_ALL_BOOKINGS, GET_BOOKING_ID, GET_BOOKING_ID_DETAILS} from "../actionTypes";
 
 const initialState = {
   data: [],
-//   itemCount: []
- 
+  bookingID: [],
+  bookingIdDetails: [],
 };
 
 
@@ -15,7 +15,16 @@ const reducer = (state=initialState, action) => {
        data: action.payload,
     //    itemCount:action.payload.pagination
       }
-    
+      case GET_BOOKING_ID:
+        return {
+          ...state,
+          bookingID: action.payload,
+        }
+        case GET_BOOKING_ID_DETAILS:
+          return {
+            ...state,
+            bookingIdDetails: action.payload,
+          }
     default:
       return state;
   }

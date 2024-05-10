@@ -1,36 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getCustomerSelectedRooms } from "../../actionCreators/rooms";
 import { useEffect } from "react";
-import { Button, Flex } from "antd";
+import { Button } from "antd";
 import {
-    Cascader,
     DatePicker,
     Form,
-    Input,
     InputNumber,
-    Mentions,
-    Select,
-    TreeSelect,
 } from 'antd';
-import { createGuest } from "../../actionCreators/guest";
-import { createBooking, createGuestBooking } from "../../actionCreators/booking";
+import { createBooking } from "../../actionCreators/booking";
 
 export default function RoomBooking() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { RangePicker } = DatePicker;
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    console.log("rooms.......>>>>>>", rooms);
+    // console.log("rooms.......>>>>>>", rooms);
     const guest = useSelector((state) => state.guest.data)
-    console.log("guest...>", guest);
+    // console.log("guest...>", guest);
     // const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
     // console.log("roomsDetails.......>>>>>>", roomsDetails);
 
     const onFinish = (e) => {
-        console.log(e);
+        // console.log(e);
         dispatch(createBooking(e))
-        navigate("/admin/bookings/allbookings")
+        setTimeout(() => {
+        navigate("/invoice")
+    }, 1000);
     }
 
 
@@ -69,83 +63,86 @@ export default function RoomBooking() {
             <section class="rooms-section spad">
                 <div class="container">
                     <div class="row">
-                    <Form
-    style={{
-        maxWidth: 600,
-    }}
-    onFinish={onFinish}
->
-    <Form.Item
-        label="RoomNumber"
-        name="RoomNumber"
-        initialValue={rooms}
-        rules={[
-            {
-                required: true,
-                message: 'Please input!',
-            },
-        ]}
-    >
-        <InputNumber
-            style={{
-                width: '100%',
-            }}
-        />
-    </Form.Item>
-    <Form.Item
-        label="GuestID"
-        name="GuestID"
-        initialValue={guest}
-        rules={[
-            {
-                required: true,
-                message: 'Please input!',
-            },
-        ]}
-    >
-        <InputNumber
-            style={{
-                width: '100%',
-            }}
-        />
-    </Form.Item>
-    <Form.Item
-        label="CheckinDate"
-        name="CheckinDate"
-        rules={[
-            {
-                required: true,
-                message: 'Please input!',
-            },
-        ]}
-    >
-        <DatePicker />
-    </Form.Item>
+                        <Form
+                            style={{
+                                maxWidth: 600,
+                            }}
+                            onFinish={onFinish}
+                        >
+                            <Form.Item
+                                label="RoomNumber"
+                                name="RoomNumber"
+                                initialValue={rooms}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input!',
+                                    },
+                                ]}
+                            >
+                                <InputNumber
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    disabled
+                                />
+                            </Form.Item>
 
-    <Form.Item
-        label="CheckOutDate"
-        name="CheckOutDate"
-        rules={[
-            {
-                required: true,
-                message: 'Please input!',
-            },
-        ]}
-    >
-        <DatePicker />
-    </Form.Item>
+                            <Form.Item
+                                label="GuestID"
+                                name="GuestID"
+                                initialValue={guest}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input!',
+                                    },
+                                ]}
+                            >
+                                <InputNumber
+                                    style={{
+                                        width: '100%',
+                                    }}
+                                    disabled
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                label="CheckinDate"
+                                name="CheckinDate"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input!',
+                                    },
+                                ]}
+                            >
+                                <DatePicker />
+                            </Form.Item>
 
-    <Form.Item
-        wrapperCol={{
-            offset: 6,
-            span: 16,
-        }}
-    >
-        <Button type="primary" htmlType="submit">
-            Submit
-        </Button>
-    </Form.Item>
-</Form>
+                            <Form.Item
+                                label="CheckOutDate"
+                                name="CheckOutDate"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input!',
+                                    },
+                                ]}
+                            >
+                                <DatePicker />
+                            </Form.Item>
+
+                            <Form.Item
+                                wrapperCol={{
+                                    offset: 6,
+                                    span: 16,
+                                }}
+                            >
+                                <Button type="primary" htmlType="submit">
+                                    Submit
+                                </Button>
+                            </Form.Item>
+                        </Form>
 
 
 
