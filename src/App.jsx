@@ -8,7 +8,7 @@ import ErrorPage from "./componentsAll/error-page";
 import Profile from "./components/profile";
 import Bookings from "./components/booking/bookings";
 import Addbooking from "./components/booking/add-booking";
-import Customers from "./components/customers";
+import Customers from "./components/customers/customers";
 import CustomerLayout from "./customerComponents/Layout";
 import Customer from "./customerComponents/customer-page";
 import Contactus from "./customerComponents/contact";
@@ -24,6 +24,7 @@ import RoomTypeBooking from "./customerComponents/room/room-type-selection";
 import GuestRegistration from "./customerComponents/room/room-number-selction";
 import RoomBooking from "./customerComponents/room/room-booking";
 import Invioce from "./componentsAll/invioce-customer";
+import Addcustomer from "./components/customers/add-customer";
 
 
 
@@ -56,7 +57,7 @@ function App() {
           <Route path="rooms/addroom" element={<AddRoom />} />
           <Route path="rooms/roomType" element={<RoomType />} />
           <Route path="rooms/addroomtype" element={<AddRoomType />} />
-
+          <Route path="customers/addcustomer" element={<Addcustomer />} />
           <Route path="staff/allstaff" element={<Staff />} />
         </Route>
 

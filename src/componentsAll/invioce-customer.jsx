@@ -136,7 +136,7 @@ export default function Invioce() {
                                 <div class="mt-5">
                                     <div class="d-flex justify-content-end">
                                         <p class="text-muted me-3">Subtotal :</p>
-                                        <span>₹{' '}{bookingIdDetails.TotalPrice}</span>
+                                        <span>₹{' '}{(bookingIdDetails.WithGST )}</span>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <p class="text-muted me-3">Discount (5%) :</p>

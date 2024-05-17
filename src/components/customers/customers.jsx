@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCustomers } from "../actionCreators/guest";
+import { getAllCustomers } from "../../actionCreators/guest";
 
 
 export default function Customers() {

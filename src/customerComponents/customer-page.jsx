@@ -40,7 +40,9 @@ export default function Customer() {
     return (
         <>
 
-
+<div id="preloder" style={{ display: "none" }}>
+                <div className="loader" style={{ display: "none" }}></div>
+            </div>
 
             {/* <!-- Hero Section Begin --> */}
             <section class="hero-section">

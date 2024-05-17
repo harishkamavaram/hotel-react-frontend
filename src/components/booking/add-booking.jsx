@@ -18,6 +18,8 @@ export default function Addbooking() {
     const [loading, setLoading] = useState(true);
     const rooms = useSelector((state) => state.rooms.availableRooms)
     // console.log("rooms0>>>>>>", rooms);  
+    const guest = useSelector((state) => state.guest.data)
+    console.log("guest...>", guest);
     useEffect(() => {
 
         setTimeout(() => {
@@ -75,6 +77,7 @@ export default function Addbooking() {
                         <Form.Item
                             label="GuestID"
                             name="GuestID"
+                            initialValue={guest}
                             rules={[
                                 {
                                     required: true,

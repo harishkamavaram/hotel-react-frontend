@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CustomerHeader() {
+    const [isOpen, setIsOpen] = useState(false);
+    useEffect(() => {
+        document.body.classList.toggle('canvas-open', isOpen);
+      },[isOpen])
     return (
         <>
             {/* <!-- Page Preloder --> */}
@@ -12,10 +16,12 @@ export default function CustomerHeader() {
 
             {/* <!-- Offcanvas Menu Section Begin --> */}
             <div class="offcanvas-menu-overlay"></div>
-            {/* <div class="canvas-open">
-                <i class="icon_menu"></i>
-            </div> */}
-            {/* <div class="offcanvas-menu-wrapper">
+           <div class="canvas-open">
+                <i class="icon_menu" 
+                onClick={()=> setIsOpen(!isOpen)}
+                ></i>
+            </div> 
+             <div class="offcanvas-menu-wrapper">
                 <div class="canvas-close">
                     <i class="icon_close"></i>
                 </div>
@@ -23,7 +29,7 @@ export default function CustomerHeader() {
                     <i class="icon_search"></i>
                 </div>
                 <div class="header-configure-area">
-                    {/* <div class="language-option">
+                      {/* <div class="language-option">
                         <img src="img/flag.jpg" alt="" />
                         <span>EN <i class="fa fa-angle-down"></i></span>
                         <div class="flag-dropdown">
@@ -32,8 +38,8 @@ export default function CustomerHeader() {
                                 <li><Link to="#">Fr</Link></li>
                             </ul>
                         </div>
-                    </div> */}
-                    {/* <Link to="#" class="bk-btn">Booking Now</Link>
+                    </div>   */}
+                   <Link to="#" class="bk-btn">Booking Now</Link>
                 </div>
                 <nav class="mainmenu mobile-menu">
                     <ul>
@@ -57,16 +63,16 @@ export default function CustomerHeader() {
                         <li class="active"><Link to="/" role="menuitem">Home</Link></li>
                         <li><Link to="/rooms" role="menuitem">Rooms</Link></li>
                         <li><Link to="/aboutus" role="menuitem">About Us</Link></li>
-                        <li class="slicknav_collapsed slicknav_parent"><Link to="" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style={{ outline: "none" }}><Link to="./pages.html">Pages</Link>
+                        {/* <li class="slicknav_collapsed slicknav_parent"><Link to="" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style={{ outline: "none" }}><Link to="./pages.html">Pages</Link>
                             <span class="slicknav_arrow">►</span></Link><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style={{ display: "none" }}>
-                                {/* <li><Link to="./room-details.html" role="menuitem" tabindex="-1">Room Details</Link></li>
+                                 <li><Link to="./room-details.html" role="menuitem" tabindex="-1">Room Details</Link></li>
                                 <li><Link to="#" role="menuitem" tabindex="-1">Deluxe Room</Link></li>
                                 <li><Link to="#" role="menuitem" tabindex="-1">Family Room</Link></li>
-                                <li><Link to="#" role="menuitem" tabindex="-1">Premium Room</Link></li> */}
-                            {/* </ul>
-                        </li>
-                        {/* <li><Link to="./blog.html" role="menuitem">News</Link></li> */}
-                        {/* <li><Link to="/contactus" role="menuitem">Contact</Link></li>
+                                <li><Link to="#" role="menuitem" tabindex="-1">Premium Room</Link></li> 
+                            </ul>
+                        </li> */}
+                          <li><Link to="./blog.html" role="menuitem">News</Link></li>
+                       <li><Link to="/contactus" role="menuitem">Contact</Link></li>
                     </ul>
                 </nav></div></div>
                 <div class="top-social">
@@ -79,10 +85,10 @@ export default function CustomerHeader() {
                     <li><i class="fa fa-phone"></i> (12) 345 67890</li>
                     <li><i class="fa fa-envelope"></i> info.niceHotel@gmail.com</li>
                 </ul>
-            </div> */} 
-            {/* <!-- Offcanvas Menu Section End -->
+            </div>  
+            {/* //  <!-- Offcanvas Menu Section End --> */}
 
-    <!-- Header Section Begin --> */}
+    {/* // <!-- Header Section Begin -->   */}
             <header class="header-section">
                 <div class="top-nav">
                     <div class="container">
@@ -101,7 +107,7 @@ export default function CustomerHeader() {
                                         <Link to="#"><i class="fa fa-tripadvisor"></i></Link>
                                         <Link to="#"><i class="fa fa-instagram"></i></Link>
                                     </div>
-                                    <Link to="#" class="bk-btn">Booking Now</Link>
+                                    <Link to="/rooms" class="bk-btn">Booking Now</Link>
                                     {/* <div class="language-option">
                                         <img src="img/flag.jpg" alt="" />
                                         <span>EN <i class="fa fa-angle-down"></i></span>
@@ -122,7 +128,7 @@ export default function CustomerHeader() {
                         <div class="row">
                             <div class="col-lg-2">
                                 <div class="logo" style={{height:"8vmin",display:"flex",justifyContent:"center"}}>
-                                    <Link to="/admin" className="logo d-flex align-items-center" >
+                                    <Link to="/users/login" className="logo d-flex align-items-center" >
                                         {/* <img src="/assets/img/logo.png" alt="" /> */}
                                         <span className="d-none d-lg-block" style={{color:"#dfa974"}}>NiceHotel</span>
                                     </Link>

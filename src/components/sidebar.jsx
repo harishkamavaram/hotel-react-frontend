@@ -20,11 +20,11 @@ function Sidebar() {
                 <i class="bi bi-circle"></i><span>All Bookings</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/bookings/editbookings">
                 <i class="bi bi-circle"></i><span>Edit Bookings</span>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/admin/bookings/addbookings">
                 <i class="bi bi-circle"></i><span>Add Bookings</span>
@@ -44,13 +44,13 @@ function Sidebar() {
                 <i class="bi bi-circle"></i><span>All Customers</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/bookings/editbookings">
                 <i class="bi bi-circle"></i><span>Edit Customers</span>
               </Link>
-            </li>
+            </li> */}
             <li>
-              <Link to="/admin/bookings/addbookings">
+              <Link to="/admin/customers/addcustomer">
                 <i class="bi bi-circle"></i><span>Add Customers</span>
               </Link>
             </li>
@@ -63,11 +63,11 @@ function Sidebar() {
             <span>Rooms</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Rooms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
+            {/* <li>
               <Link to="/admin/rooms/allrooms">
                 <i class="bi bi-circle"></i><span>All Rooms</span>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/admin/rooms/room">
                 <i class="bi bi-circle"></i><span> Rooms</span>

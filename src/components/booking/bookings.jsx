@@ -183,7 +183,7 @@ export default function Bookings() {
                           className="sort-table"
                           id="sort_room_type"
                         >
-                          Room Type
+                          Room No
                         </th>
                         <th
                           width="12.5%"
@@ -192,17 +192,20 @@ export default function Bookings() {
                         >
                           Total Members
                         </th>
-                        <th width="12.5%" className="sort-table" id="sort_date">
+                        {/* <th width="12.5%" className="sort-table" id="sort_date">
                           Room Type
-                        </th>
+                        </th> */}
                         <th width="12.5%" className="sort-table" id="sort_time">
-                        Total Price
+                         Price with GST
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_arrival_date">
                           Arrival Date
                         </th>
-                        <th width="25%" className="sort-table" id="sort_departure_date">
+                        <th width="12.5%" className="sort-table" id="sort_departure_date">
                           Departure Date
+                        </th>
+                        <th width="12.5%" className="sort-table" id="sort_departure_date">
+                          Final Price
                         </th>
                       </tr>
                     </thead>
@@ -225,6 +228,7 @@ export default function Bookings() {
                         <td>
 
                         </td>
+                        {/* <td>&nbsp;</td> */}
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
@@ -238,10 +242,11 @@ export default function Bookings() {
                          <td>{booking.FirstName}{" "}{booking.LastName}</td>
                          <td>{booking.RoomNumber}</td>
                          <td>{booking.Capacity}</td>
-                         <td>{booking.RoomTypeName}</td>
-                         <td>{booking.TotalPrice}</td>
+                         {/* <td>{booking.Name}</td> */}
+                         <td><strong>₹{' '}</strong>{booking.WithGST}</td>
                          <td>{new Date(booking.CheckinDate).toLocaleDateString('en-GB')}</td>
                          <td>{new Date(booking.CheckoutDate).toLocaleDateString('en-GB')}</td>
+                         <td><strong>₹{' '}</strong>{(booking.WithGST - booking.TotalPrice * 0.05).toFixed(2)}</td>
                        </tr>
                       ))} 
                     </tbody>

@@ -84,7 +84,7 @@ import { GET_SELECTED_ROOM } from "../../actionTypes";
                                     </tr>
                                     <tr>
                                         <td class="r-o">Capacity:</td>
-                                        <td>Max persion {room2.Capacity}</td>
+                                        <td>Max <strong>{room2.Capacity}</strong> </td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Bed:</td>
