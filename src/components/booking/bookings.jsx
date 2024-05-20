@@ -10,7 +10,7 @@ export default function Bookings() {
   const dispatch = useDispatch()
  const booking = useSelector((state) => state.booking.data)
 
- console.log("booking....>",booking);
+//  console.log("booking....>",booking);
 
 
 
@@ -199,10 +199,10 @@ export default function Bookings() {
                          Price with GST
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_arrival_date">
-                          Arrival Date
+                          Check IN
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_departure_date">
-                          Departure Date
+                          Check OUT
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_departure_date">
                           Final Price

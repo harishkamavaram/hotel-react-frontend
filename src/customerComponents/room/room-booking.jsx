@@ -7,13 +7,13 @@ import {
     Form,
     InputNumber,
 } from 'antd';
-import { createBooking } from "../../actionCreators/booking";
+import {  createGuestBooking } from "../../actionCreators/booking";
 
 export default function RoomBooking() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    // console.log("rooms.......>>>>>>", rooms);
+    console.log("rooms.......>>>>>>", rooms);
     const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     // const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
@@ -21,7 +21,9 @@ export default function RoomBooking() {
 
     const onFinish = (e) => {
         // console.log(e);
-        dispatch(createBooking(e))
+        const booking = {e,rooms}
+        console.log("booking",booking);
+         dispatch(createGuestBooking(booking))
         setTimeout(() => {
         navigate("/invoice")
     }, 1000);
@@ -69,7 +71,7 @@ export default function RoomBooking() {
                             }}
                             onFinish={onFinish}
                         >
-                            <Form.Item
+                            {/* <Form.Item
                                 label="RoomNumber"
                                 name="RoomNumber"
                                 initialValue={rooms}
@@ -86,7 +88,7 @@ export default function RoomBooking() {
                                     }}
                                     disabled
                                 />
-                            </Form.Item>
+                            </Form.Item> */}
 
                             <Form.Item
                                 label="GuestID"

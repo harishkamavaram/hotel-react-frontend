@@ -19,7 +19,7 @@ export default function Addbooking() {
     const rooms = useSelector((state) => state.rooms.availableRooms)
     // console.log("rooms0>>>>>>", rooms);  
     const guest = useSelector((state) => state.guest.data)
-    console.log("guest...>", guest);
+    // console.log("guest...>", guest);
     useEffect(() => {
 
         setTimeout(() => {
@@ -68,7 +68,7 @@ export default function Addbooking() {
                             maxWidth: 600,
                         }}
                         onFinish={(e,) => {
-                            console.log(e);
+                            console.log(e.CheckinDate.$D,'/',e.CheckinDate.$M+1,'/',e.CheckinDate.$y );
                             // console.log(date, dateString)
                             dispatch(createBooking(e))
                             navigate("/admin/bookings/allbookings")

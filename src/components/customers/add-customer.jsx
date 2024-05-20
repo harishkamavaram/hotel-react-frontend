@@ -6,7 +6,7 @@ import {
     Input,
     InputNumber,
 } from 'antd';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {  getAvailableRooms } from "../../actionCreators/rooms";
 import { createGuest } from "../../actionCreators/guest";
@@ -16,8 +16,8 @@ export default function Addcustomer() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const rooms = useSelector((state) => state.rooms.availableRooms)
-    console.log("rooms0>>>>>>", rooms);  
+    // const rooms = useSelector((state) => state.rooms.availableRooms)
+    // console.log("rooms0>>>>>>", rooms);  
    
     useEffect(() => {
 
@@ -69,9 +69,9 @@ export default function Addcustomer() {
                                 onFinish={(e) => {
                                     // console.log(e);
                                     dispatch(createGuest(e));
-                                    // setTimeout(() => {
+                                    setTimeout(() => {
                                         navigate("/admin/bookings/addbookings");
-                                    // }, 1000);
+                                    }, 1000);
 
                                 }}
                             >

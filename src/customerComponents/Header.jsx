@@ -43,7 +43,7 @@ export default function CustomerHeader() {
                 </div>
                 <nav class="mainmenu mobile-menu">
                     <ul>
-                        <li class="active"><Link to="/">Home</Link></li>
+                        <li ><Link to="/">Home</Link></li>
                         <li><Link to="/rooms">Rooms</Link></li>
                         <li><Link to="/aboutus">About Us</Link></li>
                         <li><Link to="./pages.html">Pages</Link>
@@ -71,7 +71,7 @@ export default function CustomerHeader() {
                                 <li><Link to="#" role="menuitem" tabindex="-1">Premium Room</Link></li> 
                             </ul>
                         </li> */}
-                          <li><Link to="./blog.html" role="menuitem">News</Link></li>
+                          {/* <li><Link to="./blog.html" role="menuitem">News</Link></li> */}
                        <li><Link to="/contactus" role="menuitem">Contact</Link></li>
                     </ul>
                 </nav></div></div>
@@ -138,7 +138,7 @@ export default function CustomerHeader() {
                                 <div class="nav-menu">
                                     <nav class="mainmenu">
                                         <ul>
-                                            <li class="active"><Link to="/">Home</Link></li>
+                                            <li ><Link to="/">Home</Link></li>
                                             <li><Link to="/rooms">Rooms</Link></li>
                                             <li><Link to="/aboutus">About Us</Link></li>
                                             {/* <li><Link to="./pages.html">Pages</Link>

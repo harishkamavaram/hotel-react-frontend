@@ -10,13 +10,13 @@ export default function Invioce() {
     const [loading, setLoading] = useState(true);
 
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    // console.log("rooms.......>>>>>>", rooms);
+    console.log("rooms.......>>>>>>", rooms);
     // const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     const bookingID = useSelector((state) => state.booking.bookingID)
-    // console.log("bookingID.......>>>>>>", bookingID);  
+    console.log("bookingID.......>>>>>>", bookingID);  
     const bookingIdDetails = useSelector((state) => state.booking.bookingIdDetails)
-    // console.log("bookingIdDetails.......>>>>>>", bookingIdDetails);
+    console.log("bookingIdDetails.......>>>>>>", bookingIdDetails);
    
     const convertToPdf = () => {
         const element = document.getElementById('content-to-convert');
@@ -115,7 +115,7 @@ export default function Invioce() {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="px-0">{bookingIdDetails.RoomNumber}{' '},{' '}{bookingIdDetails.RoomTypeName}{' '}Room</td>
+                                            <td class="px-0">{bookingIdDetails.Name}{' '}Room</td>
                                             <td class="text-end px-0">₹{bookingIdDetails.TotalPrice}</td>
                                         </tr>
                                         {/* <tr>

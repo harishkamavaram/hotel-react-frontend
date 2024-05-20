@@ -201,6 +201,7 @@ export default function GuestRegistration() {
                                   label="GuestID "
                                   name="GuestID "
                                   initialValue={oneGuest.GuestID}
+                                  hidden
                                   rules={[
                                       {
                                           required: true,

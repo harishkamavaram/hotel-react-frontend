@@ -1,4 +1,4 @@
-import { DatePicker } from "antd";
+// import { DatePicker } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -34,9 +34,9 @@ export default function Customer() {
         dispatch,
         setLoading,
     ]);
-    const onChange = (date, dateString) => {
-        console.log(date, dateString);
-    };
+    // const onChange = (date, dateString) => {
+    //     console.log(date, dateString);
+    // };
     return (
         <>
 
