@@ -41,13 +41,13 @@ function Profile(){
 
     </div>
 
-    <div >
+    {/* <div >
       <Link to="/users/login" >
         <img src="https://www.pngitem.com/pimgs/m/140-1405840_png-hd-login-button-green-login-button-png.png"
         alt="login btn"
         style={{height: 50}}/>
       </Link>
-    </div>
+    </div> */}
   </div>
 </section>
 

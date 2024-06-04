@@ -28,7 +28,7 @@ export function verifyGoogleToken(code, cb) {
       .post(`/users/googlecb`, { code: code })
       .then((axiosResponse) => {
         const response = axiosResponse.data;
-        // console.log("googlecallback response:", response);
+        console.log("googlecallback response:", axiosResponse);
         if (response.success) {
           window.localStorage.setItem("NiceHotel", response.data.token);
           dispatch({ type: SET_AUTHENTICATED_USER, payload: response.data });
