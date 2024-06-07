@@ -2,6 +2,7 @@ import {  GET_ALL_GUESTS, GET_GUEST_ID, GET_ONE_GUEST_DETAILS} from "../actionTy
 
 const initialState = {
   data: [],
+  pagination: [],
   allGuests: [],
   oneGuest: [],
 };
@@ -13,11 +14,13 @@ const reducer = (state=initialState, action) => {
       return {
         ...state,
        data: action.payload,
+       
       } 
       case GET_ALL_GUESTS:
         return {
           ...state,
-          allGuests: action.payload,
+          allGuests: action.payload.data,
+          pagination: action.payload.pagination
         }
         case GET_ONE_GUEST_DETAILS:
           return {

@@ -86,7 +86,7 @@ function Sidebar() {
 
           </ul>
         </li>
-        <li class="nav-item">
+        {/* <li class="nav-item">
           <a class="nav-link collapsed" href="/" data-bs-target="#Staff-nav" data-bs-toggle="collapse" >
             <i class="bi bi-person"></i>
             <span>Staff</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -109,7 +109,7 @@ function Sidebar() {
             </li>
 
           </ul>
-        </li>
+        </li> */}
         {/* <li class="nav-item">
           <a class="nav-link collapsed" href="/" data-bs-target="#tables-nav" data-bs-toggle="collapse" >
             <i class="bi bi-layout-text-window-reverse"></i><span>Booking</span><i class="bi bi-chevron-down ms-auto"></i>

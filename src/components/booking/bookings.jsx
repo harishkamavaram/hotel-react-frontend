@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import ReactPaginate from "react-paginate";
 import { getAllBookings } from "../../actionCreators/booking"
 import ReactPaginate from "react-paginate";
-import { DatePicker } from "antd";
+import { DatePicker, Input } from "antd";
 
 
 export default function Bookings() {
@@ -13,7 +13,7 @@ export default function Bookings() {
   //  const bookings = booking.data;
   const pagination = useSelector((state) => state.booking.pagination)
   //  console.log("booking....>",bookings);
-  console.log("pagination....>", pagination);
+  // console.log("pagination....>", pagination);
 
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,7 @@ export default function Bookings() {
   const [searchRoomNo, setSearchRoomNo] = useState("");
   const [searchCheckIn, setSearchCheckIn] = useState("");
   const [searchCheckOut, setSearchCheckOut] = useState("");
+  const [searchBookingId, setSearchBookingId] = useState("");
 
   const [sortDirection, setSortDirection] = useState("DESC");
   const [sortBy, setSortBy] = useState("BookingID");
@@ -56,10 +57,11 @@ export default function Bookings() {
 
     // setTimeout(() => {
     if (loading) {
-      console.log("innnnn");
+      // console.log("innnnn");
       dispatch(
         getAllBookings(currentPage,
           itemsPerPage,
+          searchBookingId,
           searchName,
           searchRoomNo,
           searchCheckIn,
@@ -71,16 +73,18 @@ export default function Bookings() {
       setLoading(false);
     }
     // }, 100);
-  }, [setLoading, loading,currentPage,
+  }, [setLoading, loading, currentPage,
     itemsPerPage,
+    searchBookingId,
     searchName,
     searchRoomNo,
     searchCheckIn,
     searchCheckOut,
     sortDirection,
-    sortBy,dispatch]);
+    sortBy, dispatch]);
 
-  
+    // const pageCount = Math.ceil(pagination.itemCount / itemsPerPage);
+
   return (
     <div>
       <main id="main" className="main">
@@ -260,38 +264,51 @@ export default function Bookings() {
                     </thead>
                     <tbody id="data-rows">
                       <tr>
-                        <td>&nbsp;</td>
-                        <td>
-                          <input
+                        <td width="12.5%"> 
+                        <Input
                             type="text"
-                            id="search-customer-name"
-                            placeholder="Customer Name"
+                            id="search-booking-bookingID"
+                            placeholder=" BookingID"
                             onKeyDown={(e) => {
-                              if (e.key === "Enter")
+                              if (e.key === "Enter"){
+                                // console.log(e.target.value)
+                              setSearchBookingId(e.target.value);
+                              setCurrentPage(1);
+                              setLoading(true);}
+                            }}
+                          />
+                          </td>
+                        <td width="12.5%">
+                          <Input
+                            type="text"
+                            id="search-booking-name"
+                            placeholder="Search Name"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter"){
                                 console.log(e.target.value)
                               setSearchName(e.target.value);
                               setCurrentPage(1);
-                              setLoading(true);
+                              setLoading(true);}
                             }}
                           />
                         </td>
-                        <td>
-                          <input
+                        <td width="12.5%">
+                          <Input
                             type="text"
-                            id="search-customer-room"
-                            placeholder="Customer Room"
+                            id="search-booking-room"
+                            placeholder="Room Search"
                             onKeyDown={(e) => {
-                              if (e.key === "Enter")
+                              if (e.key === "Enter"){
                                 // console.log(e.target.value)
-                              setSearchRoomNo(e.target.value);
+                                setSearchRoomNo(e.target.value);
                               setCurrentPage(1);
-                              setLoading(true);
+                              setLoading(true);}
                             }}
                           />
                         </td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td><DatePicker
+                        <td width="12.5%">&nbsp;</td>
+                        <td width="12.5%">&nbsp;</td>
+                        <td width="12.5%"><DatePicker
                           onChange={(e, eString) => {
                             // console.log( eString);
                             setSearchCheckIn(eString);
@@ -299,7 +316,7 @@ export default function Bookings() {
                             setLoading(true);
                           }}
                         /></td>
-                        <td><DatePicker
+                        <td width="12.5%"><DatePicker
                           onChange={(e, eString) => {
                             // console.log(e);
                             // console.log( e.target.value );
@@ -308,7 +325,7 @@ export default function Bookings() {
                             setLoading(true);
                           }}
                         /></td>
-                        <td>&nbsp;</td>
+                        <td width="12.5%">&nbsp;</td>
                       </tr>
 
                       {bookings.map((booking) => (

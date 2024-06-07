@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCustomers } from "../../actionCreators/guest";
+import ReactPaginate from "react-paginate";
+import { Input } from "antd";
 
 
 export default function Customers() {
@@ -9,17 +11,44 @@ export default function Customers() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
  const guests = useSelector((state) => state.guest.allGuests)
+const pagination = useSelector((state) => state.guest.pagination)
+//  console.log("booking....>",guests);
 
- console.log("booking....>",guests);
+
+ const [currentPage, setCurrentPage] = useState(1);
+ const [itemsPerPage, setItemsPerPage] = useState(10); // Default value for items per page
+
+ const [searchGuestId, setSearchGuestId] = useState("");
+ const [searchFirstName, setSearchFirstName] = useState("");
+ const [searchLastName, setSearchLastName] = useState("");
+//  const [searchCheckOut, setSearchCheckOut] = useState("");
+//  const [searchBookingId, setSearchBookingId] = useState("");
+
+ const [sortDirection, setSortDirection] = useState("DESC");
+ const [sortBy, setSortBy] = useState("GuestID");
+
+ const pageCount = Math.ceil(pagination.itemCount / itemsPerPage);
 
 
+ const handlePageClick = (data) => {
+  const pageNumber = data.selected + 1;
+  setCurrentPage(pageNumber);
+
+  setLoading(true);
+};
 
   useEffect(() => {
 
     setTimeout(() => {
       if (loading) {
         dispatch(
-          getAllCustomers()
+          getAllCustomers(currentPage,
+            itemsPerPage,
+            searchGuestId,
+            searchFirstName,
+            searchLastName,
+            sortDirection,
+            sortBy)
 
         );
         setLoading(false);
@@ -44,7 +73,13 @@ export default function Customers() {
                 <select
                   id="pagesize"
                   style={{ marginRight: "10" }}
-                 
+                  onChange={(e) => {
+                    const selectedPageSize = parseInt(e.target.value);
+                    setItemsPerPage(selectedPageSize);
+                    setCurrentPage(1);
+                    setLoading(true);
+                    // handlePageClick({selected: 0})
+                  }}
                 >
                   <option value="10" selected>
                     Default: 10
@@ -107,9 +142,42 @@ export default function Customers() {
                       </thead>
                       <tbody id="data-rows">
                         <tr>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                          <td>&nbsp;</td>
+                          <td> <Input
+                            type="text"
+                            id="search-customer-GuestID"
+                            placeholder=" GuestID"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter"){
+                                console.log(e.target.value)
+                              setSearchGuestId(e.target.value);
+                              setCurrentPage(1);
+                              setLoading(true);}
+                            }}
+                          /></td>
+                          <td> <Input
+                            type="text"
+                            id="search-customer-first"
+                            placeholder="first Name"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter"){
+                                console.log(e.target.value)
+                              setSearchFirstName(e.target.value);
+                              setCurrentPage(1);
+                              setLoading(true);}
+                            }}
+                          /></td>
+                          <td> <Input
+                            type="text"
+                            id="search-customer-last"
+                            placeholder="Last Name"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter"){
+                                console.log(e.target.value)
+                              setSearchLastName(e.target.value);
+                              setCurrentPage(1);
+                              setLoading(true);}
+                            }}
+                          /></td>
                           <td>&nbsp;</td>
                           <td>&nbsp;</td>
                           <td>&nbsp;</td>
@@ -143,7 +211,24 @@ export default function Customers() {
               justifyContent: "center",
             }}
           >
-        
+        {pagination.itemCount > itemsPerPage && (
+            <ReactPaginate
+              initialPage={currentPage - 1}
+              pageCount={pageCount} // Total number of pages
+              pageRangeDisplayed={5} // Number of pages to display in the pagination
+              marginPagesDisplayed={2} // Number of pages to display at the beginning and end of the pagination
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              breakLabel={"..."}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+              pageLinkClassName={"page-link"}
+              previousLinkClassName={"page-link"}
+              nextLinkClassName={"page-link"}
+            // onChange={console.log(currentPage-1)}      
+            />
+          )}
           </div>
         </main>
       </div>

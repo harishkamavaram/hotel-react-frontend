@@ -1,6 +1,7 @@
 import instance from "./axios-instance";
 import {
   GET_ALL_BOOKINGS,
+  GET_ALL_CUSTOMER_BOOKINGS,
   GET_BOOKING_ID,
   GET_BOOKING_ID_DETAILS,
 } from "../actionTypes";
@@ -9,6 +10,7 @@ import { notification } from "antd";
 
 export function getAllBookings(currentPage,
   itemsPerPage,
+  searchBookingId,
   searchName,
   searchRoomNo,
   searchCheckIn,
@@ -20,6 +22,7 @@ export function getAllBookings(currentPage,
       params: {
         currentPage,
         itemsPerPage,
+        searchBookingId,
         searchName,
         searchRoomNo,
         searchCheckIn,
@@ -50,7 +53,7 @@ export function getCustomerBookings() {
         // console.log("res  >",response);
 
         if (response.success) {
-          dispatch({ type: GET_ALL_BOOKINGS, payload: response });
+          dispatch({ type: GET_ALL_CUSTOMER_BOOKINGS, payload: response });
           // dispatch(findOneGuest(response.data.GuestID))
           // console.log("gusestID:",response.data.GuestID);
         }
@@ -85,7 +88,7 @@ export function createBooking(booking) {
 }
 
 export function createGuestBooking(booking) {
-  console.log("booking...>0", booking);
+  // console.log("booking...>0", booking);
   return (dispatch) => {
     instance.post(`/bookings/createGuestBooking`, { booking })
       .then((axiosResponse) => {

@@ -9,7 +9,7 @@ export default function CustomerBookings() {
 
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
- const booking = useSelector((state) => state.booking.data)
+ const booking = useSelector((state) => state.booking.customerBooking)
 
 //  console.log("booking....>",booking);
 

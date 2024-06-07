@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {  findOneBooking } from "../actionCreators/booking";
+import { findOneBooking } from "../actionCreators/booking";
 import html2pdf from 'html2pdf.js';
 
 export default function Invioce() {
@@ -14,10 +14,10 @@ export default function Invioce() {
     // const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     const bookingID = useSelector((state) => state.booking.bookingID)
-    console.log("bookingID.......>>>>>>", bookingID);  
+    console.log("bookingID.......>>>>>>", bookingID);
     const bookingIdDetails = useSelector((state) => state.booking.bookingIdDetails)
     console.log("bookingIdDetails.......>>>>>>", bookingIdDetails);
-   
+
     const convertToPdf = () => {
         const element = document.getElementById('content-to-convert');
         const opt = {
@@ -99,7 +99,7 @@ export default function Invioce() {
                                             <p class="fs-sm">
                                                 PUNE , MH
                                                 <br />
-                                                <a href="#!" class="text-purple">info.niceHotel@gmail.com
+                                                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" class="text-purple" target="_main">info.niceHotel@gmail.com
                                                 </a>
                                             </p>
                                         </div>
@@ -136,7 +136,7 @@ export default function Invioce() {
                                 <div class="mt-5">
                                     <div class="d-flex justify-content-end">
                                         <p class="text-muted me-3">Subtotal :</p>
-                                        <span>₹{' '}{(bookingIdDetails.WithGST )}</span>
+                                        <span>₹{' '}{(bookingIdDetails.WithGST)}</span>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <p class="text-muted me-3">Discount (5%) :</p>
