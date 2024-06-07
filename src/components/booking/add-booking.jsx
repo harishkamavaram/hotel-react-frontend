@@ -35,7 +35,25 @@ export default function Addbooking() {
         setLoading,
     ]);
     // const { RangePicker } = DatePicker;
-   
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const onFinish = (e) => {
+        const formattedData = {
+            ...e,
+            CheckinDate: formatDate(e.CheckinDate),
+            CheckOutDate: formatDate(e.CheckOutDate),
+        };
+        console.log(formattedData.CheckinDate, formattedData.CheckOutDate);
+        console.log("formattedData",formattedData);
+        dispatch(createBooking(formattedData));
+        navigate("/admin/bookings/allbookings");
+    };
     const formItemLayout = {
         labelCol: {
             xs: {
@@ -67,12 +85,13 @@ export default function Addbooking() {
                         style={{
                             maxWidth: 600,
                         }}
-                        onFinish={(e,) => {
-                            console.log(e.CheckinDate.$D,'/',e.CheckinDate.$M+1,'/',e.CheckinDate.$y );
-                            // console.log(date, dateString)
-                            dispatch(createBooking(e))
-                            navigate("/admin/bookings/allbookings")
-                        }}
+                        onFinish={onFinish}
+                        // {(e) => {
+                        //     // console.log(e.CheckinDate.$D,'/',e.CheckinDate.$M+1,'/',e.CheckinDate.$y );
+                        //     console.log(e.CheckinDate.String)
+                        //     dispatch(createBooking(e))
+                        //     navigate("/admin/bookings/allbookings")
+                        // }}
                     >
                         <Form.Item
                             label="GuestID"

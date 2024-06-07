@@ -327,12 +327,13 @@ export default function Room() {
                                             setStatues(e.target.value)
                                            
                                           }>
-                                             <option  selected>select</option> 
-                                           
-                                              
-                                                <option value="Booked" >Booked</option>
+                                             {/* <option  selected></option>  */}
+                                             <option value="Booked" >Booked</option>
+                                             <option value="Available">Available</option>
                                              
-                                                <option value="Available">Available</option>
+                                                
+                                             
+                                               
                                               
                                           </select>
                                         </div>

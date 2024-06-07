@@ -10,7 +10,7 @@ export default function Customers() {
   const dispatch = useDispatch()
  const guests = useSelector((state) => state.guest.allGuests)
 
-//  console.log("booking....>",guests);
+ console.log("booking....>",guests);
 
 
 

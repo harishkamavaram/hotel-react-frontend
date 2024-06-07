@@ -1,7 +1,9 @@
+import { Pagination } from "antd";
 import { GET_ALL_BOOKINGS, GET_BOOKING_ID, GET_BOOKING_ID_DETAILS} from "../actionTypes";
 
 const initialState = {
   data: [],
+  pagination: [],
   bookingID: [],
   bookingIdDetails: [],
 };
@@ -12,8 +14,8 @@ const reducer = (state=initialState, action) => {
     case GET_ALL_BOOKINGS:
       return {
         ...state,
-       data: action.payload,
-    //    itemCount:action.payload.pagination
+       data: action.payload.data,
+       pagination:action.payload.pagination
       }
       case GET_BOOKING_ID:
         return {

@@ -62,7 +62,7 @@ export default function CustomerFooter() {
                             </div>
                             <div class="col-lg-5">
                                 <div class="co-text"><p>
-                                    Copyright ©<script>document.write(new Date().getFullYear());</script>2024 All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <Link to="https://colorlib.com" target="_blank">NiceHotel</Link>
+                                    Copyright ©<script>document.write(new Date().getFullYear());</script>2024 All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <Link to="/admin" >NiceHotel</Link>
                                 </p></div>
                             </div>
                         </div>

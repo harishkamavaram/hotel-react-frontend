@@ -25,6 +25,7 @@ import GuestRegistration from "./customerComponents/room/room-number-selction";
 import RoomBooking from "./customerComponents/room/room-booking";
 import Invioce from "./componentsAll/invioce-customer";
 import Addcustomer from "./components/customers/add-customer";
+import CustomerBookings from "./components/booking/customer-booking";
 
 
 
@@ -32,7 +33,7 @@ import Addcustomer from "./components/customers/add-customer";
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
+      <Routes>
         <Route path="/" element={<CustomerLayout />}>
           <Route index element={<Customer />} />
           <Route path="contactus" element={<Contactus />} />
@@ -41,18 +42,19 @@ function App() {
           <Route path="selectedRoomNumber" element={<GuestRegistration />} />
           <Route path="roomBooking" element={<RoomBooking />} />
           <Route path="aboutus" element={<AboutUs />} />
-          
-          
+
+
         </Route>
 
-      
+
         <Route path="/admin/*" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="components/profile" element={<Profile />} />
           <Route path="bookings/allbookings" element={<Bookings />} />
+          <Route path="bookings/customerBookings" element={<CustomerBookings />} />
           <Route path="bookings/addbookings" element={<Addbooking />} />
           <Route path="customers/allcustomers" element={<Customers />} />
-          <Route path="rooms/allrooms" element={<AllRoom/>} />
+          <Route path="rooms/allrooms" element={<AllRoom />} />
           <Route path="rooms/room" element={<Room />} />
           <Route path="rooms/addroom" element={<AddRoom />} />
           <Route path="rooms/roomType" element={<RoomType />} />
@@ -61,7 +63,7 @@ function App() {
           <Route path="staff/allstaff" element={<Staff />} />
         </Route>
 
-        
+
         <Route path="invoice" element={<Invioce />} />
         <Route path="users/login" element={<Login />} />
         <Route path="users/googlecb" element={<Googlecallback />} />

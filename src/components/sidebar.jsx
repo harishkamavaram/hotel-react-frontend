@@ -20,6 +20,11 @@ function Sidebar() {
                 <i class="bi bi-circle"></i><span>All Bookings</span>
               </Link>
             </li>
+            <li>
+              <Link to="/admin/bookings/customerBookings">
+                <i class="bi bi-circle"></i><span>Customer Bookings</span>
+              </Link>
+            </li>
             {/* <li>
               <Link to="/bookings/editbookings">
                 <i class="bi bi-circle"></i><span>Edit Bookings</span>
