@@ -15,6 +15,9 @@ export default function Contactus() {
         const messages ={name, email, message};
         // console.log("messages",messages);
         dispatch(createGuestMessage(messages))
+        setName("");
+        setEmail("");
+        setMessage("")
     }
 
     return (
@@ -53,21 +56,21 @@ export default function Contactus() {
                             <form action="#" class="contact-form">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <input type="text" placeholder="Your Name"
+                                        <input type="text" placeholder="Your Name" value={name}
                                             onChange={(e) => {
                                                 // console.log(e.target.value);
                                                 setName(e.target.value)
                                             }} />
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" placeholder="Your Email"
+                                        <input type="text" placeholder="Your Email" value={email}
                                             onChange={(e) => {
                                                 // console.log(e.target.value);
                                                 setEmail(e.target.value)
                                             }} />
                                     </div>
                                     <div class="col-lg-12">
-                                        <textarea placeholder="Your Message"
+                                        <textarea placeholder="Your Message" value={message}
                                             onChange={(e) => {
                                                 // console.log(e.target.value);
                                                 setMessage(e.target.value)

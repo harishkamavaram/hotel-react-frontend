@@ -25,7 +25,17 @@ export function getAllRooms() {
         });
     };               
 }                        
-
+export function getEmail() {
+  console.log("innnn");
+  return (dispatch) => {
+      instance.get(`/email/send-email`)
+      .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          console.log("create response:", axiosResponse);
+          console.log("res  >",response);
+      });
+  };               
+}  
 
 export function getAvailableRooms() {
   return (dispatch) => {

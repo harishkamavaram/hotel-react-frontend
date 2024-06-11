@@ -4,7 +4,8 @@ import userReducer from './features/userSlice';
 // import oneReducer from './features/oneEmployeeSlice';
 import bookingReducer from './features/bookingSlice';
 import roomReducer from './features/roomSlice';
-import guestReducer from './features/guestSlice'
+import guestReducer from './features/guestSlice';
+import messageReducer from './features/messageSlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     guest :guestReducer,
     booking: bookingReducer,
     rooms: roomReducer,
+    messages: messageReducer,
   }
   
 })

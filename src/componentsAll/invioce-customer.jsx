@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { findOneBooking } from "../actionCreators/booking";
 import html2pdf from 'html2pdf.js';
+import { getEmail } from "../actionCreators/rooms";
 
 export default function Invioce() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function Invioce() {
     console.log("bookingIdDetails.......>>>>>>", bookingIdDetails);
 
     const convertToPdf = () => {
+        dispatch(getEmail())
         const element = document.getElementById('content-to-convert');
         const opt = {
             margin: 0.25,

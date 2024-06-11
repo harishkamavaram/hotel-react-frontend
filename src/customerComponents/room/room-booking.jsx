@@ -24,6 +24,7 @@ export default function RoomBooking() {
         const booking = {e,rooms}
         console.log("booking",booking);
          dispatch(createGuestBooking(booking))
+         
         setTimeout(() => {
         navigate("/invoice")
     }, 1000);

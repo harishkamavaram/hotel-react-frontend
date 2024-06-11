@@ -26,6 +26,7 @@ import RoomBooking from "./customerComponents/room/room-booking";
 import Invioce from "./componentsAll/invioce-customer";
 import Addcustomer from "./components/customers/add-customer";
 import CustomerBookings from "./components/booking/customer-booking";
+import AllMessages from "./components/messages";
 
 
 
@@ -61,6 +62,7 @@ function App() {
           <Route path="rooms/addroomtype" element={<AddRoomType />} />
           <Route path="customers/addcustomer" element={<Addcustomer />} />
           <Route path="staff/allstaff" element={<Staff />} />
+          <Route path="messages/allMessages" element={<AllMessages />} />
         </Route>
 
 

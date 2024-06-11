@@ -34,6 +34,8 @@ export const GET_GUEST_ID = 'GET_GUEST_ID';
 
 export const GET_ALL_GUESTS = 'GET_ALL_GUESTS';
 
+export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
+
 export const GET_BOOKING_ID = 'GET_BOOKING_ID';
 
 export const GET_BOOKING_ID_DETAILS = 'GET_BOOKING_ID_DETAILS';

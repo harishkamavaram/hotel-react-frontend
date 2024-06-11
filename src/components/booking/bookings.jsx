@@ -68,8 +68,8 @@ export default function Bookings() {
           searchCheckOut,
           sortDirection,
           sortBy)
-
       );
+      
       setLoading(false);
     }
     // }, 100);

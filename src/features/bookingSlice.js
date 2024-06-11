@@ -1,4 +1,4 @@
-import { Pagination } from "antd";
+// import { Pagination } from "antd";
 import { GET_ALL_BOOKINGS, GET_ALL_CUSTOMER_BOOKINGS, GET_BOOKING_ID, GET_BOOKING_ID_DETAILS } from "../actionTypes";
 
 const initialState = {

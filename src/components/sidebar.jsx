@@ -110,17 +110,17 @@ function Sidebar() {
 
           </ul>
         </li> */}
-        {/* <li class="nav-item">
-          <a class="nav-link collapsed" href="/" data-bs-target="#tables-nav" data-bs-toggle="collapse" >
-            <i class="bi bi-layout-text-window-reverse"></i><span>Booking</span><i class="bi bi-chevron-down ms-auto"></i>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="/" data-bs-target="#messages-nav" data-bs-toggle="collapse" >
+            <i class="bi bi-chat-left-dots"></i><span>Customer Messages</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <ul id="messages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <Link to="/admin/bookings/allbookings">
-                <i class="bi bi-circle"></i><span>All Bookings</span>
+              <Link to="/admin/messages/allMessages">
+                <i class="bi bi-circle"></i><span>All Messages</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/bookings/editbookings">
                 <i class="bi bi-circle"></i><span>Edit Bookings</span>
               </Link>
@@ -129,10 +129,10 @@ function Sidebar() {
               <Link to="/admin/bookings/addbookings">
                 <i class="bi bi-circle"></i><span>Add Bookings</span>
               </Link>
-            </li>
+            </li> */}
 
           </ul>
-        </li> */}
+        </li>
       </ul>
     </aside>
   )
