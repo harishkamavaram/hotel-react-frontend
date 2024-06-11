@@ -16,7 +16,7 @@ export default function GuestRegistration() {
     const navigate = useNavigate();
     // const { RangePicker } = DatePicker;
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    // console.log("rooms.......>>>>>>", rooms);
+    console.log("rooms.......>>>>>>", rooms);
     const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     const oneGuest = useSelector((state) => state.guest.oneGuest)

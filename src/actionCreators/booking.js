@@ -131,3 +131,53 @@ export function findOneBooking(bookingID) {
   };
 }
 
+export function masterBooking(booking) {
+  console.log("booking...>0", booking);
+  return (dispatch) => {
+    instance.post(`/bookings/masterBooking`, { booking })
+      .then((axiosResponse) => {
+        const response = axiosResponse.data;
+        // console.log("res  >",response);
+
+        // if (response.success) {
+        //   dispatch({ type: GET_BOOKING_ID, payload: response.bookingID });
+        //   notification.success({
+        //     message: `Notification `,
+        //     description: response.message,
+        //     placement: "bottomRight",
+        //   });
+        // } else {
+        //   notification.error({
+        //     message: `Notification `,
+        //     description: response.message,
+        //     placement: "bottomRight",
+        //   });
+        // }
+      });
+  };
+}
+export function mastercustomerBooking(booking) {
+  console.log("booking...>0", booking);
+  return (dispatch) => {
+    instance.post(`/bookings/mastercustomerBooking`, { booking })
+      .then((axiosResponse) => {
+        const response = axiosResponse.data;
+        // console.log("res  >",response);
+
+        // if (response.success) {
+        //   dispatch({ type: GET_BOOKING_ID, payload: response.bookingID });
+        //   notification.success({
+        //     message: `Notification `,
+        //     description: response.message,
+        //     placement: "bottomRight",
+        //   });
+        // } else {
+        //   notification.error({
+        //     message: `Notification `,
+        //     description: response.message,
+        //     placement: "bottomRight",
+        //   });
+        // }
+      });
+  };
+}

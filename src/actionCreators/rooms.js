@@ -10,6 +10,18 @@ import {
 } from "../actionTypes";
 import { notification } from "antd";
 
+export function getEmail() {
+  console.log("innnn");
+  return (dispatch) => {
+      instance.get(`/email/send-email`)
+      .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          console.log("create response:", axiosResponse);
+          console.log("res  >",response);
+      });
+  };               
+}  
+
 export function getAllRooms() {
     return (dispatch) => {
         instance.get(`/rooms/find-all`)
@@ -25,17 +37,6 @@ export function getAllRooms() {
         });
     };               
 }                        
-export function getEmail() {
-  console.log("innnn");
-  return (dispatch) => {
-      instance.get(`/email/send-email`)
-      .then((axiosResponse) => {
-          const response = axiosResponse.data;
-          console.log("create response:", axiosResponse);
-          console.log("res  >",response);
-      });
-  };               
-}  
 
 export function getAvailableRooms() {
   return (dispatch) => {
@@ -301,3 +302,23 @@ export function createRoomType(room) {
         });
     };
   }
+
+
+
+  export function getAllAvailableRooms(checkInDate) {
+    console.log("checkInDate",checkInDate );
+    // console.log("checkOutDate",checkOutDate);
+    return (dispatch) => {
+        instance.post(`/rooms/find-all-available`,{checkInDate})
+        .then((axiosResponse) => {
+            const response = axiosResponse.data;
+            // console.log("create response:", axiosResponse);
+            console.log("res  >",response.data);
+          
+            // if (response.success) {
+            //     dispatch({ type: GET_ALL_ROOMS, payload: response.data});
+                
+            // }
+        });
+    };               
+}

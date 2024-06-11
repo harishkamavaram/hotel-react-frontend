@@ -9,9 +9,9 @@ export default function RoomTypeBooking() {
     const dispatch = useDispatch();
     const navigate =useNavigate();
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    // console.log("rooms.......>>>>>>", rooms);
+    console.log("rooms.......>>>>>>", rooms);
     const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
-    // console.log("roomsDetails.......>>>>>>", roomsDetails);
+    console.log("roomsDetails.......>>>>>>", roomsDetails);
 
 
     // if (rooms === null) {

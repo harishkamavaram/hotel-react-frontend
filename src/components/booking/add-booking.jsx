@@ -7,34 +7,25 @@ import {
     Select,
 } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
-import { createBooking } from "../../actionCreators/booking";
+import { createBooking, masterBooking } from "../../actionCreators/booking";
 import { useNavigate } from "react-router-dom";
-import {  getAvailableRooms } from "../../actionCreators/rooms";
+import { getAvailableRooms } from "../../actionCreators/rooms";
 
 export default function Addbooking() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const rooms = useSelector((state) => state.rooms.availableRooms)
-    // console.log("rooms0>>>>>>", rooms);  
-    const guest = useSelector((state) => state.guest.data)
-    // console.log("guest...>", guest);
-    useEffect(() => {
+    const rooms = useSelector((state) => state.rooms.availableRooms);
+    const guest = useSelector((state) => state.guest.data);
 
-        setTimeout(() => {
-            if (loading) {
-                dispatch(getAvailableRooms());
-            
-                setLoading(false);
-            }
-        }, 100);
-    }, [
-        loading,
-        dispatch,
-        setLoading,
-    ]);
-    // const { RangePicker } = DatePicker;
+    useEffect(() => {
+        if (loading) {
+            dispatch(getAvailableRooms());
+            setLoading(false);
+        }
+    }, [loading, dispatch]);
+
     const formatDate = (date) => {
         const d = new Date(date);
         const year = d.getFullYear();
@@ -44,16 +35,20 @@ export default function Addbooking() {
     };
 
     const onFinish = (e) => {
+        const [roomNumber, typeID] = e.RoomNumber.split('|');
         const formattedData = {
             ...e,
+            RoomNumber: roomNumber,
+            TypeID: typeID,
             CheckinDate: formatDate(e.CheckinDate),
             CheckOutDate: formatDate(e.CheckOutDate),
         };
-        console.log(formattedData.CheckinDate, formattedData.CheckOutDate);
-        console.log("formattedData",formattedData);
+        // console.log(formattedData);
         dispatch(createBooking(formattedData));
+        dispatch(masterBooking(formattedData));
         navigate("/admin/bookings/allbookings");
     };
+
     const formItemLayout = {
         labelCol: {
             xs: {
@@ -72,6 +67,7 @@ export default function Addbooking() {
             },
         },
     };
+
     return (
         <div>
             <main id="main" className="main">
@@ -81,114 +77,50 @@ export default function Addbooking() {
                 <section className="section">
                     <Form
                         {...formItemLayout}
-                        variant="filled"
-                        style={{
-                            maxWidth: 600,
-                        }}
+                        style={{ maxWidth: 600 }}
                         onFinish={onFinish}
-                        // {(e) => {
-                        //     // console.log(e.CheckinDate.$D,'/',e.CheckinDate.$M+1,'/',e.CheckinDate.$y );
-                        //     console.log(e.CheckinDate.String)
-                        //     dispatch(createBooking(e))
-                        //     navigate("/admin/bookings/allbookings")
-                        // }}
                     >
                         <Form.Item
                             label="GuestID"
                             name="GuestID"
                             initialValue={guest}
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input!',
-                                },
-                            ]}
+                            rules={[{ required: true, message: 'Please input!' }]}
                         >
-                            <InputNumber 
-                            style={{
-                                width: '100%',
-                            }}/>
-                            
+                            <InputNumber style={{ width: '100%' }} />
                         </Form.Item>
 
                         <Form.Item
                             label="RoomNumber"
                             name="RoomNumber"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input!',
-                                },
-                            ]}
+                            rules={[{ required: true, message: 'Please input!' }]}
                         >
-                           <Select>
+                            <Select>
                                 {rooms.map((room) => (
-                                    <Select.Option key={room.RoomNumber} value={room.RoomNumber}>
+                                    <Select.Option key={room.RoomNumber} value={`${room.RoomNumber}|${room.TypeID}`}>
                                         {room.RoomNumber}{"   "}{room.TypeName}
                                     </Select.Option>
                                 ))}
                             </Select>
                         </Form.Item>
 
-                        {/* <Form.Item
-                            label="TextArea"
-                            name="TextArea"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input!',
-                                },
-                            ]}
+                        <Form.Item
+                            label="CheckinDate"
+                            name="CheckinDate"
+                            rules={[{ required: true, message: 'Please input!' }]}
                         >
-                            <Input.TextArea />
-                        </Form.Item> */}
-
-
-
-                        {/* <Form.Item
-                        label="Select"
-                        name="Select"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input!',
-                            },
-                        ]}
-                    >
-                        <Select />
-                    </Form.Item> */}
+                            <DatePicker />
+                        </Form.Item>
 
                         <Form.Item
-                label="CheckinDate"
-                name="CheckinDate"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
-            >
-                <DatePicker />
-            </Form.Item>
-            
-            <Form.Item
-                label="CheckOutDate"
-                name="CheckOutDate"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input!',
-                    },
-                ]}
-            >
-                <DatePicker />
-            </Form.Item>
+                            label="CheckOutDate"
+                            name="CheckOutDate"
+                            rules={[{ required: true, message: 'Please input!' }]}
+                        >
+                            <DatePicker />
+                        </Form.Item>
 
                         <Form.Item
-                            wrapperCol={{
-                                offset: 6,
-                                span: 16,
-                            }}
+                            wrapperCol={{ offset: 6, span: 16 }}
                         >
                             <Button type="primary" htmlType="submit">
                                 Submit
@@ -196,16 +128,7 @@ export default function Addbooking() {
                         </Form.Item>
                     </Form>
                 </section>
-                <div
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}
-                >
-
-                </div>
             </main>
-        </div >
-    )
+        </div>
+    );
 }

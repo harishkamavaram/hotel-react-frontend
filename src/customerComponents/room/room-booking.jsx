@@ -7,13 +7,13 @@ import {
     Form,
     InputNumber,
 } from 'antd';
-import {  createGuestBooking } from "../../actionCreators/booking";
+import {  createGuestBooking,  mastercustomerBooking } from "../../actionCreators/booking";
 
 export default function RoomBooking() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    console.log("rooms.......>>>>>>", rooms);
+    // console.log("rooms.......>>>>>>", rooms);
     const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     // const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
@@ -22,8 +22,9 @@ export default function RoomBooking() {
     const onFinish = (e) => {
         // console.log(e);
         const booking = {e,rooms}
-        console.log("booking",booking);
+        // console.log("booking",booking);
          dispatch(createGuestBooking(booking))
+         dispatch(mastercustomerBooking(booking));
          
         setTimeout(() => {
         navigate("/invoice")

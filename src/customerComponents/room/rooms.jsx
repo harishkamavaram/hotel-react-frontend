@@ -7,15 +7,12 @@ import { GET_SELECTED_ROOM } from "../../actionTypes";
  export default function Rooms(){
     const dispatch = useDispatch();
     const rooms = useSelector((state) => state.rooms.roomTypes)
-    // console.log("rooms.......>>>>>>", rooms);
+    console.log("rooms.......>>>>>>", rooms);
     useEffect(() => {
 
-                dispatch(getRoomTypes()); 
-                
+                dispatch(getRoomTypes());   
             }
-    , [
-        
-        dispatch,
+    , [ dispatch,
     ]);
     return(
         <>

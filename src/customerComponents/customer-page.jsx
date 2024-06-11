@@ -1,22 +1,20 @@
 // import { DatePicker } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import {  getRoomTypes } from "../actionCreators/rooms";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import {  getAllAvailableRooms, getRoomTypes } from "../actionCreators/rooms";
+import { DatePicker } from "antd";
 
 
 export default function Customer() {
 
     const [loading, setLoading] = useState(true);
+    const [checkInDate,setCheckInDate] = useState("");
+    const [checkOutDate,setCheckOutDate] = useState("");
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const rooms = useSelector((state) => state.rooms.roomTypes)
     // console.log("rooms0>>>>>>", rooms);
-    // const room1 = rooms[0];
-    // const room2 = rooms[1];
-    // const room3 = rooms[2];
-    // console.log("rooms0>>>>>>", room1);
-    // console.log("rooms0>>>>>>", room2);
-    // console.log("rooms0>>>>>>", room3);
     // const oneRoom = useSelector((state) => state.rooms.oneRoom)
     //   console.log("oneRoom ... >",oneRoom);
     useEffect(() => {
@@ -24,6 +22,7 @@ export default function Customer() {
         // setTimeout(() => {
             // if (loading) {
                 dispatch(getRoomTypes());
+                
                 // setLoading(false);   
             }
         // }, 100);
@@ -34,9 +33,17 @@ export default function Customer() {
         dispatch,
         setLoading,
     ]);
-    // const onChange = (date, dateString) => {
-    //     console.log(date, dateString);
-    // };
+    
+    const onClick = () => {
+        if(checkInDate === "" || checkOutDate === ""){
+            navigate("/")
+        }else{
+            dispatch(getAllAvailableRooms({ checkInDate, checkOutDate }));
+            navigate("/rooms")
+        }
+       
+      };
+
     return (
         <>
 
@@ -60,51 +67,53 @@ export default function Customer() {
                             <div class="booking-form">
                                 <h3>Booking Your Room</h3>
                                 <form action="#">
-                                    {/* <div class="check-date">
-                                        <label for="date-in">Check In:</label>
-                                        <DatePicker
-                                            format={{
-                                                format: 'YYYY-MM-DD             ',
-                                                type: 'mask',
+                                    <div class="check-date">
+                                        <label for="date-in"><h5>Check In:</h5></label>
+                                        <DatePicker  
+                                            onChange={(date, dateString)=>{
+                                                // console.log(date, dateString)
+                                                setCheckInDate(dateString)
                                             }}
-                                            onChange={onChange}
+                                            style={{width:"280px"}}
                                         />
                                         {/* <i class="icon_calendar"></i> */}
-                                    {/* </div>  */}
-                                    {/* <div class="check-date">
-                                        <label for="date-out">Check Out:</label>
-                                        <DatePicker
-                                            format={{
-                                                format: 'YYYY-MM-DD             ',
-                                                type: 'mask',
+                                    </div> 
+                                   <div class="check-date">
+                                        <label for="date-out"><h5>Check Out:</h5></label>
+                                        <DatePicker    
+                                            onChange={(date, dateString)=>{
+                                                // console.log(date, dateString)
+                                                setCheckOutDate(dateString)
                                             }}
-                                            onChange={onChange}
-                                        /> */}
-                                        {/* <i class="icon_calendar"></i> */}
-                                    {/* </div> */}
+                                            style={{width:"280px"}}
+                                        />
+                                        {/* <i class="icon_calendar"></i>   */}
+                                    </div>
                                     {/* <div class="select-option">
-                                        <label for="guest">Guests:</label> */}
-                                        {/* <select id="guest" style={{ display: "none" }}>
+                                        <label for="guest">Guests:</label>
+                                         <select id="guest" style={{ display: "none" }}>
                                             <option value="">2 Adults</option>
                                             <option value="">3 Adults</option>
                                             <option value="">4 Adults</option>
-                                        </select> */}
-                                        {/* <div class="nice-select" tabindex="0">
+                                        </select>
+                                          <div class="nice-select" tabindex="0">
                                             <span class="current">2 Adults</span>
                                             <ul class="list"><li data-value="" class="option selected">2 Adults</li>
                                                 <li data-value="" class="option">3 Adults</li>
                                                 <li data-value="" class="option">5 Adults</li>
                                             </ul></div>
-                                    </div> */}
-                                    {/* <div class="select-option">
+                                    </div>  
+                                    <div class="select-option">
                                         <label for="room">Room:</label>
-                                        {/* <select id="room" style={{ display: "none" }}>
+                                       <select id="room" style={{ display: "none" }}>
                                             <option value="">1 Room</option>
                                             <option value="">2 Room</option>
-                                        </select> */}
-                                        {/* <div class="nice-select" tabindex="0"><span class="current">1 Room</span><ul class="list"><li data-value="" class="option selected">1 Room</li><li data-value="" class="option">2 Room</li></ul></div>
-                                    </div>   */}
-                                    <Link to="/rooms"><button type="submit">Check Availability</button></Link>
+                                        </select> 
+                                       <div class="nice-select" tabindex="0"><span class="current">1 Room</span><ul class="list"><li data-value="" class="option selected">1 Room</li><li data-value="" class="option">2 Room</li></ul></div>
+                                    </div>    */}
+                                    {/* <Link to="/rooms"> */}
+                                    <button type="submit" onClick={onClick}>Check Availability</button>
+                                    {/* </Link> */}
                                 </form>
                             </div>
                         </div>

@@ -10,9 +10,9 @@ export default function AllMessages() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
   const messages = useSelector((state) => state.messages.data)
-  console.log("messages>>>>>>", messages);
+  // console.log("messages>>>>>>", messages);
   const pagination = useSelector((state) => state.messages.pagination)
-  console.log("pagination>>>>>>", pagination);
+  // console.log("pagination>>>>>>", pagination);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 

@@ -15,9 +15,9 @@ export default function Invioce() {
     // const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     const bookingID = useSelector((state) => state.booking.bookingID)
-    console.log("bookingID.......>>>>>>", bookingID);
+    // console.log("bookingID.......>>>>>>", bookingID);
     const bookingIdDetails = useSelector((state) => state.booking.bookingIdDetails)
-    console.log("bookingIdDetails.......>>>>>>", bookingIdDetails);
+    // console.log("bookingIdDetails.......>>>>>>", bookingIdDetails);
 
     const convertToPdf = () => {
         dispatch(getEmail())
