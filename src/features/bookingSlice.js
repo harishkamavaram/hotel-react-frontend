@@ -7,6 +7,7 @@ const initialState = {
   bookingID: [],
   bookingIdDetails: [],
   customerBooking: [],
+  customerPagination: [],
 };
 
 
@@ -31,7 +32,8 @@ const reducer = (state = initialState, action) => {
     case GET_ALL_CUSTOMER_BOOKINGS:
       return {
         ...state,
-        customerBooking: action.payload.data
+        customerBooking: action.payload.data,
+        customerPagination: action.payload.pagination,
       }
     default:
       return state;

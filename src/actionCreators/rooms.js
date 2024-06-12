@@ -1,5 +1,6 @@
 import instance from "./axios-instance";
 import {
+  CHECK_AVAILABLE_ROOMS,
     GET_ALL_ROOMS,
     GET_ALL_ROOM_TYPES,
     GET_AVAILABLE_ROOMS,
@@ -15,9 +16,9 @@ export function getEmail() {
   return (dispatch) => {
       instance.get(`/email/send-email`)
       .then((axiosResponse) => {
-          const response = axiosResponse.data;
-          console.log("create response:", axiosResponse);
-          console.log("res  >",response);
+          //  const response = axiosResponse.data;
+          // console.log("create response:", axiosResponse);
+          // console.log("res  >",response);
       });
   };               
 }  
@@ -305,20 +306,20 @@ export function createRoomType(room) {
 
 
 
-  export function getAllAvailableRooms(checkInDate) {
-    console.log("checkInDate",checkInDate );
+  export function getAllAvailableRooms(available) {
+    // console.log("checkInDate",checkInDate );
     // console.log("checkOutDate",checkOutDate);
     return (dispatch) => {
-        instance.post(`/rooms/find-all-available`,{checkInDate})
+        instance.post(`/rooms/find-all-available`,{available})
         .then((axiosResponse) => {
             const response = axiosResponse.data;
             // console.log("create response:", axiosResponse);
-            console.log("res  >",response.data);
+            // console.log("res  >",response);
           
-            // if (response.success) {
-            //     dispatch({ type: GET_ALL_ROOMS, payload: response.data});
+            if (response.success) {
+                dispatch({ type: CHECK_AVAILABLE_ROOMS, payload: response});
                 
-            // }
+            }
         });
     };               
 }

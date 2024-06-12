@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 // import ReactPaginate from "react-paginate";
 import {  getCustomerBookings } from "../../actionCreators/booking"
 import { EditOutlined } from "@ant-design/icons";
+import { DatePicker, Input } from "antd";
+import ReactPaginate from "react-paginate";
 
 
 export default function CustomerBookings() {
@@ -10,9 +12,45 @@ export default function CustomerBookings() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch()
  const booking = useSelector((state) => state.booking.customerBooking)
-
 //  console.log("booking....>",booking);
 
+const pagination = useSelector((state) => state.booking.customerPagination)
+//  console.log("booking....>",booking);
+// console.log("pagination....>", pagination);
+
+
+const [currentPage, setCurrentPage] = useState(1);
+const [itemsPerPage, setItemsPerPage] = useState(10); // Default value for items per page
+
+const [searchName, setSearchName] = useState("");
+const [searchCheckIn, setSearchCheckIn] = useState("");
+const [searchCheckOut, setSearchCheckOut] = useState("");
+const [searchBookingId, setSearchBookingId] = useState("");
+
+const [sortDirection, setSortDirection] = useState("DESC");
+const [sortBy, setSortBy] = useState("BookingID");
+
+const pageCount = Math.ceil(pagination.itemCount / itemsPerPage);
+
+
+// const handleSortDirection = () => {
+//   if (sortDirection === "ASC") {
+//     setSortDirection("DESC");
+//     setLoading(true);
+//     // console.log("clicked");
+//   } else {
+//     setSortDirection("ASC");
+//     // console.log("clicked ASC");
+//     setLoading(true);
+//   }
+// };
+
+const handlePageClick = (data) => {
+  const pageNumber = data.selected + 1;
+  setCurrentPage(pageNumber);
+
+  setLoading(true);
+};
 
 
   useEffect(() => {
@@ -20,7 +58,14 @@ export default function CustomerBookings() {
     setTimeout(() => {
       if (loading) {
         dispatch(
-            getCustomerBookings()
+            getCustomerBookings(currentPage,
+              itemsPerPage,
+              searchBookingId,
+              searchName,
+              searchCheckIn,
+              searchCheckOut,
+              sortDirection,
+              sortBy)
 
         );
         setLoading(false);
@@ -29,7 +74,14 @@ export default function CustomerBookings() {
   }, [
     loading,
     dispatch,
-    setLoading,
+    setLoading,currentPage,
+    itemsPerPage,
+    searchBookingId,
+    searchName,
+    searchCheckIn,
+    searchCheckOut,
+    sortDirection,
+    sortBy
   ]);
 
 
@@ -37,7 +89,7 @@ export default function CustomerBookings() {
     <div>
       <main id="main" className="main">
         <div className="pagetitle">
-          <h1>Booking  Data Table</h1>
+          <h1>Customer Booking  Data Table</h1>
         </div>
         <section className="section">
           <div className="row">
@@ -45,13 +97,13 @@ export default function CustomerBookings() {
               <select
                 id="pagesize"
                 style={{ marginRight: "10" }}
-              // onChange={(e) => {
-              //   const selectedPageSize = parseInt(e.target.value);
-              //   setItemsPerPage(selectedPageSize);
-              //   setCurrentPage(1);
-              //   setLoading(true);
-              //   // handlePageClick({selected: 0})
-              // }}
+                onChange={(e) => {
+                  const selectedPageSize = parseInt(e.target.value);
+                  setItemsPerPage(selectedPageSize);
+                  setCurrentPage(1);
+                  setLoading(true);
+                  // handlePageClick({selected: 0})
+                }}
               >
                 <option value="10" selected>
                   Default: 10
@@ -66,7 +118,7 @@ export default function CustomerBookings() {
             <div className="col-lg-12">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title"> All Bookings</h5>
+                  <h5 className="card-title"> All Customer Bookings</h5>
                   <div
                     style={{
                       display: "flex",
@@ -74,100 +126,7 @@ export default function CustomerBookings() {
                       marginRight: "7vmin",
                     }}
                   >
-                    {/* <div class="col-3" >
-                      <button
-                        className="btn btn-primary"
-                        style={{margin:"1vmin"}}
-                        // onClick={() => {
-                        //   dispatch(generateCSV());
-                        // }}
-                      >
-                        Download Employee (CSV)
-                      </button>
-                    </div> */}
-
-                    {/* <button
-                      type="button"
-                      className="btn btn-primary"
-                      style={{margin:"1vmin"}}
-                      data-bs-toggle="modal"
-                      data-bs-target="#addEmployee"
-                    >
-                      Add New Employee
-                    </button> */}
-
-
-                    {/* <div className="modal fade" id="addEmployee" tabIndex="-1">
-                      <div className="modal-dialog modal-lg modal-dialog-centered">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title">Add New Employee</h5>
-                            <button
-                              type="button"
-                              className="btn-close"
-                              data-bs-dismiss="modal"
-                              aria-label="Close"
-                            ></button>
-                          </div>
-                          <div className="modal-body">
-                            <form>
-                              <div className="row mb-3">
-                                <label
-                                  htmlFor="inputText"
-                                  className="col-sm-4 col-form-label"
-                                >
-                                  Employee Name
-                                </label>
-                                <div className="col-sm-8">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="employee-name"
-                                    // value={input}
-                                    // onChange={(e) => setInput(e.target.value)}
-                                  />
-                                </div>
-                              </div>
-
-                              <div className="row mb-3">
-                                <label
-                                  htmlFor="inputText"
-                                  className="col-sm-4 col-form-label"
-                                >
-                                  Employee Department
-                                </label>
-                                <div className="col-sm-8">
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    id="employee-department"
-                                    // value={dep}
-                                    // onChange={(e) => setDep(e.target.value)}
-                                  />
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                          <div className="modal-footer">
-                            <button
-                              type="button"
-                              className="btn btn-secondary"
-                              data-bs-dismiss="modal"
-                            >
-                              Close
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-primary "
-                              data-bs-dismiss="modal"
-                              // onClick={addEmployeeHandle}
-                            >
-                              Save changes
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
+                    
                   </div>
 
                   <table className="table table-hover table-striped">
@@ -216,27 +175,54 @@ export default function CustomerBookings() {
                     </thead>
                     <tbody id="data-rows">
                       <tr>
-                        <td>&nbsp;</td>
+                        
                         <td>
-                          {/* <input
+                        <Input
                             type="text"
-                            id="search-employee-name"
-                            placeholder="Employee Name"
-                            // onKeyDown={(e) => {
-                            //   if (e.key === "Enter")
-                            //     setSearchName(e.target.value);
-                            //   setCurrentPage(1);
-                            //   setLoading(true);
-                            // }}
-                          /> */}&nbsp;
+                            id="search-booking-bookingID"
+                            placeholder=" BookingID"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter"){
+                                // console.log(e.target.value)
+                              setSearchBookingId(e.target.value);
+                              setCurrentPage(1);
+                              setLoading(true);}
+                            }}
+                          />
                         </td>
                         <td>
-
+                        <Input
+                            type="text"
+                            id="search-booking-name"
+                            placeholder="Search Name"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter"){
+                                console.log(e.target.value)
+                              setSearchName(e.target.value);
+                              setCurrentPage(1);
+                              setLoading(true);}
+                            }}
+                          />
                         </td>
-                        {/* <td>&nbsp;</td> */}
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td><DatePicker
+                          onChange={(e, eString) => {
+                            // console.log( eString);
+                            setSearchCheckIn(eString);
+                            setCurrentPage(1);
+                            setLoading(true);
+                          }}
+                        /></td>
+                        <td><DatePicker
+                          onChange={(e, eString) => {
+                            // console.log(e);
+                            // console.log( e.target.value );
+                            setSearchCheckOut(eString);
+                            setCurrentPage(1);
+                            setLoading(true);
+                          }}
+                        /></td>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                       </tr>
@@ -280,7 +266,7 @@ export default function CustomerBookings() {
                                 <div className="modal-content">
                                   <div className="modal-header">
                                     <h5 className="modal-title">
-                                    Allot Room - {booking.FirstName}{" "}{booking.LastName}
+                                    Allot Room For - {booking.FirstName}{" "}{booking.LastName}
                                     </h5>
                                     <button
                                       type="button"
@@ -373,7 +359,7 @@ export default function CustomerBookings() {
             justifyContent: "center",
           }}
         >
-          {/* {numberOfEmployees.itemCount > itemsPerPage && (
+          {pagination.itemCount > itemsPerPage && (
             <ReactPaginate
               initialPage={currentPage-1}
               pageCount={pageCount} // Total number of pages
@@ -390,7 +376,7 @@ export default function CustomerBookings() {
               nextLinkClassName={"page-link"}
             // onChange={console.log(currentPage-1)}      
             />
-          )} */}
+          )}
         </div>
       </main>
     </div>

@@ -44,9 +44,27 @@ export function getAllBookings(currentPage,
       });
   };
 }
-export function getCustomerBookings() {
+export function getCustomerBookings(currentPage,
+  itemsPerPage,
+  searchBookingId,
+  searchName,
+  searchCheckIn,
+  searchCheckOut,
+  sortDirection,
+  sortBy) {
   return (dispatch) => {
-    instance.get(`/bookings/find-customerBooking`)
+    instance.get(`/bookings/find-customerBooking`,{
+      params: {
+        currentPage,
+        itemsPerPage,
+        searchBookingId,
+        searchName,
+        searchCheckIn,
+        searchCheckOut,
+        sortDirection,
+        sortBy
+      }
+    })
       .then((axiosResponse) => {
         const response = axiosResponse.data;
         // console.log("create response:", axiosResponse);
@@ -136,7 +154,7 @@ export function masterBooking(booking) {
   return (dispatch) => {
     instance.post(`/bookings/masterBooking`, { booking })
       .then((axiosResponse) => {
-        const response = axiosResponse.data;
+        // const response = axiosResponse.data;
         // console.log("res  >",response);
 
         // if (response.success) {
@@ -161,7 +179,7 @@ export function mastercustomerBooking(booking) {
   return (dispatch) => {
     instance.post(`/bookings/mastercustomerBooking`, { booking })
       .then((axiosResponse) => {
-        const response = axiosResponse.data;
+        // const response = axiosResponse.data;
         // console.log("res  >",response);
 
         // if (response.success) {

@@ -7,7 +7,7 @@ import { GET_SELECTED_ROOM } from "../../actionTypes";
  export default function Rooms(){
     const dispatch = useDispatch();
     const rooms = useSelector((state) => state.rooms.roomTypes)
-    console.log("rooms.......>>>>>>", rooms);
+    // console.log("rooms.......>>>>>>", rooms);
     useEffect(() => {
 
                 dispatch(getRoomTypes());   
@@ -93,7 +93,7 @@ import { GET_SELECTED_ROOM } from "../../actionTypes";
                                     </tr>
                                 </tbody>
                             </table>
-                            <Link to="/selectedRoomNumber" class="primary-btn" 
+                            <Link to="/afterRoomTypeSelected" class="primary-btn" 
                             onClick={(e)=>{
                                 // console.log(room2.TypeID)
                                 dispatch({ type: GET_SELECTED_ROOM, payload: room2.TypeID});

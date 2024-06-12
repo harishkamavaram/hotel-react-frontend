@@ -593,7 +593,7 @@ ul, ol {
 	margin-top: 0;
 	width: 100%;
 }
-.booking-form form button {
+.booking-form form button  {
 	display: block;
 	font-size: 14px;
 	text-transform: uppercase;

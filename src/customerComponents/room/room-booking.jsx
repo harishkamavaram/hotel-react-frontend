@@ -18,10 +18,22 @@ export default function RoomBooking() {
     // console.log("guest...>", guest);
     // const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
     // console.log("roomsDetails.......>>>>>>", roomsDetails);
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
 
     const onFinish = (e) => {
         // console.log(e);
-        const booking = {e,rooms}
+        const formattedData = {
+            ...e,
+            CheckinDate: formatDate(e.CheckinDate),
+            CheckOutDate: formatDate(e.CheckOutDate),
+        };
+        const booking = {formattedData,rooms}
         // console.log("booking",booking);
          dispatch(createGuestBooking(booking))
          dispatch(mastercustomerBooking(booking));

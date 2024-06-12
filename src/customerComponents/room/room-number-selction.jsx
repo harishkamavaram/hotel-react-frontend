@@ -31,8 +31,8 @@ export default function GuestRegistration() {
                 dispatch(getCustomerSelectedRooms(rooms));
             }
             else {
-                console.log("null >", rooms)
-                navigate("/rooms")
+                // console.log("null >", rooms)
+                navigate("/")
             }
         }
     }, [dispatch, rooms, navigate,guest]);
@@ -51,7 +51,6 @@ export default function GuestRegistration() {
                                 <div class="bt-option">
                                     <Link to="/">Home</Link>
                                     <Link to="/rooms">Rooms</Link>
-                                    <Link to="/selectedRoomtype">Room Available</Link>
                                     <span>Room Booking</span>
                                 </div>
                             </div>

@@ -27,6 +27,7 @@ import Invioce from "./componentsAll/invioce-customer";
 import Addcustomer from "./components/customers/add-customer";
 import CustomerBookings from "./components/booking/customer-booking";
 import AllMessages from "./components/messages";
+import AfterRoomtypeSelected from "./customerComponents/room/after-roomtype-selectes";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="contactus" element={<Contactus />} />
           <Route path="rooms" element={<Rooms />} />
           <Route path="selectedRoomtype" element={<RoomTypeBooking />} />
+          <Route path="afterRoomTypeSelected" element={<AfterRoomtypeSelected />} />
           <Route path="selectedRoomNumber" element={<GuestRegistration />} />
           <Route path="roomBooking" element={<RoomBooking />} />
           <Route path="aboutus" element={<AboutUs />} />

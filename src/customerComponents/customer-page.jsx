@@ -1,9 +1,10 @@
 // import { DatePicker } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import {  getAllAvailableRooms, getRoomTypes } from "../actionCreators/rooms";
-import { DatePicker } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import {   getRoomTypes } from "../actionCreators/rooms";
+import { DatePicker, notification } from "antd";
+import { GET_SELECTED_DATES } from "../actionTypes";
 
 
 export default function Customer() {
@@ -19,15 +20,9 @@ export default function Customer() {
     //   console.log("oneRoom ... >",oneRoom);
     useEffect(() => {
 
-        // setTimeout(() => {
-            // if (loading) {
-                dispatch(getRoomTypes());
-                
-                // setLoading(false);   
+                dispatch(getRoomTypes());   
             }
-        // }, 100);
-    // }
-// )
+        
     , [
         loading,
         dispatch,
@@ -36,9 +31,15 @@ export default function Customer() {
     
     const onClick = () => {
         if(checkInDate === "" || checkOutDate === ""){
-            navigate("/")
+            notification.error({
+                message: `Notification `,
+                description: "Please Enter The Date",
+                placement: "bottomRight",
+              });
+            // navigate("/")
         }else{
-            dispatch(getAllAvailableRooms({ checkInDate, checkOutDate }));
+            
+            dispatch({ type: GET_SELECTED_DATES, payload: { checkInDate, checkOutDate }});
             navigate("/rooms")
         }
        
@@ -74,7 +75,14 @@ export default function Customer() {
                                                 // console.log(date, dateString)
                                                 setCheckInDate(dateString)
                                             }}
-                                            style={{width:"280px"}}
+                                            style={{width: "100%",
+                                                fontSize: "14px",
+                                                textTransform: "uppercase",
+                                                color: "#dfa974",
+                                                fontWeight: "500",
+                                                background: "transparent",
+                                                height: "66px",
+                                                }}
                                         />
                                         {/* <i class="icon_calendar"></i> */}
                                     </div> 
@@ -85,7 +93,14 @@ export default function Customer() {
                                                 // console.log(date, dateString)
                                                 setCheckOutDate(dateString)
                                             }}
-                                            style={{width:"280px"}}
+                                            style={{width: "100%",
+                                                fontSize: "14px",
+                                                textTransform: "uppercase",
+                                                color: "#dfa974",
+                                                fontWeight: "500",
+                                                background: "transparent",
+                                                height: "66px",
+                                                }}
                                         />
                                         {/* <i class="icon_calendar"></i>   */}
                                     </div>
@@ -112,7 +127,7 @@ export default function Customer() {
                                        <div class="nice-select" tabindex="0"><span class="current">1 Room</span><ul class="list"><li data-value="" class="option selected">1 Room</li><li data-value="" class="option">2 Room</li></ul></div>
                                     </div>    */}
                                     {/* <Link to="/rooms"> */}
-                                    <button type="submit" onClick={onClick}>Check Availability</button>
+                                    <button  onClick={onClick}>Check Availability</button>
                                     {/* </Link> */}
                                 </form>
                             </div>
