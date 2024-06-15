@@ -32,7 +32,7 @@ const [searchBookingId, setSearchBookingId] = useState("");
 
 const [sortDirection, setSortDirection] = useState("DESC");
 const [sortBy, setSortBy] = useState("BookingID");
-
+console.log(setSortDirection,setSortBy);
 const pageCount = Math.ceil(pagination.itemCount / itemsPerPage);
 
 
