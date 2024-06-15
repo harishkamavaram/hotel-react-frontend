@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import ReactPaginate from "react-paginate";
-import {  getCustomerBookings } from "../../actionCreators/booking"
+import {  createAllotRoom, getCustomerBookings } from "../../actionCreators/booking"
 import { EditOutlined } from "@ant-design/icons";
 import { DatePicker, Input } from "antd";
 import ReactPaginate from "react-paginate";
+import {  getRoomsToAllot } from "../../actionCreators/rooms";
 
 
 export default function CustomerBookings() {
 
   const [loading, setLoading] = useState(true);
+  const [roomNumber,setRoomNumber] = useState(""); 
   const dispatch = useDispatch()
  const booking = useSelector((state) => state.booking.customerBooking)
 //  console.log("booking....>",booking);
 
 const pagination = useSelector((state) => state.booking.customerPagination)
-//  console.log("booking....>",booking);
+ console.log("booking....>",booking);
 // console.log("pagination....>", pagination);
-
-
+const checkAvailableRooms = useSelector((state) => state.rooms.roomNumber)
+console.log("checkAvailableRooms.......>>>>>>", checkAvailableRooms);
+console.log("roomNumber  >",roomNumber)
 const [currentPage, setCurrentPage] = useState(1);
 const [itemsPerPage, setItemsPerPage] = useState(10); // Default value for items per page
 
@@ -150,7 +153,7 @@ const handlePageClick = (data) => {
                           className="sort-table"
                           id="sort_members"
                         >
-                          Total Members
+                         Room Type
                         </th>
                         {/* <th width="12.5%" className="sort-table" id="sort_date">
                           Room Type
@@ -232,7 +235,7 @@ const handlePageClick = (data) => {
                          <td>{booking.BookingID}</td>
                          <td>{booking.FirstName}{" "}{booking.LastName}</td>
                          {/* <td>{booking.RoomNumber}</td> */}
-                         <td>{booking.Capacity}</td>
+                         <td>{booking.Name}</td>
                          {/* <td>{booking.Name}</td> */}
                          <td><strong>₹{' '}</strong>{booking.WithGST}</td>
                          <td>{new Date(booking.CheckinDate).toLocaleDateString('en-GB')}</td>
@@ -245,8 +248,12 @@ const handlePageClick = (data) => {
                               className="btn btn-primary"
                               data-bs-toggle="modal"
                               data-bs-target={`#allotRoom-${booking.BookingID}`}
-                              onClick={(e) => {
-                                // dispatch(findOneRoo(booking.BookingID));
+                              onClick={() => {
+                                const bookingDetails = {
+                                  TypeID: booking.TypeID,
+                                  checkInDate: booking.CheckinDate,
+                                  checkOutDate: booking.CheckoutDate,
+                                }; dispatch(getRoomsToAllot(bookingDetails));
                               }}
                               style={{
                                 margin: "0.5vmin",
@@ -287,18 +294,18 @@ const handlePageClick = (data) => {
                                         </label>
                                         <div className="col-sm-8">
                                           <select class="form-select" aria-label="Default select example"
-                                          // onChange={(e) =>
-                                          //   //  console.log(e);
-                                          //   // setStatues(e.target.value)
-                                           
-                                          // }
+                                          onChange={(e) =>{
+                                            //  console.log(e);
+                                             setRoomNumber(e.target.value)
+                                          }
+                                          }
                                           >
-                                             {/* <option  selected></option>  */}
+                                             <option  > Select Room</option> 
                                            
-                                              
-                                                <option value="Booked" >Booked</option>
-                                             
-                                                <option value="Available">Available</option>
+                                              {checkAvailableRooms.map((room) =>(
+                                                <option key={room} value={room} >{room}</option>
+                                              ))}
+                                                {/* <option value="Available">Available</option> */}
                                               
                                           </select>
                                         </div>
@@ -321,20 +328,14 @@ const handlePageClick = (data) => {
                                       type="button"
                                       className="btn btn-primary"
                                       data-bs-dismiss="modal"
-                                      // onClick={() => {
-                                      //   dispatch(
-                                      //     updateRoom(room.TypeID, {
-                                      //       RoomNumber : roomID,
-                                      //       roomType: roomType,
-                                      //       status: status,
-                                            
-                                      //     })
-                                      //   );
-                                      //   setStatues("");
-                                      //   // setDepartment("");
+                                      onClick={() => {
+                                        dispatch(
+                                          createAllotRoom({roomNumber,booking})
+                                        );
+                                        setRoomNumber("")
 
-                                      //   setLoading(true);
-                                      // }}
+                                        setLoading(true);
+                                      }}
                                     >
                                       Save changes
                                     </button>

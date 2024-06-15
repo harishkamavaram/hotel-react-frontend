@@ -1,4 +1,4 @@
-import { CHECK_AVAILABLE_ROOMS, GET_ALL_ROOMS, GET_ALL_ROOM_TYPES, GET_AVAILABLE_ROOMS, GET_ONE_ROOM, GET_ONE_ROOMTYPE, GET_SELECTED_DATES, GET_SELECTED_ROOM, GET_SELECTED_ROOM_DETAILS, RESET_CHECK_AVAILABLE_ROOMS } from "../actionTypes";
+import { CHECK_AVAILABLE_ROOMS, GET_ALL_ROOMS, GET_ALL_ROOM_TYPES, GET_AVAILABLE_ROOMS, GET_AVAILABLE_ROOM_NUMBER, GET_ONE_ROOM, GET_ONE_ROOMTYPE, GET_SELECTED_DATES, GET_SELECTED_ROOM, GET_SELECTED_ROOM_DETAILS, RESET_CHECK_AVAILABLE_ROOMS } from "../actionTypes";
 
 const initialState = {
   data: [],
@@ -11,6 +11,7 @@ const initialState = {
   customerSelecteddates: [],
   checkAvailableRooms: [],
   checkTotalRooms: [],
+  roomNumber: [],
 };
 
 
@@ -68,6 +69,11 @@ const reducer = (state = initialState, action) => {
         checkAvailableRooms: [],
         checkTotalRooms: [],
       };
+      case GET_AVAILABLE_ROOM_NUMBER:
+     return{
+      ...state,
+      roomNumber: action.payload.data
+     }
     default:
       return state;
   }

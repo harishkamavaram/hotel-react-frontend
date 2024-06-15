@@ -15,9 +15,9 @@ export default function AfterRoomtypeSelected() {
     const selectedDates = useSelector((state) => state.rooms.customerSelecteddates)
     // console.log("selectedDates.......>>>>>>", selectedDates);
     const checkTotalRooms = useSelector((state) => state.rooms.checkTotalRooms)
-    console.log("checkTotalRooms.......>>>>>>", checkTotalRooms);
+    // console.log("checkTotalRooms.......>>>>>>", checkTotalRooms);
     const checkAvailableRooms = useSelector((state) => state.rooms.checkAvailableRooms)
-    console.log("checkAvailableRooms.......>>>>>>", checkAvailableRooms);
+    // console.log("checkAvailableRooms.......>>>>>>", checkAvailableRooms);
 
     const numberOfAvailableBookings = checkTotalRooms - checkAvailableRooms;
     console.log("numberOfAvailableBookings   >", numberOfAvailableBookings);
@@ -70,10 +70,12 @@ export default function AfterRoomtypeSelected() {
                     <div class="row">
 
                     <div style={{ display: "flex", justifyContent: "center", alignContent: "center", }}>
-                                <h2 style={{ color: "#dfa974" }}> Rooms are <strong>FULL....!</strong>,      check Other Rooms</h2>
+                                <h2  
+                                //   style={{ color: "#dfa974" }}
+                                 > Rooms are <strong >FULL....!</strong>,      check Other Rooms</h2>
                             </div>
                             <div style={{ display: "flex", justifyContent: "center", alignContent: "center", }}>
-                                 <Link to="/rooms" ><Button>GO BACK</Button></Link>
+                                 <Link to="/rooms"><Button >GO BACK</Button></Link>
                                  </div>
                     </div>
                 </div>

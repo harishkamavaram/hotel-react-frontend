@@ -4,6 +4,7 @@ import {
     GET_ALL_ROOMS,
     GET_ALL_ROOM_TYPES,
     GET_AVAILABLE_ROOMS,
+    GET_AVAILABLE_ROOM_NUMBER,
     GET_ONE_ROOM,
     GET_ONE_ROOMTYPE,
     GET_SELECTED_ROOM_DETAILS,
@@ -323,3 +324,21 @@ export function createRoomType(room) {
         });
     };               
 }
+export function getRoomsToAllot(available) {
+  // console.log("checkInDate",checkInDate );
+  // console.log("checkOutDate",checkOutDate);
+  return (dispatch) => {
+      instance.post(`/rooms/find-all-roomsToAllot`,{available})
+      .then((axiosResponse) => {
+          const response = axiosResponse.data;
+          // console.log("create response:", axiosResponse);
+          // console.log("res  >",response);
+        
+          if (response.success) {
+              dispatch({ type: GET_AVAILABLE_ROOM_NUMBER, payload: response});
+              
+          }
+      });
+  };               
+}
+

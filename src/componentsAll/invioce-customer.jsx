@@ -43,7 +43,7 @@ export default function Invioce() {
                 }
             }
             else {
-                navigate("/rooms")
+                navigate("/")
             }
             setLoading(false)
         }

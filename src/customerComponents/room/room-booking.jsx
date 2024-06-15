@@ -7,6 +7,7 @@ import {
     Form,
     InputNumber,
 } from 'antd';
+import dayjs from 'dayjs';
 import {  createGuestBooking,  mastercustomerBooking } from "../../actionCreators/booking";
 
 export default function RoomBooking() {
@@ -18,6 +19,8 @@ export default function RoomBooking() {
     // console.log("guest...>", guest);
     // const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
     // console.log("roomsDetails.......>>>>>>", roomsDetails);
+    const selectedDates = useSelector((state) => state.rooms.customerSelecteddates)
+    console.log("selectedDates.......>>>>>>", selectedDates);
     const formatDate = (date) => {
         const d = new Date(date);
         const year = d.getFullYear();
@@ -67,7 +70,7 @@ export default function RoomBooking() {
                                 <div class="bt-option">
                                     <Link to="/">Home</Link>
                                     <Link to="/rooms">Rooms</Link>
-                                    <Link to="/selectedRoomtype">Room Available</Link>
+                                   
                                     <span>Room Booking</span>
                                 </div>
                             </div>
@@ -84,6 +87,10 @@ export default function RoomBooking() {
                                 maxWidth: 600,
                             }}
                             onFinish={onFinish}
+                            initialValues={{
+                                CheckinDate: selectedDates.checkInDate ? dayjs(selectedDates.checkInDate) : null,
+                                CheckOutDate: selectedDates.checkOutDate ? dayjs(selectedDates.checkOutDate) : null,
+                            }}
                         >
                             {/* <Form.Item
                                 label="RoomNumber"

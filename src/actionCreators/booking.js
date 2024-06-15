@@ -199,3 +199,28 @@ export function mastercustomerBooking(booking) {
       });
   };
 }
+
+export function createAllotRoom(room) {
+  return (dispatch) => {
+    instance.post(`/bookings/createAllotRoom`, { room })
+    .then((axiosResponse) => {
+      const response = axiosResponse.data;
+console.log("response  >",response);
+      if (response.success) {
+
+        notification.success({
+          message: `Notification `,
+          description: response.message,
+          placement: "bottomRight",
+        });
+  
+      } else {
+        notification.error({
+          message: `Notification `,
+          description: response.message,
+          placement: "bottomRight",
+        });
+      }
+    });
+  };
+}

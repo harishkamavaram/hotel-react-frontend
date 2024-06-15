@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getRoomTypes } from "../../actionCreators/rooms";
 import { useEffect } from "react";
 import { GET_SELECTED_ROOM } from "../../actionTypes";
+import { Button } from "antd";
 
  export default function Rooms(){
     const dispatch = useDispatch();
@@ -98,7 +99,11 @@ import { GET_SELECTED_ROOM } from "../../actionTypes";
                                 // console.log(room2.TypeID)
                                 dispatch({ type: GET_SELECTED_ROOM, payload: room2.TypeID});
                             }}
-                            >Select Room Type</Link>
+                            >
+                                {/* <Button style={{ backgroundColor: "#dfa974",}}> */}
+                                Select Room Type
+                                {/* </Button> */}
+                                </Link>
                          </div>
                     </div>
                 </div>   )}

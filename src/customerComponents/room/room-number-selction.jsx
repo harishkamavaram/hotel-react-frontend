@@ -9,6 +9,7 @@ import {
     Input,
     InputNumber,
 } from 'antd';
+import dayjs from "dayjs";
 import { createGuest, findOneGuest, updateGuest } from "../../actionCreators/guest";
 
 export default function GuestRegistration() {
@@ -20,7 +21,7 @@ export default function GuestRegistration() {
     const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     const oneGuest = useSelector((state) => state.guest.oneGuest)
-    // console.log("oneGuest..>",oneGuest);
+    // console.log("oneGuest..>",oneGuest); 
 
     useEffect(() => {
         if (guest.length !== 0) {
@@ -78,6 +79,10 @@ export default function GuestRegistration() {
                                     }, 1000);
 
                                 }}
+                                initialValues={{
+                                    DOB: oneGuest.DateOfBirth ? dayjs(oneGuest.DateOfBirth) : null,
+                                    
+                                }}
                             >
                                 <Form.Item
                                     label="First Name"
@@ -104,7 +109,7 @@ export default function GuestRegistration() {
                                     <Input />
                                 </Form.Item>
                                 <Form.Item
-                                    label="Date Of Birth"
+                                    label="DOB"
                                     name="DOB"
                                     rules={[
                                         {
