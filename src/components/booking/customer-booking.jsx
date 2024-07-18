@@ -1,59 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import ReactPaginate from "react-paginate";
-import {  createAllotRoom, getCustomerBookings } from "../../actionCreators/booking"
+import { createAllotRoom, getCustomerBookings } from "../../actionCreators/booking"
 import { EditOutlined } from "@ant-design/icons";
 import { DatePicker, Input } from "antd";
 import ReactPaginate from "react-paginate";
-import {  getRoomsToAllot } from "../../actionCreators/rooms";
+import { getRoomsToAllot } from "../../actionCreators/rooms";
 
 
 export default function CustomerBookings() {
 
   const [loading, setLoading] = useState(true);
-  const [roomNumber,setRoomNumber] = useState(""); 
+  const [roomNumber, setRoomNumber] = useState("");
   const dispatch = useDispatch()
- const booking = useSelector((state) => state.booking.customerBooking)
-//  console.log("booking....>",booking);
+  const booking = useSelector((state) => state.booking.customerBooking)
+  // console.log("booking....>", booking);
 
-const pagination = useSelector((state) => state.booking.customerPagination)
- console.log("booking....>",booking);
-// console.log("pagination....>", pagination);
-const checkAvailableRooms = useSelector((state) => state.rooms.roomNumber)
-console.log("checkAvailableRooms.......>>>>>>", checkAvailableRooms);
-console.log("roomNumber  >",roomNumber)
-const [currentPage, setCurrentPage] = useState(1);
-const [itemsPerPage, setItemsPerPage] = useState(10); // Default value for items per page
+  const pagination = useSelector((state) => state.booking.customerPagination)
+  // console.log("booking....>", booking);
+  // console.log("pagination....>", pagination);
+  const checkAvailableRooms = useSelector((state) => state.rooms.roomNumber)
+  // console.log("checkAvailableRooms.......>>>>>>", checkAvailableRooms);
+  // console.log("roomNumber  >", roomNumber)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Default value for items per page
 
-const [searchName, setSearchName] = useState("");
-const [searchCheckIn, setSearchCheckIn] = useState("");
-const [searchCheckOut, setSearchCheckOut] = useState("");
-const [searchBookingId, setSearchBookingId] = useState("");
+  const [searchName, setSearchName] = useState("");
+  const [searchCheckIn, setSearchCheckIn] = useState("");
+  const [searchCheckOut, setSearchCheckOut] = useState("");
+  const [searchBookingId, setSearchBookingId] = useState("");
 
-const [sortDirection, setSortDirection] = useState("DESC");
-const [sortBy, setSortBy] = useState("BookingID");
-console.log(setSortDirection,setSortBy);
-const pageCount = Math.ceil(pagination.itemCount / itemsPerPage);
-
-
-// const handleSortDirection = () => {
-//   if (sortDirection === "ASC") {
-//     setSortDirection("DESC");
-//     setLoading(true);
-//     // console.log("clicked");
-//   } else {
-//     setSortDirection("ASC");
-//     // console.log("clicked ASC");
-//     setLoading(true);
-//   }
-// };
-
-const handlePageClick = (data) => {
-  const pageNumber = data.selected + 1;
-  setCurrentPage(pageNumber);
-
-  setLoading(true);
+  const [sortDirection, setSortDirection] = useState("DESC");
+  const [sortBy, setSortBy] = useState("BookingID");
+  // console.log(setSortDirection, setSortBy);
+  const pageCount = Math.ceil(pagination.itemCount / itemsPerPage);
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
 };
+
+  // const handleSortDirection = () => {
+  //   if (sortDirection === "ASC") {
+  //     setSortDirection("DESC");
+  //     setLoading(true);
+  //     // console.log("clicked");
+  //   } else {
+  //     setSortDirection("ASC");
+  //     // console.log("clicked ASC");
+  //     setLoading(true);
+  //   }
+  // };
+
+  const handlePageClick = (data) => {
+    const pageNumber = data.selected + 1;
+    setCurrentPage(pageNumber);
+
+    setLoading(true);
+  };
 
 
   useEffect(() => {
@@ -61,14 +67,14 @@ const handlePageClick = (data) => {
     setTimeout(() => {
       if (loading) {
         dispatch(
-            getCustomerBookings(currentPage,
-              itemsPerPage,
-              searchBookingId,
-              searchName,
-              searchCheckIn,
-              searchCheckOut,
-              sortDirection,
-              sortBy)
+          getCustomerBookings(currentPage,
+            itemsPerPage,
+            searchBookingId,
+            searchName,
+            searchCheckIn,
+            searchCheckOut,
+            sortDirection,
+            sortBy)
 
         );
         setLoading(false);
@@ -77,7 +83,7 @@ const handlePageClick = (data) => {
   }, [
     loading,
     dispatch,
-    setLoading,currentPage,
+    setLoading, currentPage,
     itemsPerPage,
     searchBookingId,
     searchName,
@@ -129,7 +135,7 @@ const handlePageClick = (data) => {
                       marginRight: "7vmin",
                     }}
                   >
-                    
+
                   </div>
 
                   <table className="table table-hover table-striped">
@@ -153,13 +159,13 @@ const handlePageClick = (data) => {
                           className="sort-table"
                           id="sort_members"
                         >
-                         Room Type
+                          Room Type
                         </th>
                         {/* <th width="12.5%" className="sort-table" id="sort_date">
                           Room Type
                         </th> */}
                         <th width="12.5%" className="sort-table" id="sort_time">
-                         Price with GST
+                          Price with GST
                         </th>
                         <th width="12.5%" className="sort-table" id="sort_arrival_date">
                           Check IN
@@ -174,36 +180,38 @@ const handlePageClick = (data) => {
                           Allot Room
                         </th>
                       </tr>
-                      
+
                     </thead>
                     <tbody id="data-rows">
                       <tr>
-                        
+
                         <td>
-                        <Input
+                          <Input
                             type="text"
                             id="search-booking-bookingID"
                             placeholder=" BookingID"
                             onKeyDown={(e) => {
-                              if (e.key === "Enter"){
+                              if (e.key === "Enter") {
                                 // console.log(e.target.value)
-                              setSearchBookingId(e.target.value);
-                              setCurrentPage(1);
-                              setLoading(true);}
+                                setSearchBookingId(e.target.value);
+                                setCurrentPage(1);
+                                setLoading(true);
+                              }
                             }}
                           />
                         </td>
                         <td>
-                        <Input
+                          <Input
                             type="text"
                             id="search-booking-name"
                             placeholder="Search Name"
                             onKeyDown={(e) => {
-                              if (e.key === "Enter"){
-                                console.log(e.target.value)
-                              setSearchName(e.target.value);
-                              setCurrentPage(1);
-                              setLoading(true);}
+                              if (e.key === "Enter") {
+                                // console.log(e.target.value)
+                                setSearchName(e.target.value);
+                                setCurrentPage(1);
+                                setLoading(true);
+                              }
                             }}
                           />
                         </td>
@@ -230,19 +238,19 @@ const handlePageClick = (data) => {
                         <td>&nbsp;</td>
                       </tr>
 
-                       {booking.map((booking) => (
-                         <tr key={booking.BookingID}>
-                         <td>{booking.BookingID}</td>
-                         <td>{booking.FirstName}{" "}{booking.LastName}</td>
-                         {/* <td>{booking.RoomNumber}</td> */}
-                         <td>{booking.Name}</td>
-                         {/* <td>{booking.Name}</td> */}
-                         <td><strong>₹{' '}</strong>{booking.WithGST}</td>
-                         <td>{new Date(booking.CheckinDate).toLocaleDateString('en-GB')}</td>
-                         <td>{new Date(booking.CheckoutDate).toLocaleDateString('en-GB')}</td>
-                         <td><strong>₹{' '}</strong>{(booking.WithGST - booking.TotalPrice * 0.05).toFixed(2)}</td>
-                         <td>
-                          
+                      {booking.map((booking) => (
+                        <tr key={booking.BookingID}>
+                          <td>{booking.BookingID}</td>
+                          <td>{booking.FirstName}{" "}{booking.LastName}</td>
+                          {/* <td>{booking.RoomNumber}</td> */}
+                          <td>{booking.Name}</td>
+                          {/* <td>{booking.Name}</td> */}
+                          <td><strong>₹{' '}</strong>{booking.WithGST}</td>
+                          <td>{new Date(booking.CheckinDate).toLocaleDateString('en-GB')}</td>
+                          <td>{new Date(booking.CheckoutDate).toLocaleDateString('en-GB')}</td>
+                          <td><strong>₹{' '}</strong>{(booking.WithGST - booking.TotalPrice * 0.05).toFixed(2)}</td>
+                          <td>
+
                             <button
                               type="button"
                               className="btn btn-primary"
@@ -263,7 +271,7 @@ const handlePageClick = (data) => {
                             >
                               <EditOutlined />
                             </button>
-                           
+
                             <div
                               className="modal fade"
                               id={`allotRoom-${booking.BookingID}`}
@@ -273,7 +281,7 @@ const handlePageClick = (data) => {
                                 <div className="modal-content">
                                   <div className="modal-header">
                                     <h5 className="modal-title">
-                                    Allot Room For - {booking.FirstName}{" "}{booking.LastName}
+                                      Allot Room For - {booking.FirstName}{" "}{booking.LastName}
                                     </h5>
                                     <button
                                       type="button"
@@ -284,7 +292,7 @@ const handlePageClick = (data) => {
                                   </div>
                                   <div className="modal-body">
                                     <form>
-                                       
+
                                       <div className="row mb-3">
                                         <label
                                           htmlFor="inputText"
@@ -294,19 +302,19 @@ const handlePageClick = (data) => {
                                         </label>
                                         <div className="col-sm-8">
                                           <select class="form-select" aria-label="Default select example"
-                                          onChange={(e) =>{
-                                            //  console.log(e);
-                                             setRoomNumber(e.target.value)
-                                          }
-                                          }
+                                            onChange={(e) => {
+                                              //  console.log(e);
+                                              setRoomNumber(e.target.value)
+                                            }
+                                            }
                                           >
-                                             <option  > Select Room</option> 
-                                           
-                                              {checkAvailableRooms.map((room) =>(
-                                                <option key={room} value={room} >{room}</option>
-                                              ))}
-                                                {/* <option value="Available">Available</option> */}
-                                              
+                                            <option  > Select Room</option>
+
+                                            {checkAvailableRooms.map((room) => (
+                                              <option key={room} value={room} >{room}</option>
+                                            ))}
+                                            {/* <option value="Available">Available</option> */}
+
                                           </select>
                                         </div>
 
@@ -329,9 +337,15 @@ const handlePageClick = (data) => {
                                       className="btn btn-primary"
                                       data-bs-dismiss="modal"
                                       onClick={() => {
-                                        dispatch(
-                                          createAllotRoom({roomNumber,booking})
-                                        );
+                                        const bookings = {
+                                          ...booking,
+                                          CheckinDate: formatDate(booking.CheckinDate),
+                                          CheckoutDate: formatDate(booking.CheckoutDate),
+  
+                                      };
+                                        // console.log({ roomNumber, bookings })
+                                        
+                                        dispatch(createAllotRoom({ roomNumber, bookings}) );
                                         setRoomNumber("")
 
                                         setLoading(true);
@@ -344,8 +358,8 @@ const handlePageClick = (data) => {
                               </div>
                             </div>
                           </td>
-                       </tr>
-                      ))} 
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -362,7 +376,7 @@ const handlePageClick = (data) => {
         >
           {pagination.itemCount > itemsPerPage && (
             <ReactPaginate
-              initialPage={currentPage-1}
+              initialPage={currentPage - 1}
               pageCount={pageCount} // Total number of pages
               pageRangeDisplayed={5} // Number of pages to display in the pagination
               marginPagesDisplayed={2} // Number of pages to display at the beginning and end of the pagination

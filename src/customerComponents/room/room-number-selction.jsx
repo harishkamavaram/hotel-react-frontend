@@ -12,17 +12,24 @@ import {
 import dayjs from "dayjs";
 import { createGuest, findOneGuest, updateGuest } from "../../actionCreators/guest";
 
+
 export default function GuestRegistration() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // const { RangePicker } = DatePicker;
     const rooms = useSelector((state) => state.rooms.customerSelectedRoom)
-    console.log("rooms.......>>>>>>", rooms);
+    // console.log("rooms.......>>>>>>", rooms);
     const guest = useSelector((state) => state.guest.data)
     // console.log("guest...>", guest);
     const oneGuest = useSelector((state) => state.guest.oneGuest)
     // console.log("oneGuest..>",oneGuest); 
-
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
     useEffect(() => {
         if (guest.length !== 0) {
             dispatch(findOneGuest(guest))
@@ -36,7 +43,7 @@ export default function GuestRegistration() {
                 navigate("/")
             }
         }
-    }, [dispatch, rooms, navigate,guest]);
+    }, [dispatch, rooms, navigate, guest]);
 
 
     return (
@@ -63,266 +70,278 @@ export default function GuestRegistration() {
             <section class="rooms-section spad">
                 <div class="container">
                     <div class="row">
-                        {guest.length === 0 ?(
-                        <div style={{ display: "flex", justifyContent: "center", width: "100vw" }}>
-                            <Form
-                                // {...formItemLayout}
-                                // variant="filled"
-                                style={{
-                                    maxWidth: 600,
-                                }}
-                                onFinish={(e) => {
-                                    // console.log(e);
-                                    dispatch(createGuest(e));
-                                    setTimeout(() => {
-                                        navigate("/roomBooking");
-                                    }, 1000);
+                        {guest.length === 0 ? (
+                            <div style={{ display: "flex", justifyContent: "center", width: "100vw" }}>
+                                <Form
+                                    // {...formItemLayout}
+                                    // variant="filled"
+                                    style={{
+                                        maxWidth: 600,
+                                    }}
+                                    onFinish={(event) => {
+                                        // console.log(event);
+                                        const e = {
+                                            ...event,
+                                            DOB: formatDate(event.DOB),
 
-                                }}
-                                initialValues={{
-                                    DOB: oneGuest.DateOfBirth ? dayjs(oneGuest.DateOfBirth) : null,
-                                    
-                                }}
-                            >
-                                <Form.Item
-                                    label="First Name"
-                                    name="firstName"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please your First Name !',
-                                        },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item
-                                    label="Last Name"
-                                    name="lastName"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please enter your Last Name!',
-                                        },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item
-                                    label="DOB"
-                                    name="DOB"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please enter your Date Of Birth !',
-                                        },
-                                    ]}
-                                >
-                                    <DatePicker />
-                                </Form.Item>
+                                        };
+                                        // console.log(e)
+                                        dispatch(createGuest(e));
+                                        setTimeout(() => {
+                                            navigate("/roomBooking");
+                                        }, 1000);
 
-                                <Form.Item
-                                    label="Address"
-                                    name="address"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please enter your Address!',
-                                        },
-                                    ]}
-                                >
-                                    <Input.TextArea />
-                                </Form.Item>
+                                    }}
+                                    initialValues={{
+                                        DOB: oneGuest.DateOfBirth ? dayjs(oneGuest.DateOfBirth) : null,
 
-                                <Form.Item
-                                    label="Phone No."
-                                    name="phone"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please enter your Phone Number!',
-                                        },
-                                    ]}
-                                >
-                                    <InputNumber
-                                        style={{
-                                            width: '100%',
-                                        }}
-                                    />
-                                </Form.Item>
-
-
-                                <Form.Item
-                                    name="email"
-                                    label="E-mail"
-                                    rules={[
-                                        {
-                                            type: 'email',
-                                            message: 'The input is not valid E-mail!',
-                                        },
-                                        {
-                                            required: true,
-                                            message: 'Please enter your E-mail!',
-                                        },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
-
-
-
-
-
-                                <Form.Item
-                                    wrapperCol={{
-                                        offset: 20,
-                                        span: 16,
                                     }}
                                 >
-                                    <Button type="primary" htmlType="submit">
-                                        Submit
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-                        </div>) : (
-                          <div style={{ display: "flex", justifyContent: "center", width: "100vw" }}>
-                          <Form
-                              // {...formItemLayout}
-                              // variant="filled"
-                              style={{
-                                  maxWidth: 600,
-                              }}
-                              onFinish={(e) => {
-                                  console.log(e);
-                                  dispatch(updateGuest(oneGuest.GuestID,{e}));
-                                  setTimeout(() => {
-                                      navigate("/roomBooking");
-                                  }, 1000);
+                                    <Form.Item
+                                        label="First Name"
+                                        name="firstName"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please your First Name !',
+                                            },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Last Name"
+                                        name="lastName"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Last Name!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="DOB"
+                                        name="DOB"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Date Of Birth !',
+                                            },
+                                        ]}
+                                    >
+                                        <DatePicker />
+                                    </Form.Item>
 
-                              }}
-                          >
-                             <Form.Item
-                                  label="GuestID "
-                                  name="GuestID "
-                                  initialValue={oneGuest.GuestID}
-                                  hidden
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Please your First Name !',
-                                      },
-                                  ]}
-                              >
-                                  <InputNumber 
-                                  disabled/>
-                              </Form.Item>
-                              <Form.Item
-                                  label="First Name"
-                                  name="firstName"
-                                  initialValue={oneGuest.FirstName}
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Please your First Name !',
-                                      },
-                                  ]}
-                              >
-                                  <Input />
-                              </Form.Item>
-                              <Form.Item
-                                  label="Last Name"
-                                  name="lastName"
-                                  initialValue={oneGuest.LastName}
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Please enter your Last Name!',
-                                      },
-                                  ]}
-                              >
-                                  <Input />
-                              </Form.Item>
-                              <Form.Item
-                                  label="Date Of Birth"
-                                  name="DOB"
-                                //   initialValue={oneGuest.DateOfBirth}
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Please enter your Date Of Birth !',
-                                      },
-                                  ]}
-                              >
-                                  <DatePicker />
-                              </Form.Item>
+                                    <Form.Item
+                                        label="Address"
+                                        name="address"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Address!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input.TextArea />
+                                    </Form.Item>
 
-                              <Form.Item
-                                  label="Address"
-                                  name="address"
-                                  initialValue={oneGuest.Address}
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Please enter your Address!',
-                                      },
-                                  ]}
-                              >
-                                  <Input.TextArea />
-                              </Form.Item>
-
-                              <Form.Item
-                                  label="Phone No."
-                                  name="phone"
-                                  initialValue={oneGuest.Phone}
-                                  rules={[
-                                      {
-                                          required: true,
-                                          message: 'Please enter your Phone Number!',
-                                      },
-                                  ]}
-                              >
-                                  <InputNumber
-                                      style={{
-                                          width: '100%',
-                                      }}
-                                  />
-                              </Form.Item>
+                                    <Form.Item
+                                        label="Phone No."
+                                        name="phone"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Phone Number!',
+                                            },
+                                        ]}
+                                    >
+                                        <InputNumber
+                                            style={{
+                                                width: '100%',
+                                            }}
+                                        />
+                                    </Form.Item>
 
 
-                              <Form.Item
-                                  name="email"
-                                  label="E-mail"
-                                  initialValue={oneGuest.Email}
-                                  rules={[
-                                      {
-                                          type: 'email',
-                                          message: 'The input is not valid E-mail!',
-                                      },
-                                      {
-                                          required: true,
-                                          message: 'Please enter your E-mail!',
-                                      },
-                                  ]}
-                              >
-                                  <Input />
-                              </Form.Item>
+                                    <Form.Item
+                                        name="email"
+                                        label="E-mail"
+                                        rules={[
+                                            {
+                                                type: 'email',
+                                                message: 'The input is not valid E-mail!',
+                                            },
+                                            {
+                                                required: true,
+                                                message: 'Please enter your E-mail!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
 
 
 
 
 
-                              <Form.Item
-                                  wrapperCol={{
-                                      offset: 20,
-                                      span: 16,
-                                  }}
-                              >
-                                  <Button type="primary" htmlType="submit">
-                                      Submit
-                                  </Button>
-                              </Form.Item>
-                          </Form>
-                      </div>  
+                                    <Form.Item
+                                        wrapperCol={{
+                                            offset: 20,
+                                            span: 16,
+                                        }}
+                                    >
+                                        <Button type="primary" htmlType="submit">
+                                            Submit
+                                        </Button>
+                                    </Form.Item>
+                                </Form>
+                            </div>) : (
+                            <div style={{ display: "flex", justifyContent: "center", width: "100vw" }}>
+                                <Form
+                                    // {...formItemLayout}
+                                    // variant="filled"
+                                    style={{
+                                        maxWidth: 600,
+                                    }}
+                                    onFinish={(event) => {
+                                        // console.log(event);
+                                        const e = {
+                                            ...event,
+                                            DOB: formatDate(event.DOB),
+
+                                        };
+                                        // console.log(oneGuest.GuestID, { e });
+                                        dispatch(updateGuest(oneGuest.GuestID, { e }));
+                                        setTimeout(() => {
+                                            navigate("/roomBooking");
+                                        }, 1000);
+
+                                    }}
+                                >
+                                    <Form.Item
+                                        label="GuestID "
+                                        name="GuestID "
+                                        initialValue={oneGuest.GuestID}
+                                        hidden
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please your First Name !',
+                                            },
+                                        ]}
+                                    >
+                                        <InputNumber
+                                            disabled />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="First Name"
+                                        name="firstName"
+                                        initialValue={oneGuest.FirstName}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please your First Name !',
+                                            },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Last Name"
+                                        name="lastName"
+                                        initialValue={oneGuest.LastName}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Last Name!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+                                    <Form.Item
+                                        label="Date Of Birth"
+                                        name="DOB"
+                                        //   initialValue={oneGuest.DateOfBirth}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Date Of Birth !',
+                                            },
+                                        ]}
+                                    >
+                                        <DatePicker />
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        label="Address"
+                                        name="address"
+                                        initialValue={oneGuest.Address}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Address!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input.TextArea />
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        label="Phone No."
+                                        name="phone"
+                                        initialValue={oneGuest.Phone}
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please enter your Phone Number!',
+                                            },
+                                        ]}
+                                    >
+                                        <InputNumber
+                                            style={{
+                                                width: '100%',
+                                            }}
+                                        />
+                                    </Form.Item>
+
+
+                                    <Form.Item
+                                        name="email"
+                                        label="E-mail"
+                                        initialValue={oneGuest.Email}
+                                        rules={[
+                                            {
+                                                type: 'email',
+                                                message: 'The input is not valid E-mail!',
+                                            },
+                                            {
+                                                required: true,
+                                                message: 'Please enter your E-mail!',
+                                            },
+                                        ]}
+                                    >
+                                        <Input />
+                                    </Form.Item>
+
+
+
+
+
+                                    <Form.Item
+                                        wrapperCol={{
+                                            offset: 20,
+                                            span: 16,
+                                        }}
+                                    >
+                                        <Button type="primary" htmlType="submit">
+                                            Submit
+                                        </Button>
+                                    </Form.Item>
+                                </Form>
+                            </div>
                         )}
 
                     </div>

@@ -34,7 +34,13 @@ export default function Addcustomer() {
         setLoading,
     ]);
     // const { RangePicker } = DatePicker;
-   
+    const formatDate = (date) => {
+        const d = new Date(date);
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
     const formItemLayout = {
         labelCol: {
             xs: {
@@ -66,7 +72,13 @@ export default function Addcustomer() {
                                 style={{
                                     maxWidth: 600,
                                 }}
-                                onFinish={(e) => {
+                                onFinish={(event) => {
+                                    // console.log(event);
+                                    const e = {
+                                        ...event,
+                                        DOB: formatDate(event.DOB),
+
+                                    };
                                     // console.log(e);
                                     dispatch(createGuest(e));
                                     setTimeout(() => {

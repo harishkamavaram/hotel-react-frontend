@@ -201,6 +201,7 @@ export function mastercustomerBooking(booking) {
 }
 
 export function createAllotRoom(room) {
+  // console.log(room);
   return (dispatch) => {
     instance.post(`/bookings/createAllotRoom`, { room })
     .then((axiosResponse) => {

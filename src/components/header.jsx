@@ -134,7 +134,7 @@ function Header() {
                 >
                   <Link
                     className="dropdown-item d-flex align-items-center"
-                    to="/admin"
+                    to="/"
                     
                   >
                     <i className="bi bi-box-arrow-right"></i>

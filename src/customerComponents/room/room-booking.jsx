@@ -20,7 +20,7 @@ export default function RoomBooking() {
     // const roomsDetails = useSelector((state) => state.rooms.customerSelectedRoomDetails)
     // console.log("roomsDetails.......>>>>>>", roomsDetails);
     const selectedDates = useSelector((state) => state.rooms.customerSelecteddates)
-    console.log("selectedDates.......>>>>>>", selectedDates);
+    // console.log("selectedDates.......>>>>>>", selectedDates);
     const formatDate = (date) => {
         const d = new Date(date);
         const year = d.getFullYear();

@@ -106,7 +106,7 @@ export function createGuest(guest) {
       instance.post(`/guest/createGuestMessage`, { messages })
         .then((axiosResponse) => {
           const response = axiosResponse.data;
-          // console.log("res  >",response);
+          console.log("res  >",response);
   
           if (response.success) {
             // dispatch({ type: GET_BOOKING_ID, payload: response.bookingID });
