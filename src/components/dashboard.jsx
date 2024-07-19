@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Card, Col, Row } from "antd";
+import { Card, Col, Row, Spin } from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
 // import React, { useState, useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 
@@ -24,18 +25,17 @@ function Dashboard() {
         <Col span={8}>
           <Card title="Rooms Booked " bordered={false}>
 
-            Card content
+          <div className="spinners"><Spin indicator={<LoadingOutlined spin />} size="large" /></div>
             {/* <i class="bi bi-person-plus"></i> */}
           </Card>
         </Col>
         <Col span={8}>
           <Card title="Available Rooms" bordered={false}>
-            Card content
-          </Card>
+          <div className="spinners"><Spin indicator={<LoadingOutlined spin />} size="large" /></div></Card>
         </Col>
         <Col span={8}>
           <Card title="Total Rooms" bordered={false}>
-            Card content
+          <div className="spinners"><Spin indicator={<LoadingOutlined spin />} size="large" /></div>
           </Card>
         </Col>
       </Row>
@@ -44,18 +44,18 @@ function Dashboard() {
         <Col span={8}>
           <Card title="Available Deluxe Rooms " bordered={false}>
 
-            Card content
+          <div className="spinners"><Spin indicator={<LoadingOutlined spin />} size="large" /></div>
             {/* <i class="bi bi-person-plus"></i> */}
           </Card>
         </Col>
         <Col span={8}>
           <Card title="Available Double Rooms" bordered={false}>
-            Card content
+          <div className="spinners"><Spin indicator={<LoadingOutlined spin />} size="large" /></div>
           </Card>
         </Col>
         <Col span={8}>
           <Card title="Available Single Rooms" bordered={false}>
-            Card content
+          <div className="spinners"><Spin indicator={<LoadingOutlined spin />} size="large" /></div>
           </Card>
         </Col>
       </Row>

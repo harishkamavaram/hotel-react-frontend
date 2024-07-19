@@ -32,7 +32,11 @@
 
 /* Template default CSS
 /*----------------------------------------*/
-
+.spinners{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 html, body {
 	height: 100%;
 	font-family: "Cabin", sans-serif;
