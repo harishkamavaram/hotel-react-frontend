@@ -188,6 +188,7 @@ export function getRoomTypes() {
         instance.get(`/rooms/roomTypes`)
         .then((axiosResponse) => {
             const response = axiosResponse.data;
+            console.log("response",axiosResponse.headers);
             // console.log("create response:", axiosResponse);
             // console.log("res  >",response);
           
